@@ -1,0 +1,21 @@
+[package]
+name = "cursor-setup-system"
+description = "Installs, reselects, restores and removes a complete Cursor CLI harness configuration, and owns the program lifecycle."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "cursor-setup-system"
+path = "src/main.rs"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+setup-core = { workspace = true }
+
+[lints]
+workspace = true

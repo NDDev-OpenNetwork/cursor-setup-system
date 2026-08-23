@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "verified_ref": "references/cursor-cli-baseline.json",
+  "release": {
+    "version": "2026.08.04-aaa8809",
+    "installer": "https://cursor.com/install",
+    "installer_sha256": "a51ebedf2a13bc073d994a6f2defbd1f4d976a6cf116ad678d071c6a363bf3e4",
+    "artifact_template": "https://downloads.cursor.com/lab/2026.08.04-aaa8809/{os}/{arch}/agent-cli-package.tar.gz",
+    "artifacts": {
+      "darwin/arm64/agent-cli-package.tar.gz": {
+        "sha256": "fc1d267622ff806a33dbf516148b9fd3957807f4d931c763118c269f92b535fc",
+        "size": 76041076
+      },
+      "darwin/x64/agent-cli-package.tar.gz": {
+        "sha256": "3b2b95fa681745f30b1d031e67d23c1a19934ed42f39dea3ab7d2d7728320aa5",
+        "size": 78986294
+      },
+      "linux/arm64/agent-cli-package.tar.gz": {
+        "sha256": "d5196289292a660b59807ac508c9ac36ec1e1a1a7e4697af3ef6824fdea984ee",
+        "size": 84453423
+      },
+      "linux/x64/agent-cli-package.tar.gz": {
+        "sha256": "e282068dcb5cdd668b8ce2e3456c58be13bb64a834e1ad49f8534b5cd7aa2fe5",
+        "size": 85882021
+      }
+    }
+  },
+  "host_platform_scope": {
+    "supported_host_ids": [
+      "macos-arm64",
+      "macos-x64",
+      "ubuntu-glibc-arm64",
+      "ubuntu-glibc-x64"
+    ],
+    "ubuntu": {
+      "distribution_id": "ubuntu",
+      "libc": "glibc",
+      "glibc_version_floor": null,
+      "glibc_version_floor_status": "no-official-floor",
+      "systems": ["desktop", "server"]
+    },
+    "unsupported_host_categories": [
+      "windows",
+      "non-ubuntu-linux",
+      "linux-musl",
+      "unsupported-architecture"
+    ],
+    "vendor_asset_mapping": {
+      "macos-arm64": {
+        "vendor_os": "darwin",
+        "vendor_arch": "arm64",
+        "asset_path": "darwin/arm64/agent-cli-package.tar.gz"
+      },
+      "macos-x64": {
+        "vendor_os": "darwin",
+        "vendor_arch": "x64",
+        "asset_path": "darwin/x64/agent-cli-package.tar.gz"
+      },
+      "ubuntu-glibc-arm64": {
+        "vendor_os": "linux",
+        "vendor_arch": "arm64",
+        "asset_path": "linux/arm64/agent-cli-package.tar.gz"
+      },
+      "ubuntu-glibc-x64": {
+        "vendor_os": "linux",
+        "vendor_arch": "x64",
+        "asset_path": "linux/x64/agent-cli-package.tar.gz"
+      }
+    }
+  },
+  "software_install": {
+    "mechanism": "official-cursor-agent-artifact",
+    "managed_command": "bin/agent",
+    "version": "2026.08.04-aaa8809",
+    "npm": null,
+    "pip": null
+  },
+  "cli_identity": {
+    "command": "agent",
+    "documentation": "https://cursor.com/docs/cli/reference/parameters"
+  },
+  "configuration": {
+    "file": "cli-config.json",
+    "default_location": "~/.cursor/cli-config.json",
+    "environment_override": "CURSOR_CONFIG_DIR",
+    "schema_version": 1,
+    "documentation": "https://cursor.com/docs/cli/reference/configuration"
+  },
+  "native_capability_surfaces": {
+    "commands": {
+      "official_documentation": "https://cursor.com/docs/reference/plugins",
+      "plugin_manifest_key": "commands",
+      "product_projection": "installed"
+    },
+    "hooks": {
+      "official_documentation": "https://cursor.com/docs/hooks",
+      "plugin_manifest_key": "hooks",
+      "product_projection": "not-installed"
+    },
+    "mcpServers": {
+      "official_documentation": "https://cursor.com/docs/mcp",
+      "config_key": "mcpServers",
+      "plugin_manifest_key": "mcpServers",
+      "product_projection": "not-installed"
+    },
+    "marketplace_manifests": {
+      "official_documentation": "https://cursor.com/docs/plugins",
+      "plugin_manifest": ".cursor-plugin/plugin.json",
+      "product_projection": "local-plugin-only"
+    },
+    "plugins": {
+      "official_documentation": "https://cursor.com/docs/reference/plugins",
+      "plugin_manifest": ".cursor-plugin/plugin.json",
+      "product_projection": "installed"
+    },
+    "agents": {
+      "official_documentation": "https://cursor.com/docs/subagents",
+      "plugin_manifest_key": "agents",
+      "product_projection": "installed"
+    },
+    "skills": {
+      "official_documentation": "https://cursor.com/docs/skills",
+      "plugin_manifest_key": "skills",
+      "product_projection": "installed"
+    },
+    "rules_instructions": {
+      "official_documentation": "https://cursor.com/docs/rules",
+      "plugin_manifest_key": "rules",
+      "workspace_instruction_file": "AGENTS.md",
+      "product_projection": "installed"
+    },
+    "permissions_config": {
+      "official_documentation": "https://cursor.com/docs/cli/reference/configuration",
+      "config_file": "cli-config.json",
+      "managed_keys": "profiles/<id>/cli-config.json",
+      "product_projection": "installed"
+    },
+    "auth": {
+      "official_documentation": "https://cursor.com/docs/cli/reference/configuration",
+      "product_projection": "preserved-unmanaged"
+    },
+    "status": {
+      "official_documentation": "https://cursor.com/docs/cli/reference/parameters",
+      "manager_command": "status --target <absolute-target> --json",
+      "software_command": "software-status --target <absolute-target> --json",
+      "product_projection": "observed-by-manager"
+    }
+  }
+}
