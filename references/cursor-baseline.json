@@ -4,7 +4,7 @@
   "release": {
     "version": "2026.08.04-aaa8809",
     "installer": "https://cursor.com/install",
-    "installer_sha256": "a51ebedf2a13bc073d994a6f2defbd1f4d976a6cf116ad678d071c6a363bf3e4",
+    "installer_sha256": "b1af27b9556c5f1c58d166742dbb33425ebd90a4bbd7e5453d66b920bf1f9f6b",
     "artifact_template": "https://downloads.cursor.com/lab/2026.08.04-aaa8809/{os}/{arch}/agent-cli-package.tar.gz",
     "artifacts": {
       "darwin/arm64/agent-cli-package.tar.gz": {
