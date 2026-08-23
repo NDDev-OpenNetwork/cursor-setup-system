@@ -1,0 +1,14 @@
+{
+  "name": "nddev-builder",
+  "version": "0.2.2",
+  "description": "NDDev setup authoring guidance for a caller-named Cursor CLI target.",
+  "author": {
+    "name": "NDDev"
+  },
+  "homepage": "https://github.com/NDDev-OpenNetwork/cursor-setup-system",
+  "repository": "https://github.com/NDDev-OpenNetwork/cursor-setup-system",
+  "rules": "./rules",
+  "skills": "./skills",
+  "agents": "./agents",
+  "commands": "./commands"
+}

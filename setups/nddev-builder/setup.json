@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "id": "nddev-builder",
+  "description": "The NDDev builder toolkit as a native Cursor plugin, plus instructions and configuration."
+}
