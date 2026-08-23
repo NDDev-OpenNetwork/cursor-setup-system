@@ -1,69 +1,66 @@
 //! The Cursor CLI setup system.
 //!
-//! One binary, two surfaces. The ai-stp provider wire commands are what the
-//! consumer invokes; the human commands are what the owner types. Both reach
-//! the target through [`setup_core`], and neither has a shortcut around it.
+//! This file is the harness's *facts*. Every command over them lives in
+//! [`harness_runtime`], shared with the other four setup systems, so a change to
+//! behaviour lands once and a change to Cursor CLI's surface lands here.
 //!
-//! This harness owns the program lifecycle as well as the configuration.
-//!
-//! # Status
-//!
-//! Skeleton. The kernel it builds on is implemented and tested; the wire and
-//! human surfaces are not yet wired to it, and this binary says so rather than
-//! reporting a capability it does not have.
+//! The owner assigned this harness the program lifecycle as well. It is not
+//! declared yet, for the same reason as Grok and Pi.
 
 use std::process::ExitCode;
 
-/// The harness this system configures.
-pub const HARNESS_ID: &str = "cursor";
+use harness_runtime::Harness;
+use provider_v3::{ComponentKind, ProjectionKind};
 
-/// The provider identity reported on the wire.
-pub const PROVIDER_ID: &str = "cursor-setup-system";
-
-/// The product this harness configures.
-pub const PRODUCT: &str = "Cursor CLI";
-
-/// The default configuration home, when the caller names no target.
-///
-/// It is documentation, not a fallback. Every mutation takes an explicit
-/// absolute target, because a mutation aimed at a guessed path is a mutation
-/// aimed at someone else's state.
-pub const DOCUMENTED_CONFIG_HOME: &str = "~/.cursor";
-
-/// The environment variable that names the configuration home for this product.
-pub const CONFIG_HOME_ENV: &str = "CURSOR_CONFIG_DIR";
-
-/// Whether this provider owns the program lifecycle, not only the configuration.
-pub const OWNS_SOFTWARE_LIFECYCLE: bool = true;
+/// Everything specific to Cursor CLI, verified against `cursor-baseline.json`.
+pub const CURSOR: Harness = Harness {
+    harness_id: "cursor",
+    provider_id: "cursor-setup-system",
+    version: env!("CARGO_PKG_VERSION"),
+    product: "Cursor CLI",
+    vendor: "Anysphere",
+    documented_config_home: "~/.cursor",
+    config_home_env: "CURSOR_CONFIG_DIR",
+    control_directory: ".cursor-setup-system",
+    state_file: "NDDEV-CURSOR-PROVIDER.json",
+    profile_id: "cursor/native-and-plugins/1",
+    // Everything outside this list is a sibling overlay preserved verbatim.
+    native_namespaces: &[
+        "AGENTS.md",
+        "cli-config.json",
+        "rules",
+        "skills",
+        "agents",
+        "commands",
+        "hooks",
+        "plugins",
+    ],
+    // The product's own: credentials, session history and runtime caches. Never
+    // read, never written, and never copied into a backup slot.
+    never_touch: &["auth.json", "sessions"],
+    permission_profiles: &["default"],
+    component_kinds: &[
+        ComponentKind::Instruction,
+        ComponentKind::Skill,
+        ComponentKind::Agent,
+        ComponentKind::Command,
+        ComponentKind::Hook,
+        ComponentKind::Mcp,
+        ComponentKind::Plugin,
+        ComponentKind::Setting,
+    ],
+    projection_kinds: &[
+        ProjectionKind::NativeFiles,
+        ProjectionKind::Marketplace,
+        ProjectionKind::Plugin,
+    ],
+    max_files: 8192,
+    max_bytes: 64 * 1024 * 1024,
+    kit_identity: include_str!("../../../provider-kit/v3/KIT-IDENTITY.json"),
+};
 
 fn main() -> ExitCode {
-    let mut arguments = std::env::args().skip(1);
-    match arguments.next().as_deref() {
-        Some("--version") => {
-            println!("{PROVIDER_ID} {}", env!("CARGO_PKG_VERSION"));
-            ExitCode::SUCCESS
-        }
-        Some("--help") | None => {
-            print_help();
-            ExitCode::SUCCESS
-        }
-        Some(other) => {
-            eprintln!(
-                "{PROVIDER_ID}: {other} is not implemented yet; \
-                 this build exposes only --help and --version"
-            );
-            ExitCode::FAILURE
-        }
-    }
-}
-
-fn print_help() {
-    println!("{PROVIDER_ID} {}", env!("CARGO_PKG_VERSION"));
-    println!();
-    println!("Configures {PRODUCT} in a caller-named target directory.");
-    println!("Documented configuration home: {DOCUMENTED_CONFIG_HOME} ({CONFIG_HOME_ENV})");
-    println!();
-    println!("This build is a skeleton. No command mutates a target yet.");
+    harness_runtime::run(&CURSOR, std::env::args().skip(1).collect())
 }
 
 #[cfg(test)]
@@ -73,14 +70,39 @@ mod tests {
     use super::*;
 
     #[test]
-    fn the_provider_identity_matches_the_crate_it_ships_as() {
-        assert_eq!(PROVIDER_ID, env!("CARGO_PKG_NAME"));
+    fn the_declaration_is_valid_and_names_this_host() {
+        let info = CURSOR.provider_info().unwrap();
+        assert_eq!(info.provider_id, env!("CARGO_PKG_NAME"));
+        assert_eq!(info.harness_id, "cursor");
+        assert_eq!(info.protocol_version, 3);
+        assert!(info.supports_this_host());
     }
 
     #[test]
-    fn the_documented_home_is_never_treated_as_a_default_target() {
-        // The constant exists to be printed, not resolved. A test that let it
-        // become a fallback would be the first step toward one.
-        assert!(DOCUMENTED_CONFIG_HOME.starts_with('~'));
+    fn no_namespace_is_both_owned_and_disclaimed() {
+        for name in CURSOR.never_touch {
+            assert!(
+                !CURSOR.native_namespaces.contains(name),
+                "{name} is claimed and disclaimed"
+            );
+        }
+    }
+
+    #[test]
+    fn the_baseline_this_harness_cites_is_present_and_readable() {
+        // The facts above are transcribed from it; a build whose baseline is
+        // missing has no evidence for what it claims to own.
+        let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../references/cursor-baseline.json");
+        let value: serde_json::Value =
+            serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap();
+        assert!(value.is_object());
+    }
+
+    #[test]
+    fn the_control_directory_and_state_file_are_provider_owned_not_product_owned() {
+        assert!(CURSOR.control_directory.contains("setup-system"));
+        assert!(CURSOR.state_file.starts_with("NDDEV-"));
+        assert!(!CURSOR.native_namespaces.contains(&CURSOR.state_file));
     }
 }
