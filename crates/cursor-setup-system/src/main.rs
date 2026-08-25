@@ -29,6 +29,7 @@ pub const CURSOR: Harness = Harness {
     config_home_env: "CURSOR_CONFIG_DIR",
     control_directory: ".cursor-setup-system",
     state_file: "NDDEV-CURSOR-PROVIDER.json",
+    predecessor_state_file: "NDDEV-CURSOR-CLI-SETUP.json",
     profile_id: "cursor/native-and-plugins/1",
     // Everything outside this list is a sibling overlay preserved verbatim.
     native_namespaces: &[
