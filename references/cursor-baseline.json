@@ -148,5 +148,6 @@
       "software_command": "software-status --target <absolute-target> --json",
       "product_projection": "observed-by-manager"
     }
-  }
+  },
+  "verified_at": "2026-08-25T12:00:38+00:00"
 }
