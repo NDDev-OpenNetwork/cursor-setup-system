@@ -4,10 +4,16 @@
 //! [`harness_runtime`], shared with every other setup system, so a change to
 //! behaviour lands once and a change to Cursor CLI's surface lands here.
 //!
-//! The owner assigned this harness the program lifecycle as well. It is not
-//! declared yet, for the same reason as Grok and Pi.
+//! The owner assigned this harness the program lifecycle as well, and it is
+//! declared. Cursor is the one product with a genuinely large artifact: 569
+//! entries including 127 directories and a bundled `node`, carried in a GNU tar
+//! whose long-name headers no other vendor uses. `src/software.rs` names the
+//! four platforms it publishes, and says plainly that Windows is not among
+//! them.
 
 use std::process::ExitCode;
+
+mod software;
 
 use harness_runtime::Harness;
 use provider_v3::{ComponentKind, ProjectionKind};
@@ -57,6 +63,7 @@ pub const CURSOR: Harness = Harness {
     max_files: 8192,
     max_bytes: 64 * 1024 * 1024,
     kit_identity: include_str!("../../../provider-kit/v3/KIT-IDENTITY.json"),
+    software: Some(software::SOFTWARE),
 };
 
 fn main() -> ExitCode {
