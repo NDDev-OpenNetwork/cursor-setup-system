@@ -214,8 +214,20 @@
         "path": "mcp.json",
         "reason": "MCP servers are an mcpServers key in configuration or a plugin manifest. No ownable file surface under ~/.cursor, so mcp is not declared.",
         "source": "https://cursor.com/docs/mcp"
+      },
+      {
+        "path": "NDDEV-CURSOR-PROVIDER.json",
+        "reason": "This provider's own state file: which setup is applied, the identity it recorded, and which slot reverses the last operation. Written by every operation and excluded from target identity, because counting it would leave a target different from the identity the operation just wrote. Not a projection surface and never ownable as one.",
+        "source": "this provider's own contract; no vendor page is involved"
+      },
+      {
+        "path": ".cursor-setup-system",
+        "reason": "This provider's own control directory: the target lock, the backup slots and their payloads. Kept out of the declaration for the same reason as the state file, and recorded here because the declined list is where a reader looks before opening a file to find out what it is.",
+        "source": "this provider's own contract; no vendor page is involved"
       }
-    ]
+    ],
+    "config_home_env": "CURSOR_CONFIG_DIR",
+    "config_home_env_note": "Measured 2026-08-28: the product wrote into the directory this variable named, and into no other configuration home."
   },
   "software_artifacts": {
     "command": "agent",

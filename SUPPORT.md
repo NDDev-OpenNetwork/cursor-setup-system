@@ -170,6 +170,10 @@ other file beside a target.
 
 **`mcp.json`** -- MCP servers are an mcpServers key in configuration or a plugin manifest. No ownable file surface under ~/.cursor, so mcp is not declared. ([source](https://cursor.com/docs/mcp))
 
+**`NDDEV-CURSOR-PROVIDER.json`** -- This provider's own state file: which setup is applied, the identity it recorded, and which slot reverses the last operation. Written by every operation and excluded from target identity, because counting it would leave a target different from the identity the operation just wrote. Not a projection surface and never ownable as one. ([source](this provider's own contract; no vendor page is involved))
+
+**`.cursor-setup-system`** -- This provider's own control directory: the target lock, the backup slots and their payloads. Kept out of the declaration for the same reason as the state file, and recorded here because the declined list is where a reader looks before opening a file to find out what it is. ([source](this provider's own contract; no vendor page is involved))
+
 ## Response
 
 One maintainer. Defects are triaged as time allows; security reports are
