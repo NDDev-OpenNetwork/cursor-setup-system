@@ -1,6 +1,9 @@
-# NDDev baseline
+---
+description: The NDDev working floor
+alwaysApply: true
+---
 
-Work to the repository's own instructions first; this file is the floor beneath
+Work to the repository's own instructions first; this rule is the floor beneath
 them, not a replacement.
 
 - Say what is true. If a check did not run, say it did not run.
