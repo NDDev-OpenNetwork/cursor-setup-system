@@ -168,8 +168,15 @@
           "plugin"
         ],
         "shape": "directory",
-        "source": "https://cursor.com/docs/reference/plugins",
-        "note": "a plugin's .cursor-plugin/plugin.json names its rules, skills, agents, commands and hooks; that manifest is how every one of those reaches the CLI"
+        "source": "https://cursor.com/docs/plugins",
+        "note": "A local plugin is installed at `~/.cursor/plugins/local/<name>/` with either a root `plugin.json` or `.cursor-plugin/plugin.json` inside it -- the `local/` level is the one the product reads, and the setups here write it. A plugin's manifest names its `rules`, `skills`, `agents`, `commands` and `hooks`; that manifest is how every one of those reaches the CLI, which is why none of them is a namespace of its own"
+      },
+      {
+        "path": "plugins/local",
+        "kinds": [],
+        "shape": "directory",
+        "source": "https://cursor.com/docs/plugins",
+        "note": "The directory the product actually reads a local plugin from, and where the setups here write. Declared *beside* `plugins` rather than instead of it: the consumer validates a compiler's route by exact membership in native_namespaces, so declaring only one of the two refuses every install against a CLI carrying the other"
       }
     ],
     "declined": [
