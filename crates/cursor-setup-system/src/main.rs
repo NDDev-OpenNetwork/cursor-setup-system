@@ -32,7 +32,7 @@ pub const CURSOR: Harness = Harness {
     predecessor_state_file: "NDDEV-CURSOR-CLI-SETUP.json",
     profile_id: "cursor/native-and-plugins/1",
     // Everything outside this list is a sibling overlay preserved verbatim.
-    // This list was eight and is two, and the six that went were the largest
+    // This list was eight and is three, and the six that went were the largest
     // untrue statement in the estate. Measured 2026-08-27 against Cursor's own
     // documentation: the CLI names `cli-config.json` under this home; rules are
     // `.mdc` files in a project's `.cursor/rules`, or the `rules` key of a plugin
@@ -42,11 +42,18 @@ pub const CURSOR: Harness = Harness {
     //
     // `AGENTS.md` went with them. The CLI reads an `AGENTS.md` at a project root
     // and upward, never from `~/.cursor`; global user rules are set in the
-    // application and have no file at all, which is a standing request against
-    // Cursor rather than something this provider can own. So the setups here
-    // carry their instructions the way the product actually reads one: as a
-    // plugin whose manifest names its `rules`.
-    native_namespaces: &["cli-config.json", "plugins"],
+    // application and have no file at all. So the setups here carry their
+    // instructions the way the product actually reads one: as a plugin whose
+    // manifest names its `rules`.
+    //
+    // `plugins/local` is where the product reads a local plugin from, and where
+    // those setups write. It is declared *beside* `plugins`, not instead of it,
+    // and the redundancy is deliberate. Ownership here is by prefix, so `plugins`
+    // already covers it -- but the consumer validates a compiler's route by exact
+    // membership in this list, so a release declaring only one of the two refuses
+    // every install against a CLI that names the other. Declaring both is the
+    // only state in which either side may move first.
+    native_namespaces: &["cli-config.json", "plugins", "plugins/local"],
     // The product's own: credentials, session history and runtime caches. Never
     // read, never written, and never copied into a backup slot.
     never_touch: &["auth.json", "sessions"],
@@ -274,6 +281,31 @@ mod tests {
         };
         let catalog = harness_runtime::Catalog::at(&root);
         let problems = harness_runtime::catalog::asymmetric(&catalog.list().unwrap());
+        assert!(problems.is_empty(), "{}", problems.join("\n  "));
+    }
+    /// Nothing this setup ships tells a reader to run something that is not here.
+    ///
+    /// A setup carries documents an agent reads and acts on -- a skill, a rule,
+    /// a command file -- and nothing was checking them. One shipped
+    /// `software-status --target <dir> --json` and `list --json` for six
+    /// releases; the binary refuses both, and says so in those words.
+    ///
+    /// Two refusals: a name belonging to the frozen estate, and any line naming
+    /// this provider followed by a verb `into_command` does not accept. English
+    /// is not judged -- `install` in a sentence is a word, and only
+    /// `<provider> install` is an instruction.
+    #[test]
+    fn nothing_this_harness_ships_names_a_command_it_refuses() {
+        let manifest = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+        let root = manifest.join("../../setups").join(TOOL);
+        let root = if root.is_dir() {
+            root
+        } else {
+            manifest.join("../../setups")
+        };
+        let catalog = harness_runtime::Catalog::at(&root);
+        let problems =
+            harness_runtime::catalog::misdirecting(HARNESS.provider_id, &catalog.list().unwrap());
         assert!(problems.is_empty(), "{}", problems.join("\n  "));
     }
 }

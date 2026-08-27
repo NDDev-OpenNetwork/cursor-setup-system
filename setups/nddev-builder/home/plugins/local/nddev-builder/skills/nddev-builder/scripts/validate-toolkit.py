@@ -41,7 +41,7 @@ PROJECTED_REFERENCE_PATTERN = re.compile(
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--module-root", default=".", help="nddev-cursor-cli-app root")
+    parser.add_argument("--module-root", default=".", help="the plugin root this toolkit validates")
     return parser.parse_args(argv)
 
 
