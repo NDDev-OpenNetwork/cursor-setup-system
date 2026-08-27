@@ -45,6 +45,9 @@ pub const CURSOR: Harness = Harness {
     // The product's own: credentials, session history and runtime caches. Never
     // read, never written, and never copied into a backup slot.
     never_touch: &["auth.json", "sessions"],
+    // No near neighbour measured for this product. A marker listed here is a
+    // refusal waiting to happen, so nothing is listed without evidence.
+    foreign_homes: &[],
     permission_profiles: &["default"],
     component_kinds: &[
         ComponentKind::Instruction,
