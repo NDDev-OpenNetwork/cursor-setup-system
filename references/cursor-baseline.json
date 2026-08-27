@@ -149,7 +149,67 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-08-26T23:02:13+00:00",
+  "verified_at": "2026-08-27T15:03:53+00:00",
+  "native_surfaces": {
+    "verified_at": "2026-08-27",
+    "config_home": "~/.cursor",
+    "surfaces": [
+      {
+        "path": "cli-config.json",
+        "kinds": [
+          "setting"
+        ],
+        "shape": "file",
+        "source": "https://cursor.com/docs/cli/reference/configuration"
+      },
+      {
+        "path": "plugins",
+        "kinds": [
+          "plugin"
+        ],
+        "shape": "directory",
+        "source": "https://cursor.com/docs/reference/plugins",
+        "note": "a plugin's .cursor-plugin/plugin.json names its rules, skills, agents, commands and hooks; that manifest is how every one of those reaches the CLI"
+      }
+    ],
+    "declined": [
+      {
+        "path": "AGENTS.md",
+        "reason": "The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request.",
+        "source": "https://cursor.com/docs/cli/using"
+      },
+      {
+        "path": "rules",
+        "reason": "Rules are .mdc files in a project's .cursor/rules, or the rules key of a plugin manifest. No global rules directory exists.",
+        "source": "https://cursor.com/docs/rules"
+      },
+      {
+        "path": "skills",
+        "reason": "A plugin manifest key, not a directory under the config home.",
+        "source": "https://cursor.com/docs/skills"
+      },
+      {
+        "path": "agents",
+        "reason": "A plugin manifest key, not a directory under the config home.",
+        "source": "https://cursor.com/docs/subagents"
+      },
+      {
+        "path": "commands",
+        "reason": "A plugin manifest key, not a directory under the config home.",
+        "source": "https://cursor.com/docs/reference/plugins"
+      },
+      {
+        "path": "hooks",
+        "reason": "A plugin manifest key, not a directory under the config home.",
+        "source": "https://cursor.com/docs/hooks"
+      },
+      {
+        "path": "mcp.json",
+        "reason": "MCP servers are an mcpServers key in configuration or a plugin manifest. No ownable file surface under ~/.cursor, so mcp is not declared.",
+        "source": "https://cursor.com/docs/mcp"
+      }
+    ]
+  },
   "software_artifacts": {
     "command": "agent",
     "shape": "gzip-tar",
@@ -184,6 +244,6 @@
       "windows/arm64",
       "windows/x86_64"
     ],
-    "verified_at": "2026-08-26T23:02:13+00:00"
+    "verified_at": "2026-08-27T15:03:53+00:00"
   }
 }

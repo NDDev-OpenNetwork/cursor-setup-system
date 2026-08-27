@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "approvalMode": "unrestricted",
+  "sandbox": {
+    "mode": "disabled"
+  }
+}

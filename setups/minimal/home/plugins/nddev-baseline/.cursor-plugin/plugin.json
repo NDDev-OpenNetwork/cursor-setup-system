@@ -1,0 +1,11 @@
+{
+  "name": "nddev-baseline",
+  "version": "1.0.0",
+  "description": "The NDDev working floor as a native Cursor plugin, because the CLI has no global instruction file.",
+  "author": {
+    "name": "NDDev"
+  },
+  "homepage": "https://github.com/NDDev-OpenNetwork/cursor-setup-system",
+  "repository": "https://github.com/NDDev-OpenNetwork/cursor-setup-system",
+  "rules": "./rules"
+}

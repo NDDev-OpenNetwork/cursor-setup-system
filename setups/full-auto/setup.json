@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "full-auto",
+  "description": "Full auto: `approvalMode` is unrestricted and the sandbox is disabled. Instructions travel as a plugin rule, the way the CLI reads one.",
+  "sources": [
+    "https://cursor.com/docs/cli/reference/configuration",
+    "https://cursor.com/docs/reference/sandbox",
+    "https://cursor.com/docs/reference/plugins"
+  ]
+}
