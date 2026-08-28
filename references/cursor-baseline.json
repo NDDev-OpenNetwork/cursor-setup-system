@@ -160,13 +160,15 @@
           "setting"
         ],
         "shape": "file",
-        "source": "https://cursor.com/docs/cli/reference/configuration"
+        "source": "https://cursor.com/docs/cli/reference/configuration",
+        "evidence": "page"
       },
       {
         "path": "plugins",
         "kinds": [],
         "shape": "directory",
         "source": "https://cursor.com/docs/plugins",
+        "evidence": "page",
         "note": "The vendor page names no path for a marketplace-installed plugin, and names `~/.cursor/plugins/local/<name>` twice for a local one. So this parent routes nothing that can be sourced, and the kind belongs on the child -- where 0.0.8 had already moved the bytes, leaving the kind here. Still owned rather than dropped: the consumer matches native_namespaces by exact membership and its published corpus objects were compiled against a table naming this path, so narrowing now would refuse every one of them. The same window, for the same reason, as antigravity-cli/plugins."
       },
       {
@@ -176,6 +178,7 @@
         ],
         "shape": "directory",
         "source": "https://cursor.com/docs/plugins",
+        "evidence": "page",
         "note": "Where the vendor tells a person to put a plugin -- \"Create a folder for your plugin: ~/.cursor/plugins/local/my-plugin\" -- and where this provider's twenty-six shipped plugin files have landed since 0.0.8. The kind stayed one directory up for two releases after the bytes moved, because nothing compared what a setup writes with what a surface routes."
       },
       {
@@ -185,6 +188,7 @@
         ],
         "shape": "directory",
         "source": "https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "evidence": "bytes",
         "note": "The product's own rule-creation picker offers two scopes, and the second is this one:\n  {value:\"user\", label:\"User Rule\", hint:\"Applies to all your projects\", path: join(homedir(), \".cursor\", \"rules\")}\nDeclared 2026-08-28. It had been declined as *\"No global rules directory exists\"*, which was true of the vendor's page and false of the product. `instruction` routes here and nowhere else on this harness -- cursor's CLI has no global instruction *file*, which is why this provider's plugin carries its rule through a manifest."
       },
       {
@@ -194,6 +198,7 @@
         ],
         "shape": "directory",
         "source": "https://cursor.com/docs/reference/plugins; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "evidence": "bytes",
         "note": "`loadCommandsFromDirectory(join(this.userHomeDirectory, \".cursor\", \"commands\"))`, alongside the same call against a workspace directory. Declared 2026-08-28, having been declined as a plugin-manifest key only -- the manifest key is real and so is the directory, and a consumer could route a `command` component to five of the seven but not to this one."
       },
       {
@@ -203,6 +208,7 @@
         ],
         "shape": "file",
         "source": "https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "evidence": "bytes",
         "note": "`userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")`, beside an enterprise path and the manifest key. Declared 2026-08-28. A file rather than a directory, and unlike claude-code's withdrawn `plugin` that is not a problem here: a hook component *is* this file, so writing a bundle's bytes verbatim produces exactly the right result. The distinction that mattered there was merge semantics, not shape."
       },
       {
@@ -212,6 +218,7 @@
         ],
         "shape": "file",
         "source": "https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "evidence": "bytes",
         "note": "`join(homedir(), \".cursor\", \"mcp.json\")` for the user scope, and a second path under the working directory for the project scope. Declared 2026-08-28, having been declined as *\"No ownable file surface under ~/.cursor\"*. Same shape as `hooks.json`: the component is the file."
       },
       {
@@ -221,6 +228,7 @@
         ],
         "shape": "directory",
         "source": "measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28",
+        "evidence": "bytes",
         "note": "The bundle carries a table of skill roots -- `.cursor/skills` beside `.claude/skills`, `.codex/skills`, `.grok/skills` and `.agents/skills` -- and a mapper joining each to the home directory with `scope: \"user\"`. The product's own ignore file names it in prose: *\"# User's personal skills\"*.\n\n**This row replaces a declined one**, which read *\"A plugin manifest key, not a directory under the config home\"* and cited `cursor.com/docs/skills` -- a page about the manifest key that does not mention the directory. Same shape as the nine surfaces found on 2026-08-28: declined on a page that does not discuss them, and present in the product. Reading the product rather than its pages is what found it."
       }
     ],
@@ -343,5 +351,5 @@
     ],
     "verified_at": "2026-08-28T04:46:07+00:00"
   },
-  "setup_catalogue_digest": "sha256:36dd8fb4091c3d3d59ed675bbdf7bd0682cc7853d3a5bbf0683fd009261fe4ba"
+  "setup_catalogue_digest": "sha256:7b6f42f6d872bc4ae6c5f12cbc0ae6be0955a7971cafc5d5693502dddc0fc952"
 }
