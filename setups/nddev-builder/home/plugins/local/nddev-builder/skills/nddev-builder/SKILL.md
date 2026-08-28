@@ -26,6 +26,9 @@ target-explicit, reversible, and backed by the repository's own gate.
 
 ## Routing
 
+- **What this harness owns, what it declines, and what decided each row**:
+  read `references/surfaces.md`. It is generated from the baseline, so it
+  is the one file here that cannot go stale against the declaration.
 - **Configuration and setup/profile model**: read
   `references/configuration-profiles.md`.
 - **Permissions, approval, sandbox, and network policy**: read
