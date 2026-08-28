@@ -20,16 +20,16 @@ Strict JSON, and the vendor's own configuration reference says so explicitly: *"
 
 ## Owned surfaces
 
-| path | kinds | shape |
-|---|---|---|
-| `cli-config.json` | setting | file |
-| `plugins` | *(routes no kind)* | directory |
-| `plugins/local` | plugin | directory |
-| `rules` | instruction | directory |
-| `commands` | command | directory |
-| `hooks.json` | hook | file |
-| `mcp.json` | mcp | file |
-| `skills` | skill | directory |
+| path | kinds | shape | decided by |
+|---|---|---|---|
+| `cli-config.json` | setting | file | <https://cursor.com/docs/cli/reference/configuration> |
+| `plugins` | *(routes no kind)* | directory | <https://cursor.com/docs/plugins> |
+| `plugins/local` | plugin | directory | <https://cursor.com/docs/plugins> |
+| `rules` | instruction | directory | <https://cursor.com/docs/rules> |
+| `commands` | command | directory | <https://cursor.com/docs/reference/plugins> |
+| `hooks.json` | hook | file | <https://cursor.com/docs/hooks> |
+| `mcp.json` | mcp | file | <https://cursor.com/docs/mcp> |
+| `skills` | skill | directory | measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28 |
 
 A surface that routes no kind is owned deliberately: a backup captures
 it and a restore returns it, and no component is routed there because
