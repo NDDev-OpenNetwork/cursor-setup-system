@@ -20,16 +20,20 @@ Strict JSON, and the vendor's own configuration reference says so explicitly: *"
 
 ## Owned surfaces
 
-| path | kinds | shape | decided by |
-|---|---|---|---|
-| `cli-config.json` | setting | file | <https://cursor.com/docs/cli/reference/configuration> |
-| `plugins` | *(routes no kind)* | directory | <https://cursor.com/docs/plugins> |
-| `plugins/local` | plugin | directory | <https://cursor.com/docs/plugins> |
-| `rules` | instruction | directory | <https://cursor.com/docs/rules> |
-| `commands` | command | directory | <https://cursor.com/docs/reference/plugins> |
-| `hooks.json` | hook | file | <https://cursor.com/docs/hooks> |
-| `mcp.json` | mcp | file | <https://cursor.com/docs/mcp> |
-| `skills` | skill | directory | measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28 |
+| path | kinds | shape | decided by | exercised by |
+|---|---|---|---|---|
+| `cli-config.json` | setting | file | <https://cursor.com/docs/cli/reference/configuration> | *nothing — a page* |
+| `plugins` | *(routes no kind)* | directory | <https://cursor.com/docs/plugins> | *nothing — a page* |
+| `plugins/local` | plugin | directory | <https://cursor.com/docs/plugins> | *nothing — a page* |
+| `rules` | instruction | directory | <https://cursor.com/docs/rules> | read its bytes |
+| `commands` | command | directory | <https://cursor.com/docs/reference/plugins> | read its bytes |
+| `hooks.json` | hook | file | <https://cursor.com/docs/hooks> | read its bytes |
+| `mcp.json` | mcp | file | <https://cursor.com/docs/mcp> | read its bytes |
+| `skills` | skill | directory | measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28 | read its bytes |
+
+**A citation is not a measurement.** `decided by` says where a row came from; `exercised by` says whether anybody made the product demonstrate it. Where a row records no method the answer is a page and nothing else, because absence of a record of measurement is not evidence of measurement.
+
+Here that is **0 run**, **5 read from the product's own bytes**, and **3 resting on a page alone**. The last number is the one worth acting on: a row in it is not wrong, it is untested, and the two are indistinguishable from here.
 
 A surface that routes no kind is owned deliberately: a backup captures
 it and a restore returns it, and no component is routed there because
