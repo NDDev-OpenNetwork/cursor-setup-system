@@ -177,6 +177,42 @@
         "shape": "directory",
         "source": "https://cursor.com/docs/plugins",
         "note": "Where the vendor tells a person to put a plugin -- \"Create a folder for your plugin: ~/.cursor/plugins/local/my-plugin\" -- and where this provider's twenty-six shipped plugin files have landed since 0.0.8. The kind stayed one directory up for two releases after the bytes moved, because nothing compared what a setup writes with what a surface routes."
+      },
+      {
+        "path": "rules",
+        "kinds": [
+          "instruction"
+        ],
+        "shape": "directory",
+        "source": "https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "note": "The product's own rule-creation picker offers two scopes, and the second is this one:\n  {value:\"user\", label:\"User Rule\", hint:\"Applies to all your projects\", path: join(homedir(), \".cursor\", \"rules\")}\nDeclared 2026-08-28. It had been declined as *\"No global rules directory exists\"*, which was true of the vendor's page and false of the product. `instruction` routes here and nowhere else on this harness -- cursor's CLI has no global instruction *file*, which is why this provider's plugin carries its rule through a manifest."
+      },
+      {
+        "path": "commands",
+        "kinds": [
+          "command"
+        ],
+        "shape": "directory",
+        "source": "https://cursor.com/docs/reference/plugins; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "note": "`loadCommandsFromDirectory(join(this.userHomeDirectory, \".cursor\", \"commands\"))`, alongside the same call against a workspace directory. Declared 2026-08-28, having been declined as a plugin-manifest key only -- the manifest key is real and so is the directory, and a consumer could route a `command` component to five of the seven but not to this one."
+      },
+      {
+        "path": "hooks.json",
+        "kinds": [
+          "hook"
+        ],
+        "shape": "file",
+        "source": "https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "note": "`userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")`, beside an enterprise path and the manifest key. Declared 2026-08-28. A file rather than a directory, and unlike claude-code's withdrawn `plugin` that is not a problem here: a hook component *is* this file, so writing a bundle's bytes verbatim produces exactly the right result. The distinction that mattered there was merge semantics, not shape."
+      },
+      {
+        "path": "mcp.json",
+        "kinds": [
+          "mcp"
+        ],
+        "shape": "file",
+        "source": "https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "note": "`join(homedir(), \".cursor\", \"mcp.json\")` for the user scope, and a second path under the working directory for the project scope. Declared 2026-08-28, having been declined as *\"No ownable file surface under ~/.cursor\"*. Same shape as `hooks.json`: the component is the file."
       }
     ],
     "declined": [
@@ -186,34 +222,19 @@
         "source": "https://cursor.com/docs/cli/using"
       },
       {
-        "path": "rules",
-        "reason": "Rules are .mdc files in a project's .cursor/rules, or the rules key of a plugin manifest. No global rules directory exists.",
-        "source": "https://cursor.com/docs/rules"
-      },
-      {
         "path": "skills",
         "reason": "A plugin manifest key, not a directory under the config home.",
         "source": "https://cursor.com/docs/skills"
       },
       {
         "path": "agents",
-        "reason": "A plugin manifest key, not a directory under the config home.",
+        "reason": "A plugin manifest key. The directory form `join(this.workspacePath, \".cursor\", \"agents\")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.",
         "source": "https://cursor.com/docs/subagents"
       },
       {
-        "path": "commands",
-        "reason": "A plugin manifest key, not a directory under the config home.",
-        "source": "https://cursor.com/docs/reference/plugins"
-      },
-      {
         "path": "hooks",
-        "reason": "A plugin manifest key, not a directory under the config home.",
-        "source": "https://cursor.com/docs/hooks"
-      },
-      {
-        "path": "mcp.json",
-        "reason": "MCP servers are an mcpServers key in configuration or a plugin manifest. No ownable file surface under ~/.cursor, so mcp is not declared.",
-        "source": "https://cursor.com/docs/mcp"
+        "reason": "**Corrected 2026-08-28: a user-level file exists.** This row read \"a plugin manifest key, not a directory under the config home\". The product resolves `userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")`, alongside an enterprise path and the manifest key. Not owned, for the same reason as `rules` and `commands`. Raised.",
+        "source": "https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
       },
       {
         "path": "NDDEV-CURSOR-PROVIDER.json",
@@ -224,6 +245,36 @@
         "path": ".cursor-setup-system",
         "reason": "This provider's own control directory: the target lock, the backup slots and their payloads. Kept out of the declaration for the same reason as the state file, and recorded here because the declined list is where a reader looks before opening a file to find out what it is.",
         "source": "this provider's own contract; no vendor page is involved"
+      },
+      {
+        "path": "plugins/cache",
+        "reason": "The product's own plugin cache, a sibling of the owned `plugins/local`. Named in the same joins. It matters because this provider owns the parent `plugins` during the transition window, so a `remove` takes this with it.",
+        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+      },
+      {
+        "path": "plugins/marketplaces",
+        "reason": "Where the product records the marketplaces a person added, sibling to `plugins/local`. Taken by a `remove` of the owned parent, which is the concrete cost of the transition window.",
+        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+      },
+      {
+        "path": "plugins/local-marketplaces.json",
+        "reason": "The product's record of locally added marketplaces. Same sibling relationship and the same consequence.",
+        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+      },
+      {
+        "path": "plugins/installed_plugins.json",
+        "reason": "The product's own record of what it installed. A `remove` of the owned parent takes it, and the product then no longer knows about plugins a person installed by hand. Recoverable from the capture that runs first, and the sharpest single reason the window should close when the consumer's corpus objects naming `plugins` retire.",
+        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+      },
+      {
+        "path": "cli-runtime-state",
+        "reason": "One row for the subtree a run leaves behind: `agent-cli-state.json`, `ai-tracking/ai-code-tracking.db`, `cli-workspaces.json`, `ide_state.json`, `plans`, `projects`. The product's own lifetime.",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle"
+      },
+      {
+        "path": "policy.json",
+        "reason": "An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length.",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle"
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
@@ -265,5 +316,5 @@
     ],
     "verified_at": "2026-08-28T04:46:07+00:00"
   },
-  "setup_catalogue_digest": "sha256:59de8bde86b6388c8c19bbff6ebfa5ea5285d9ecb527dddb999ed3017f979437"
+  "setup_catalogue_digest": "sha256:cf76db66e786726e13892145d081945290afb55696076e4601329a4bee7a4452"
 }

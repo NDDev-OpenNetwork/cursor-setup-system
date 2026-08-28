@@ -163,6 +163,10 @@ Configuration home as the product documents it: `~/.cursor`.
 | `cli-config.json` | `setting` | [source](https://cursor.com/docs/cli/reference/configuration) |
 | `plugins` | -- | [source](https://cursor.com/docs/plugins) |
 | `plugins/local` | `plugin` | [source](https://cursor.com/docs/plugins) |
+| `rules` | `instruction` | [source](https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
+| `commands` | `command` | [source](https://cursor.com/docs/reference/plugins; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
+| `hooks.json` | `hook` | [source](https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
+| `mcp.json` | `mcp` | [source](https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
 
 A path routing no component kind is owned so a setup can carry it;
 nothing compiles a component to it.
@@ -174,21 +178,27 @@ other file beside a target.
 
 **`AGENTS.md`** -- The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request. ([source](https://cursor.com/docs/cli/using))
 
-**`rules`** -- Rules are .mdc files in a project's .cursor/rules, or the rules key of a plugin manifest. No global rules directory exists. ([source](https://cursor.com/docs/rules))
-
 **`skills`** -- A plugin manifest key, not a directory under the config home. ([source](https://cursor.com/docs/skills))
 
-**`agents`** -- A plugin manifest key, not a directory under the config home. ([source](https://cursor.com/docs/subagents))
+**`agents`** -- A plugin manifest key. The directory form `join(this.workspacePath, ".cursor", "agents")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement. ([source](https://cursor.com/docs/subagents))
 
-**`commands`** -- A plugin manifest key, not a directory under the config home. ([source](https://cursor.com/docs/reference/plugins))
-
-**`hooks`** -- A plugin manifest key, not a directory under the config home. ([source](https://cursor.com/docs/hooks))
-
-**`mcp.json`** -- MCP servers are an mcpServers key in configuration or a plugin manifest. No ownable file surface under ~/.cursor, so mcp is not declared. ([source](https://cursor.com/docs/mcp))
+**`hooks`** -- **Corrected 2026-08-28: a user-level file exists.** This row read "a plugin manifest key, not a directory under the config home". The product resolves `userConfigPath: join(homedir(), ".cursor", "hooks.json")`, alongside an enterprise path and the manifest key. Not owned, for the same reason as `rules` and `commands`. Raised. ([source](https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
 
 **`NDDEV-CURSOR-PROVIDER.json`** -- This provider's own state file: which setup is applied, the identity it recorded, and which slot reverses the last operation. Written by every operation and excluded from target identity, because counting it would leave a target different from the identity the operation just wrote. Not a projection surface and never ownable as one. ([source](this provider's own contract; no vendor page is involved))
 
 **`.cursor-setup-system`** -- This provider's own control directory: the target lock, the backup slots and their payloads. Kept out of the declaration for the same reason as the state file, and recorded here because the declined list is where a reader looks before opening a file to find out what it is. ([source](this provider's own contract; no vendor page is involved))
+
+**`plugins/cache`** -- The product's own plugin cache, a sibling of the owned `plugins/local`. Named in the same joins. It matters because this provider owns the parent `plugins` during the transition window, so a `remove` takes this with it. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+
+**`plugins/marketplaces`** -- Where the product records the marketplaces a person added, sibling to `plugins/local`. Taken by a `remove` of the owned parent, which is the concrete cost of the transition window. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+
+**`plugins/local-marketplaces.json`** -- The product's record of locally added marketplaces. Same sibling relationship and the same consequence. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+
+**`plugins/installed_plugins.json`** -- The product's own record of what it installed. A `remove` of the owned parent takes it, and the product then no longer knows about plugins a person installed by hand. Recoverable from the capture that runs first, and the sharpest single reason the window should close when the consumer's corpus objects naming `plugins` retire. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+
+**`cli-runtime-state`** -- One row for the subtree a run leaves behind: `agent-cli-state.json`, `ai-tracking/ai-code-tracking.db`, `cli-workspaces.json`, `ide_state.json`, `plans`, `projects`. The product's own lifetime. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle))
+
+**`policy.json`** -- An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle))
 
 ## Response
 
