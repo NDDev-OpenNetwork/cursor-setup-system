@@ -213,6 +213,15 @@
         "shape": "file",
         "source": "https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
         "note": "`join(homedir(), \".cursor\", \"mcp.json\")` for the user scope, and a second path under the working directory for the project scope. Declared 2026-08-28, having been declined as *\"No ownable file surface under ~/.cursor\"*. Same shape as `hooks.json`: the component is the file."
+      },
+      {
+        "path": "skills",
+        "kinds": [
+          "skill"
+        ],
+        "shape": "directory",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28",
+        "note": "The bundle carries a table of skill roots -- `.cursor/skills` beside `.claude/skills`, `.codex/skills`, `.grok/skills` and `.agents/skills` -- and a mapper joining each to the home directory with `scope: \"user\"`. The product's own ignore file names it in prose: *\"# User's personal skills\"*.\n\n**This row replaces a declined one**, which read *\"A plugin manifest key, not a directory under the config home\"* and cited `cursor.com/docs/skills` -- a page about the manifest key that does not mention the directory. Same shape as the nine surfaces found on 2026-08-28: declined on a page that does not discuss them, and present in the product. Reading the product rather than its pages is what found it."
       }
     ],
     "declined": [
@@ -220,11 +229,6 @@
         "path": "AGENTS.md",
         "reason": "The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request.",
         "source": "https://cursor.com/docs/cli/using"
-      },
-      {
-        "path": "skills",
-        "reason": "A plugin manifest key, not a directory under the config home.",
-        "source": "https://cursor.com/docs/skills"
       },
       {
         "path": "agents",
@@ -275,10 +279,26 @@
         "path": "policy.json",
         "reason": "An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length.",
         "source": "measured from the pinned 2026.08.25-3e8eec8 bundle"
+      },
+      {
+        "path": "skills-cursor",
+        "reason": "The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search.",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle's skill-root table, 2026-08-28"
+      },
+      {
+        "path": "cloud-skills",
+        "reason": "Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name.",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts, 2026-08-28"
+      },
+      {
+        "path": "cursor-compile-cache",
+        "reason": "Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.\n\nIt gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`.",
+        "source": "measured by running the pinned 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28"
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
-    "config_home_env_note": "Measured 2026-08-28: the product wrote into the directory this variable named, and into no other configuration home."
+    "config_home_env_note": "Measured 2026-08-28: the product wrote into the directory this variable named, and into no other configuration home.\n\n**The product's resolver has two overrides, not one, and the second renames the leaf.** Confirmed at the line in the pinned bundle:\n\n```js\nconst e = process.env.CURSOR_CONFIG_DIR;  if (e?.trim()) return e;\nconst t = process.env.XDG_CONFIG_HOME;\nreturn t?.trim() ? join(t, \"cursor\") : join(homedir(), \".cursor\");\n```\n\nSo a Linux user with `XDG_CONFIG_HOME` set has their configuration at `$XDG_CONFIG_HOME/cursor` -- **`cursor`, not `.cursor`**. There is also a separate `CURSOR_DATA_DIR`, which is *not* XDG-aware and defaults to `~/.cursor` regardless, so config and data can be split.\n\n**The variable this build sets is still the right one.** `CURSOR_CONFIG_DIR` is the first branch of that resolver, so a `launch` pointing the product at a target wins over XDG. This field stays a single name deliberately: a list would claim this build sets more than one variable, which it does not and should not.",
+    "config_home_note": "XDG_CONFIG_HOME, when set, moves it to $XDG_CONFIG_HOME/cursor -- and the leaf loses its dot"
   },
   "software_artifacts": {
     "command": "agent",
