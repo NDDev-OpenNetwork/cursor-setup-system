@@ -53,7 +53,28 @@ pub const CURSOR: Harness = Harness {
     // membership in this list, so a release declaring only one of the two refuses
     // every install against a CLI that names the other. Declaring both is the
     // only state in which either side may move first.
-    native_namespaces: &["cli-config.json", "plugins", "plugins/local"],
+    // Four were added 2026-08-28: `rules`, `commands`, `hooks.json` and
+    // `mcp.json`. All four had been declined on the strength of vendor pages
+    // that do not mention them, and all four are in the product. Its own
+    // rule-creation code offers a *User Rule* scope at
+    // `join(homedir(), ".cursor", "rules")`; it calls
+    // `loadCommandsFromDirectory(join(userHomeDirectory, ".cursor",
+    // "commands"))`; it resolves `userConfigPath` for `hooks.json` and a user
+    // path for `mcp.json`.
+    //
+    // Widening is safe in the direction a consumer reads: it matches a route by
+    // membership in this list, so a larger set makes more routes valid and none
+    // that were valid invalid. Narrowing is the move that refuses things, which
+    // is why `plugins` stays beside `plugins/local`.
+    native_namespaces: &[
+        "cli-config.json",
+        "plugins",
+        "plugins/local",
+        "rules",
+        "commands",
+        "hooks.json",
+        "mcp.json",
+    ],
     // The product's own: credentials, session history and runtime caches. Never
     // read, never written, and never copied into a backup slot.
     never_touch: &["auth.json", "sessions"],
@@ -68,7 +89,21 @@ pub const CURSOR: Harness = Harness {
     // Declaring the other six promised a rollback for six things this provider
     // could not install. Conformance passed throughout: its route case asks for
     // one compilable kind, not every one.
-    component_kinds: &[ComponentKind::Plugin, ComponentKind::Setting],
+    // `Instruction`, `Command`, `Hook` and `Mcp` joined 2026-08-28 with the
+    // namespaces above. Each is a promise of a rollback and each can be kept:
+    // every one of the four surfaces is written by materialising a bundle's
+    // bytes verbatim, captured whole by a backup, and returned whole by a
+    // restore. `hooks.json` and `mcp.json` are files rather than directories,
+    // which is only a problem where a component is not the file -- the reason
+    // claude-code's `Plugin` was withdrawn. Here the component *is* the file.
+    component_kinds: &[
+        ComponentKind::Plugin,
+        ComponentKind::Setting,
+        ComponentKind::Instruction,
+        ComponentKind::Command,
+        ComponentKind::Hook,
+        ComponentKind::Mcp,
+    ],
     projection_kinds: &[
         ProjectionKind::NativeFiles,
         ProjectionKind::Marketplace,
