@@ -161,8 +161,8 @@ Configuration home as the product documents it: `~/.cursor`.
 | Path | Component kinds routed here | Decided by |
 | --- | --- | --- |
 | `cli-config.json` | `setting` | [source](https://cursor.com/docs/cli/reference/configuration) |
-| `plugins` | `plugin` | [source](https://cursor.com/docs/plugins) |
-| `plugins/local` | -- | [source](https://cursor.com/docs/plugins) |
+| `plugins` | -- | [source](https://cursor.com/docs/plugins) |
+| `plugins/local` | `plugin` | [source](https://cursor.com/docs/plugins) |
 
 A path routing no component kind is owned so a setup can carry it;
 nothing compiles a component to it.
