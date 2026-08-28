@@ -149,7 +149,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-08-28T03:47:51+00:00",
+  "verified_at": "2026-08-28T04:46:07+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-27",
     "config_home": "~/.cursor",
@@ -164,19 +164,19 @@
       },
       {
         "path": "plugins",
+        "kinds": [],
+        "shape": "directory",
+        "source": "https://cursor.com/docs/plugins",
+        "note": "The vendor page names no path for a marketplace-installed plugin, and names `~/.cursor/plugins/local/<name>` twice for a local one. So this parent routes nothing that can be sourced, and the kind belongs on the child -- where 0.0.8 had already moved the bytes, leaving the kind here. Still owned rather than dropped: the consumer matches native_namespaces by exact membership and its published corpus objects were compiled against a table naming this path, so narrowing now would refuse every one of them. The same window, for the same reason, as antigravity-cli/plugins."
+      },
+      {
+        "path": "plugins/local",
         "kinds": [
           "plugin"
         ],
         "shape": "directory",
         "source": "https://cursor.com/docs/plugins",
-        "note": "A local plugin is installed at `~/.cursor/plugins/local/<name>/` with either a root `plugin.json` or `.cursor-plugin/plugin.json` inside it -- the `local/` level is the one the product reads, and the setups here write it. A plugin's manifest names its `rules`, `skills`, `agents`, `commands` and `hooks`; that manifest is how every one of those reaches the CLI, which is why none of them is a namespace of its own"
-      },
-      {
-        "path": "plugins/local",
-        "kinds": [],
-        "shape": "directory",
-        "source": "https://cursor.com/docs/plugins",
-        "note": "The directory the product actually reads a local plugin from, and where the setups here write. Declared *beside* `plugins` rather than instead of it: the consumer validates a compiler's route by exact membership in native_namespaces, so declaring only one of the two refuses every install against a CLI carrying the other"
+        "note": "Where the vendor tells a person to put a plugin -- \"Create a folder for your plugin: ~/.cursor/plugins/local/my-plugin\" -- and where this provider's twenty-six shipped plugin files have landed since 0.0.8. The kind stayed one directory up for two releases after the bytes moved, because nothing compared what a setup writes with what a surface routes."
       }
     ],
     "declined": [
@@ -263,7 +263,7 @@
       "windows/arm64",
       "windows/x86_64"
     ],
-    "verified_at": "2026-08-28T03:47:51+00:00"
+    "verified_at": "2026-08-28T04:46:07+00:00"
   },
   "setup_catalogue_digest": "sha256:59de8bde86b6388c8c19bbff6ebfa5ea5285d9ecb527dddb999ed3017f979437"
 }
