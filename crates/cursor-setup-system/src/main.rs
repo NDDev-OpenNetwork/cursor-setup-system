@@ -27,12 +27,27 @@ pub const CURSOR: Harness = Harness {
     vendor: "Anysphere",
     documented_config_home: "~/.cursor",
     config_home_env: "CURSOR_CONFIG_DIR",
-    // The one of seven whose documented home is conditionally
-    // wrong. Confirmed at the line in the pinned bundle: the
-    // resolver reads CURSOR_CONFIG_DIR, then XDG_CONFIG_HOME
-    // joined with "cursor" -- not ".cursor" -- and only then
-    // falls back to the home directory.
-    config_home_note: "XDG_CONFIG_HOME, when set, moves it to $XDG_CONFIG_HOME/cursor -- and the leaf loses its dot",
+    // Measured at the line in the pinned bundle, and the first version of
+    // this note was wrong in a way worth recording.
+    //
+    // `cursor-config/dist/paths.js` exports two roots. The config root
+    // reads `CURSOR_CONFIG_DIR`, then `XDG_CONFIG_HOME` joined with
+    // `cursor` -- not `.cursor` -- then falls back to the home. The data
+    // root reads `CURSOR_DATA_DIR` and is not XDG-aware.
+    //
+    // **Of the eight namespaces this build owns, exactly one goes through
+    // either.** `cli-config.json` is `join(configRoot(), "cli-config.json")`.
+    // `commands`, `rules`, `hooks.json`, `mcp.json` and the `plugins` pair
+    // are built from a literal `join(homedir(), ".cursor", ...)` and go
+    // through neither resolver, so XDG does not move them. What the config
+    // root does carry is `acp-config.json`, `acp-sessions`, `chats`,
+    // `permissions.json` and `statsig-cache.json` -- none of them ours.
+    //
+    // The first note said the product reads `$XDG_CONFIG_HOME/cursor`
+    // without qualification. True of the resolver, false of seven of the
+    // eight paths this provider writes: a measurement of one thing stated
+    // as a fact about another.
+    config_home_note: "XDG_CONFIG_HOME moves cli-config.json to $XDG_CONFIG_HOME/cursor and moves nothing else this build owns",
     control_directory: ".cursor-setup-system",
     state_file: "NDDEV-CURSOR-PROVIDER.json",
     predecessor_state_file: "NDDEV-CURSOR-CLI-SETUP.json",
@@ -371,6 +386,27 @@ mod tests {
     /// its directory and gives the model nothing to choose on. Documents under
     /// `references/` and files under `commands/` are exempt, because the
     /// products measured do not read frontmatter from either.
+    /// Supporting documents are reachable from an entry point.
+    ///
+    /// A `references/` folder whose skill has no `SKILL.md` is prose nothing
+    /// routes to. A generator in this repository produced exactly that, and
+    /// every other guard passed it: the files are documents, so `unsourced`
+    /// exempts them, and there is no `SKILL.md`, so `undescribed` has nothing
+    /// to check.
+    #[test]
+    fn every_reference_folder_has_an_entry_point() {
+        let manifest = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+        let root = manifest.join("../../setups").join(TOOL);
+        let root = if root.is_dir() {
+            root
+        } else {
+            manifest.join("../../setups")
+        };
+        let catalog = harness_runtime::Catalog::at(&root);
+        let problems = harness_runtime::catalog::unreachable_references(&catalog.list().unwrap());
+        assert!(problems.is_empty(), "{}", problems.join("\n  "));
+    }
+
     #[test]
     fn every_component_entry_point_describes_itself() {
         let manifest = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
