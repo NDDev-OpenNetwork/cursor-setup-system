@@ -27,6 +27,12 @@ pub const CURSOR: Harness = Harness {
     vendor: "Anysphere",
     documented_config_home: "~/.cursor",
     config_home_env: "CURSOR_CONFIG_DIR",
+    // The one of seven whose documented home is conditionally
+    // wrong. Confirmed at the line in the pinned bundle: the
+    // resolver reads CURSOR_CONFIG_DIR, then XDG_CONFIG_HOME
+    // joined with "cursor" -- not ".cursor" -- and only then
+    // falls back to the home directory.
+    config_home_note: "XDG_CONFIG_HOME, when set, moves it to $XDG_CONFIG_HOME/cursor -- and the leaf loses its dot",
     control_directory: ".cursor-setup-system",
     state_file: "NDDEV-CURSOR-PROVIDER.json",
     predecessor_state_file: "NDDEV-CURSOR-CLI-SETUP.json",
@@ -74,6 +80,18 @@ pub const CURSOR: Harness = Harness {
         "commands",
         "hooks.json",
         "mcp.json",
+        // Added 2026-08-28 from the product's own bytes. `skill-path-utils.ts`
+        // in the pinned bundle carries a table of skill roots -- `.cursor/skills`
+        // beside `.claude/skills`, `.codex/skills`, `.grok/skills`,
+        // `.agents/skills` -- and a mapper that joins each to the home
+        // directory with `scope: "user"`. The product's own ignore file names
+        // the directory in prose: *"# User's personal skills"*.
+        //
+        // It had been *declined* on `cursor.com/docs/skills`, which describes
+        // the plugin-manifest key and does not mention the directory. That is
+        // the same defect as the nine surfaces found on 2026-08-28: declined on
+        // a page that does not discuss them, and present in the product.
+        "skills",
     ],
     // The product's own: credentials, session history and runtime caches. Never
     // read, never written, and never copied into a backup slot.
@@ -103,6 +121,12 @@ pub const CURSOR: Harness = Harness {
         ComponentKind::Command,
         ComponentKind::Hook,
         ComponentKind::Mcp,
+        // `Skill` joined 2026-08-28 with the `skills` namespace above, on the
+        // product's bytes rather than on its skills page. Two of the roots in
+        // that table are *not* ours and are recorded as declined instead:
+        // `skills-cursor` is flagged `builtin` -- the product's own -- and
+        // `cloud-skills` is filled from the account.
+        ComponentKind::Skill,
     ],
     projection_kinds: &[
         ProjectionKind::NativeFiles,
