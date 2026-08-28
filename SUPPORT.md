@@ -160,7 +160,7 @@ Configuration home as the product documents it: `~/.cursor`.
 
 | Path | Component kinds routed here | Decided by |
 | --- | --- | --- |
-| `cli-config.json` | `setting` | [source](https://cursor.com/docs/cli/reference/configuration) |
+| `cli-config.json` | `setting` | [source](https://cursor.com/docs/cli/reference/configuration; filename and default object read from the pinned 2026.08.25-3e8eec8 bundle) |
 | `plugins` | -- | [source](https://cursor.com/docs/plugins) |
 | `plugins/local` | `plugin` | [source](https://cursor.com/docs/plugins) |
 | `rules` | `instruction` | [source](https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
