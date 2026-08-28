@@ -298,7 +298,14 @@
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
     "config_home_env_note": "Measured 2026-08-28: the product wrote into the directory this variable named, and into no other configuration home.\n\n**The product's resolver has two overrides, not one, and the second renames the leaf.** Confirmed at the line in the pinned bundle:\n\n```js\nconst e = process.env.CURSOR_CONFIG_DIR;  if (e?.trim()) return e;\nconst t = process.env.XDG_CONFIG_HOME;\nreturn t?.trim() ? join(t, \"cursor\") : join(homedir(), \".cursor\");\n```\n\nSo a Linux user with `XDG_CONFIG_HOME` set has their configuration at `$XDG_CONFIG_HOME/cursor` -- **`cursor`, not `.cursor`**. There is also a separate `CURSOR_DATA_DIR`, which is *not* XDG-aware and defaults to `~/.cursor` regardless, so config and data can be split.\n\n**The variable this build sets is still the right one.** `CURSOR_CONFIG_DIR` is the first branch of that resolver, so a `launch` pointing the product at a target wins over XDG. This field stays a single name deliberately: a list would claim this build sets more than one variable, which it does not and should not.",
-    "config_home_note": "XDG_CONFIG_HOME, when set, moves it to $XDG_CONFIG_HOME/cursor -- and the leaf loses its dot"
+    "config_home_note": "XDG_CONFIG_HOME, when set, moves it to $XDG_CONFIG_HOME/cursor -- and the leaf loses its dot",
+    "configuration_format": {
+      "file": "cli-config.json",
+      "grammar": "json",
+      "accepts_comments": false,
+      "note": "Strict JSON, and the vendor's own configuration reference says so explicitly: *\"JSON (no comments allowed)\"*. No schema published for this file -- SchemaStore carries `cursor-sandbox.json` and nothing for `cli-config.json`, searched 2026-08-28.",
+      "measured_at": "2026-08-28"
+    }
   },
   "software_artifacts": {
     "command": "agent",
