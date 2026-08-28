@@ -213,6 +213,15 @@
         "shape": "file",
         "source": "https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
         "note": "`join(homedir(), \".cursor\", \"mcp.json\")` for the user scope, and a second path under the working directory for the project scope. Declared 2026-08-28, having been declined as *\"No ownable file surface under ~/.cursor\"*. Same shape as `hooks.json`: the component is the file."
+      },
+      {
+        "path": "skills",
+        "kinds": [
+          "skill"
+        ],
+        "shape": "directory",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28",
+        "note": "The bundle carries a table of skill roots -- `.cursor/skills` beside `.claude/skills`, `.codex/skills`, `.grok/skills` and `.agents/skills` -- and a mapper joining each to the home directory with `scope: \"user\"`. The product's own ignore file names it in prose: *\"# User's personal skills\"*.\n\n**This row replaces a declined one**, which read *\"A plugin manifest key, not a directory under the config home\"* and cited `cursor.com/docs/skills` -- a page about the manifest key that does not mention the directory. Same shape as the nine surfaces found on 2026-08-28: declined on a page that does not discuss them, and present in the product. Reading the product rather than its pages is what found it."
       }
     ],
     "declined": [
@@ -220,11 +229,6 @@
         "path": "AGENTS.md",
         "reason": "The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request.",
         "source": "https://cursor.com/docs/cli/using"
-      },
-      {
-        "path": "skills",
-        "reason": "A plugin manifest key, not a directory under the config home.",
-        "source": "https://cursor.com/docs/skills"
       },
       {
         "path": "agents",
@@ -275,6 +279,16 @@
         "path": "policy.json",
         "reason": "An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length.",
         "source": "measured from the pinned 2026.08.25-3e8eec8 bundle"
+      },
+      {
+        "path": "skills-cursor",
+        "reason": "The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search.",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle's skill-root table, 2026-08-28"
+      },
+      {
+        "path": "cloud-skills",
+        "reason": "Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name.",
+        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts, 2026-08-28"
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
