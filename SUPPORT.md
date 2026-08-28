@@ -167,6 +167,7 @@ Configuration home as the product documents it: `~/.cursor`.
 | `commands` | `command` | [source](https://cursor.com/docs/reference/plugins; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
 | `hooks.json` | `hook` | [source](https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
 | `mcp.json` | `mcp` | [source](https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
+| `skills` | `skill` | [source](measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28) |
 
 A path routing no component kind is owned so a setup can carry it;
 nothing compiles a component to it.
@@ -177,8 +178,6 @@ Everything named here is left exactly as it was found, like any
 other file beside a target.
 
 **`AGENTS.md`** -- The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request. ([source](https://cursor.com/docs/cli/using))
-
-**`skills`** -- A plugin manifest key, not a directory under the config home. ([source](https://cursor.com/docs/skills))
 
 **`agents`** -- A plugin manifest key. The directory form `join(this.workspacePath, ".cursor", "agents")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement. ([source](https://cursor.com/docs/subagents))
 
@@ -199,6 +198,14 @@ other file beside a target.
 **`cli-runtime-state`** -- One row for the subtree a run leaves behind: `agent-cli-state.json`, `ai-tracking/ai-code-tracking.db`, `cli-workspaces.json`, `ide_state.json`, `plans`, `projects`. The product's own lifetime. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle))
 
 **`policy.json`** -- An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle))
+
+**`skills-cursor`** -- The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle's skill-root table, 2026-08-28))
+
+**`cloud-skills`** -- Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts, 2026-08-28))
+
+**`cursor-compile-cache`** -- Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.
+
+It gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`. ([source](measured by running the pinned 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28))
 
 ## Response
 
