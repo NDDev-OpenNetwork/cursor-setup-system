@@ -51,6 +51,22 @@ pub(crate) const ARTIFACTS: &[Artifact] = &[
         shape: Shape::GzipTar,
         member: "dist-package/cursor-agent",
     },
+    Artifact {
+        platform: "windows/arm64",
+        url: "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/windows/arm64/agent-cli-package.zip",
+        bytes: 71_681_755,
+        sha256: "sha256:5ad327a98759ef2238740777ad3834b3ed3c785691d470a5e74df5e5169b553b",
+        shape: Shape::Zip,
+        member: "dist-package/cursor-agent.cmd",
+    },
+    Artifact {
+        platform: "windows/x86_64",
+        url: "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/windows/x64/agent-cli-package.zip",
+        bytes: 73_776_085,
+        sha256: "sha256:44559cf096025e9e74144797a4bf43afe4348d6b09a0c6a24e7c78139f2860fb",
+        shape: Shape::Zip,
+        member: "dist-package/cursor-agent.cmd",
+    },
 ];
 
 /// Cursor's program, and where its bytes come from.
@@ -58,7 +74,7 @@ pub(crate) const SOFTWARE: Software = Software {
     version: "2026.08.25-3e8eec8",
     command: "agent",
     delivery: Delivery::Artifacts(ARTIFACTS),
-    unsupported: &["windows/arm64", "windows/x86_64"],
+    unsupported: &[],
     // This harness has not been bumped since it was pinned, so there is
     // no earlier release to move between. Absent rather than invented.
     previous: None,

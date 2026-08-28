@@ -5,7 +5,7 @@
     "version": "2026.08.25-3e8eec8",
     "installer": "https://cursor.com/install",
     "installer_sha256": "f145a23a600d42c79bdf6a4cd36b77decb7b68359f4f0b86f60be3c84deea96c",
-    "artifact_template": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/{os}/{arch}/agent-cli-package.tar.gz",
+    "artifact_template": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/{os}/{arch}/agent-cli-package.{extension}",
     "artifacts": {
       "darwin/arm64/agent-cli-package.tar.gz": {
         "sha256": "81d4de7349e208d4ce441ca9c2d4e7d019ec2fbeb1137a79099fd8c4b8662f5f",
@@ -22,6 +22,14 @@
       "linux/x64/agent-cli-package.tar.gz": {
         "sha256": "7a212e5a17ff9316f5acc78808e33c536940d5455645022e6388d99ba48c8425",
         "size": 84518977
+      },
+      "windows/x64/agent-cli-package.zip": {
+        "sha256": "44559cf096025e9e74144797a4bf43afe4348d6b09a0c6a24e7c78139f2860fb",
+        "size": 73776085
+      },
+      "windows/arm64/agent-cli-package.zip": {
+        "sha256": "5ad327a98759ef2238740777ad3834b3ed3c785691d470a5e74df5e5169b553b",
+        "size": 71681755
       }
     }
   },
@@ -30,7 +38,9 @@
       "macos-arm64",
       "macos-x64",
       "ubuntu-glibc-arm64",
-      "ubuntu-glibc-x64"
+      "ubuntu-glibc-x64",
+      "windows-arm64",
+      "windows-x64"
     ],
     "ubuntu": {
       "distribution_id": "ubuntu",
@@ -43,7 +53,6 @@
       ]
     },
     "unsupported_host_categories": [
-      "windows",
       "non-ubuntu-linux",
       "linux-musl",
       "unsupported-architecture"
@@ -68,8 +77,23 @@
         "vendor_os": "linux",
         "vendor_arch": "x64",
         "asset_path": "linux/x64/agent-cli-package.tar.gz"
+      },
+      "windows-x64": {
+        "vendor_os": "windows",
+        "vendor_arch": "x64",
+        "asset_path": "windows/x64/agent-cli-package.zip",
+        "container": "zip",
+        "note": "A ZIP, not a gzip-tar, and its launcher is `cursor-agent.cmd`; there is no `.exe` in the archive."
+      },
+      "windows-arm64": {
+        "vendor_os": "windows",
+        "vendor_arch": "arm64",
+        "asset_path": "windows/arm64/agent-cli-package.zip",
+        "container": "zip",
+        "note": "As above. Measured from the vendor's own PowerShell installer and the archive it fetches."
       }
-    }
+    },
+    "coverage_note": "Platform coverage is decided by `software_artifacts` and nothing else. This block held `windows` under unsupported until 2026-08-29, inherited from the retired nddev-*-app line, and by then it was false: the vendor ships Windows and this provider installs it. It said so for as long as it did because nothing in this repository read the block -- see `tools/transcribe_software.py --check`, which now compares it against the artifact table so the two cannot disagree again."
   },
   "software_install": {
     "mechanism": "official-cursor-agent-artifact",
@@ -149,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-08-28T04:46:07+00:00",
+  "verified_at": "2026-08-28T23:03:37+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-27",
     "config_home": "~/.cursor",
@@ -343,14 +367,24 @@
         "bytes": 77602336,
         "sha256": "sha256:851f5412f603cff4cb37d4d87d5a940c5e642077c0459238398c866a69d3f495",
         "member": "dist-package/cursor-agent"
+      },
+      "windows/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/windows/arm64/agent-cli-package.zip",
+        "bytes": 71681755,
+        "sha256": "sha256:5ad327a98759ef2238740777ad3834b3ed3c785691d470a5e74df5e5169b553b",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      },
+      "windows/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/windows/x64/agent-cli-package.zip",
+        "bytes": 73776085,
+        "sha256": "sha256:44559cf096025e9e74144797a4bf43afe4348d6b09a0c6a24e7c78139f2860fb",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
       }
     },
     "version": "2026.08.25-3e8eec8",
-    "unpublished": [
-      "windows/arm64",
-      "windows/x86_64"
-    ],
-    "verified_at": "2026-08-28T04:46:07+00:00"
+    "verified_at": "2026-08-28T23:03:37+00:00"
   },
   "setup_catalogue_digest": "sha256:3f97f87138a595488064bcbaa01e10fed1e3d2f2ebe1888903aeb99e12ce4f26"
 }
