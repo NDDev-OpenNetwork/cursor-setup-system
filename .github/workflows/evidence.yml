@@ -57,4 +57,4 @@ jobs:
           suffix=""
           [ "$RUNNER_OS" = "Windows" ] && suffix=".exe"
           exe="target/release/cursor-setup-system$suffix"
-          "$py" scripts/evidence.py --binary "$exe" --harness cursor
+          "$py" scripts/evidence.py --binary "$exe" --harness cursor --writes-absent "its mcp takes no arguments in the released CLI"
