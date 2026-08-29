@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-08-29T08:29:47+00:00",
+  "verified_at": "2026-08-29T10:57:02+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-27",
     "config_home": "~/.cursor",
@@ -265,7 +265,7 @@
       },
       {
         "path": "agents",
-        "reason": "A plugin manifest key. The directory form `join(this.workspacePath, \".cursor\", \"agents\")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.",
+        "reason": "A plugin manifest key. The directory form `join(this.workspacePath, \".cursor\", \"agents\")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.\n\n**The vendor's page says the opposite, and the shipping binary decides.** cursor.com/docs/subagents, read 2026-08-29, lists user-level locations explicitly -- `~/.cursor/agents/` *\"All projects for current user\"*, beside `~/.claude/agents/` and `~/.codex/agents/` as compatibility paths. Measured against the pinned 2026.08.25-3e8eec8 bytes, which the pin refresher confirms is the current release: `computeAgentsDirs()` resolves `join(resolve(this.workspacePath), \".cursor\", \"agents\")` and nothing else. Every other occurrence of the path is a glob or an ignore rule tagged `{type:\"workspace\"}`, and a search for a home-joined form returns zero while the positive controls return hits and an invented path returns none.\n\nSo the page documents a directory the current product does not read. Recorded at length because the next reader will find that page and take this declaration for an oversight: **a page can promise more than the product does, and declaring on it would have this provider claim a path nothing reads.** Re-measure when the pin moves rather than when the page changes.",
         "source": "https://cursor.com/docs/subagents"
       },
       {
