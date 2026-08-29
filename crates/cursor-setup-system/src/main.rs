@@ -145,7 +145,19 @@ pub const CURSOR: Harness = Harness {
     ],
     projection_kinds: &[
         ProjectionKind::NativeFiles,
-        ProjectionKind::Marketplace,
+        // `Marketplace` was declared here and named nothing this provider owns.
+        // Every path a marketplace is registered in is in this harness's own
+        // *declined* list -- `plugins/marketplaces`,
+        // `plugins/local-marketplaces.json`, `plugins/installed_plugins.json`
+        // and `plugins/cache` -- so the declaration promised a package family
+        // that could not land. `Plugin` stays, because `plugins/local` is owned
+        // and is where the vendor tells a person to put one.
+        //
+        // A declaration with one real half and one naming nothing is worse than
+        // two wrong halves with a note explaining them, because the note is the
+        // thing that gets re-read. Withdrawn 2026-08-29 after the consumer
+        // counted its published corpus: `marketplace` is requested by nothing,
+        // anywhere, so this narrows a promise rather than stranding a component.
         ProjectionKind::Plugin,
     ],
     // **Two scopes.** The second is `~/.agents`, the one root in this estate

@@ -357,7 +357,10 @@
         ],
         "declined": []
       }
-    ]
+    ],
+    "projection_basis": {
+      "plugin": "plugins/local"
+    }
   },
   "software_artifacts": {
     "command": "agent",
