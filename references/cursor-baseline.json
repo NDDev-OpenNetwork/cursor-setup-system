@@ -192,9 +192,9 @@
         "path": "plugins",
         "kinds": [],
         "shape": "directory",
-        "source": "https://cursor.com/docs/plugins",
-        "evidence": "page",
-        "note": "The vendor page names no path for a marketplace-installed plugin, and names `~/.cursor/plugins/local/<name>` twice for a local one. So this parent routes nothing that can be sourced, and the kind belongs on the child -- where 0.0.8 had already moved the bytes, leaving the kind here. Still owned rather than dropped: the consumer matches native_namespaces by exact membership and its published corpus objects were compiled against a table naming this path, so narrowing now would refuse every one of them. The same window, for the same reason, as antigravity-cli/plugins."
+        "source": "https://cursor.com/docs/plugins; anchored literal measured in the pinned artifact by scripts/evidence.py",
+        "evidence": "bytes",
+        "note": "The vendor page names no path for a marketplace-installed plugin, and names `~/.cursor/plugins/local/<name>` twice for a local one. So this parent routes nothing that can be sourced, and the kind belongs on the child -- where 0.0.8 had already moved the bytes, leaving the kind here. Still owned rather than dropped: the consumer matches native_namespaces by exact membership and its published corpus objects were compiled against a table naming this path, so narrowing now would refuse every one of them. The same window, for the same reason, as antigravity-cli/plugins. Confirmed 2026-08-29 by `scripts/evidence.py`, which installs the pinned artifact into a temporary prefix and searches the installed bytes for each declared namespace joined to the configuration home the binary itself documents -- 1 occurrence(s) of `.cursor/plugins`. A namespace no product can own is searched alongside the real ones in the same pass and was absent, which is what separates a reading from a search that matches everything. One occurrence, and it is recorded as one: a single hit is the anchored form appearing exactly once, which is weaker than eleven and stronger than the bare name, and rounding it up would be the promotion this column exists to prevent."
       },
       {
         "path": "plugins/local",
@@ -386,5 +386,5 @@
     "version": "2026.08.25-3e8eec8",
     "verified_at": "2026-08-28T23:03:37+00:00"
   },
-  "setup_catalogue_digest": "sha256:3f97f87138a595488064bcbaa01e10fed1e3d2f2ebe1888903aeb99e12ce4f26"
+  "setup_catalogue_digest": "sha256:fe06533e3a4f7dfd6e53da8d2727a5eebfad1d98ffac2a1b741e669a6a753b5a"
 }
