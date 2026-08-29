@@ -41,6 +41,23 @@ the kind it would carry already routes somewhere else. One kind on two
 surfaces makes a consumer's route ambiguous, and the guard in
 `harness_runtime::surfaces` refuses it by name.
 
+## A second target: `target_scope: user_root`
+
+Rooted at `~/.agents`, which is **not** this product's configuration
+home. A consumer reaches it by naming the scope on the request, and
+every path below is relative to that root rather than to the home
+above -- writing the root into the path again would nest it twice.
+
+| path | routes | shape | decided by | exercised by |
+| --- | --- | --- | --- | --- |
+| `skills` | skill | directory | measured from the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading (dist-package/index.js, the skill-root table and its home-rooted mapper), 2026-08-29 | read its bytes |
+
+**Under a scope the namespace is the permission and the recorded
+files are the inventory.** A root like this one is read by several
+products at once, so `remove`, the capture and a restore all act on
+the files this provider recorded writing -- never on the namespace
+whole, which would take or revert a neighbour's work.
+
 ## Considered and not owned
 
 14 rows. Each records what was searched, so the next reader does not repeat the search:

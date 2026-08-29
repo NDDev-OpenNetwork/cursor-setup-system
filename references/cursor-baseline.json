@@ -330,7 +330,7 @@
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
-    "config_home_env_note": "Measured 2026-08-28: the product wrote into the directory this variable named, and into no other configuration home.\n\n**The product's resolver has two overrides, not one, and the second renames the leaf.** Confirmed at the line in the pinned bundle:\n\n```js\nconst e = process.env.CURSOR_CONFIG_DIR;  if (e?.trim()) return e;\nconst t = process.env.XDG_CONFIG_HOME;\nreturn t?.trim() ? join(t, \"cursor\") : join(homedir(), \".cursor\");\n```\n\nSo a Linux user with `XDG_CONFIG_HOME` set has their configuration at `$XDG_CONFIG_HOME/cursor` -- **`cursor`, not `.cursor`**. There is also a separate `CURSOR_DATA_DIR`, which is *not* XDG-aware and defaults to `~/.cursor` regardless, so config and data can be split.\n\n**The variable this build sets is still the right one.** `CURSOR_CONFIG_DIR` is the first branch of that resolver, so a `launch` pointing the product at a target wins over XDG. This field stays a single name deliberately: a list would claim this build sets more than one variable, which it does not and should not.\n\n**Corrected 2026-08-28, hours after the first version shipped.** That version said the product reads `$XDG_CONFIG_HOME/cursor` and stopped there. Tracing which surfaces actually go through the resolver shows **one of the eight this build owns** does: `cli-config.json`, built as `join(configRoot(), \"cli-config.json\")` in `cursor-config/dist/paths.js`.\n\n`commands`, `rules`, `hooks.json`, `mcp.json` and the `plugins` pair are built from a literal `join(homedir(), \".cursor\", \u2026)` and reach neither resolver, so XDG does not move them. The config root carries `acp-config.json`, `acp-sessions`, `chats`, `permissions.json` and `statsig-cache.json`; the data root (`CURSOR_DATA_DIR`, not XDG-aware) carries `projects` and `computer-use`. None of those seven is ours.\n\nSo `documented_config_home` stays `~/.cursor` and is right for seven of eight. The lesson is the estate's own, one level up: measuring a resolver and then writing a note about the home states a fact about the thing not measured.",
+    "config_home_env_note": "Measured 2026-08-28: the product wrote into the directory this variable named, and into no other configuration home.\n\n**The product's resolver has two overrides, not one, and the second renames the leaf.** Confirmed at the line in the pinned bundle:\n\n```js\nconst e = process.env.CURSOR_CONFIG_DIR;  if (e?.trim()) return e;\nconst t = process.env.XDG_CONFIG_HOME;\nreturn t?.trim() ? join(t, \"cursor\") : join(homedir(), \".cursor\");\n```\n\nSo a Linux user with `XDG_CONFIG_HOME` set has their configuration at `$XDG_CONFIG_HOME/cursor` -- **`cursor`, not `.cursor`**. There is also a separate `CURSOR_DATA_DIR`, which is *not* XDG-aware and defaults to `~/.cursor` regardless, so config and data can be split.\n\n**The variable this build sets is still the right one.** `CURSOR_CONFIG_DIR` is the first branch of that resolver, so a `launch` pointing the product at a target wins over XDG. This field stays a single name deliberately: a list would claim this build sets more than one variable, which it does not and should not.\n\n**Corrected 2026-08-28, hours after the first version shipped.** That version said the product reads `$XDG_CONFIG_HOME/cursor` and stopped there. Tracing which surfaces actually go through the resolver shows **one of the eight this build owns** does: `cli-config.json`, built as `join(configRoot(), \"cli-config.json\")` in `cursor-config/dist/paths.js`.\n\n`commands`, `rules`, `hooks.json`, `mcp.json` and the `plugins` pair are built from a literal `join(homedir(), \".cursor\", …)` and reach neither resolver, so XDG does not move them. The config root carries `acp-config.json`, `acp-sessions`, `chats`, `permissions.json` and `statsig-cache.json`; the data root (`CURSOR_DATA_DIR`, not XDG-aware) carries `projects` and `computer-use`. None of those seven is ours.\n\nSo `documented_config_home` stays `~/.cursor` and is right for seven of eight. The lesson is the estate's own, one level up: measuring a resolver and then writing a note about the home states a fact about the thing not measured.",
     "config_home_note": "XDG_CONFIG_HOME moves cli-config.json to $XDG_CONFIG_HOME/cursor and moves nothing else this build owns",
     "configuration_format": {
       "file": "cli-config.json",
@@ -338,7 +338,26 @@
       "accepts_comments": false,
       "note": "Strict JSON, and the vendor's own configuration reference says so explicitly: *\"JSON (no comments allowed)\"*. No schema published for this file -- SchemaStore carries `cursor-sandbox.json` and nothing for `cli-config.json`, searched 2026-08-28.",
       "measured_at": "2026-08-28"
-    }
+    },
+    "scoped": [
+      {
+        "target_scope": "user_root",
+        "root": "~/.agents",
+        "surfaces": [
+          {
+            "path": "skills",
+            "kinds": [
+              "skill"
+            ],
+            "shape": "directory",
+            "source": "measured from the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading (dist-package/index.js, the skill-root table and its home-rooted mapper), 2026-08-29",
+            "evidence": "bytes",
+            "note": "The bundle carries a table of skill roots -- `{configDir: \".agents\", subdir: \"skills\", thirdParty: false}` beside `.cursor`, `.claude`, `.codex` and `.grok` -- and a mapper `Gr(t).map(t => ({dirPath: join(e, t.configDir, t.subdir), scope: \"user\"}))` that the skill scan calls with `homedir()`. `.agents` is *not* marked third-party, so it is scanned whether or not third-party roots are enabled.\n\n**This row did not exist, and the baseline that measured the fact is the one that did not record it**: the `skills` row's own note already quoted the table. Found with a control -- an invented root searched for in the same bytes and absent.\n\n**`bytes` and not `ran`, and what was tried.** The pinned bundle was extracted and every credential-free subcommand of `cursor-agent` exercised: `about`, `status`, `models`, `mcp` and `plugin`. None reports the resolved skill set, and the ones that would need an account -- `about` prints *User Email: Not logged in*. The read stands on the product's own bytes, which is the strongest evidence available here without a credential.\n\nThe one root in this estate that belongs to a convention rather than to a product. `$HOME/.agents/skills` is a *sibling* of this product's configuration home, not a child, so nothing declared against this provider's own target can reach it -- that is what `user_root` exists for.\n\n**Owning a shared root, and the reason this record used to decline it.** Five of the seven products read this root, and the decline said: *a namespace is removed whole, so a second declaration would make either provider's remove take the other's skills.* That sentence was true when it was written and stopped being true when `written_paths` shipped -- `remove` under this scope takes the files this provider recorded writing and refuses rather than widening when it cannot read the record, and each harness carries its own state file, so they coexist under one root. The reason was not re-read when the thing it described changed.\n\nRelative to this scope's own root the path is `skills`, not `.agents/skills`: the root is what the scope names, and writing it into the path again would put the skills at `~/.agents/.agents/skills`."
+          }
+        ],
+        "declined": []
+      }
+    ]
   },
   "software_artifacts": {
     "command": "agent",
@@ -386,5 +405,5 @@
     "version": "2026.08.25-3e8eec8",
     "verified_at": "2026-08-28T23:03:37+00:00"
   },
-  "setup_catalogue_digest": "sha256:fe06533e3a4f7dfd6e53da8d2727a5eebfad1d98ffac2a1b741e669a6a753b5a"
+  "setup_catalogue_digest": "sha256:3ce81019a1145041b6d73e3d177ab5299f72bfd25413d8e7126846416ff2e902"
 }
