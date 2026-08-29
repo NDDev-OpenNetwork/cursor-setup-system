@@ -23,7 +23,7 @@ Strict JSON, and the vendor's own configuration reference says so explicitly: *"
 | path | kinds | shape | decided by | exercised by |
 |---|---|---|---|---|
 | `cli-config.json` | setting | file | <https://cursor.com/docs/cli/reference/configuration> | read its bytes |
-| `plugins` | *(routes no kind)* | directory | <https://cursor.com/docs/plugins> | *nothing — a page* |
+| `plugins` | *(routes no kind)* | directory | <https://cursor.com/docs/plugins> | read its bytes |
 | `plugins/local` | plugin | directory | <https://cursor.com/docs/plugins> | *nothing — a page* |
 | `rules` | instruction | directory | <https://cursor.com/docs/rules> | read its bytes |
 | `commands` | command | directory | <https://cursor.com/docs/reference/plugins> | read its bytes |
@@ -33,7 +33,7 @@ Strict JSON, and the vendor's own configuration reference says so explicitly: *"
 
 **A citation is not a measurement.** `decided by` says where a row came from; `exercised by` says whether anybody made the product demonstrate it. Where a row records no method the answer is a page and nothing else, because absence of a record of measurement is not evidence of measurement.
 
-Here that is **0 run**, **6 read from the product's own bytes**, and **2 resting on a page alone**. The last number is the one worth acting on: a row in it is not wrong, it is untested, and the two are indistinguishable from here.
+Here that is **0 run**, **7 read from the product's own bytes**, and **1 resting on a page alone**. The last number is the one worth acting on: a row in it is not wrong, it is untested, and the two are indistinguishable from here.
 
 A surface that routes no kind is owned deliberately: a backup captures
 it and a restore returns it, and no component is routed there because
