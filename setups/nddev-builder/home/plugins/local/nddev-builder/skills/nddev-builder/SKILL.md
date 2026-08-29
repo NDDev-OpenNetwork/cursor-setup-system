@@ -29,6 +29,15 @@ target-explicit, reversible, and backed by the repository's own gate.
 - **What this harness owns, what it declines, and what decided each row**:
   read `references/surfaces.md`. It is generated from the baseline, so it
   is the one file here that cannot go stale against the declaration.
+- **The configuration file itself -- its grammar, whether comments parse, and
+  whether what you write is the effective value**: read
+  `references/authoring-settings.md`. Generated from the baseline, and the
+  cross-harness half of it is the part no vendor page carries.
+- **The instruction file, and which products read a neighbour's**: read
+  `references/authoring-instructions.md`. Also generated.
+- **The second target this harness owns, and why a setup cannot carry a
+  component for it**: read `references/second-target.md`. Generated from the
+  baseline's scoped block.
 - **Configuration and setup/profile model**: read
   `references/configuration-profiles.md`.
 - **Permissions, approval, sandbox, and network policy**: read
