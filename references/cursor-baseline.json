@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-08-28T23:03:37+00:00",
+  "verified_at": "2026-08-29T08:29:47+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-27",
     "config_home": "~/.cursor",
@@ -204,7 +204,7 @@
         "shape": "directory",
         "source": "https://cursor.com/docs/plugins",
         "evidence": "page",
-        "note": "Where the vendor tells a person to put a plugin -- \"Create a folder for your plugin: ~/.cursor/plugins/local/my-plugin\" -- and where this provider's twenty-six shipped plugin files have landed since 0.0.8. The kind stayed one directory up for two releases after the bytes moved, because nothing compared what a setup writes with what a surface routes."
+        "note": "Where the vendor tells a person to put a plugin -- \"Create a folder for your plugin: ~/.cursor/plugins/local/my-plugin\" -- and where this provider's twenty-six shipped plugin files have landed since 0.0.8. The kind stayed one directory up for two releases after the bytes moved, because nothing compared what a setup writes with what a surface routes.\n\n**Searched in the product's own pinned bytes on 2026-08-29 and not found, which argues nothing either way.** Fixed-string, anchored to this product's configuration home -- the bare leaf name is in every one of these binaries and proves nothing, so only the anchored form counts. An invented path was searched in the same run and was also absent, so the search discriminates.\n\nThis row stays `page` because **a path built by joining a directory to a name at runtime never appears as a literal**, and that is the shape of every remaining one. Moving it off `page` needs the product run against a target and asked what it resolved, not a deeper grep."
       },
       {
         "path": "rules",
@@ -214,7 +214,7 @@
         "shape": "directory",
         "source": "https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
         "evidence": "bytes",
-        "note": "The product's own rule-creation picker offers two scopes, and the second is this one:\n  {value:\"user\", label:\"User Rule\", hint:\"Applies to all your projects\", path: join(homedir(), \".cursor\", \"rules\")}\nDeclared 2026-08-28. It had been declined as *\"No global rules directory exists\"*, which was true of the vendor's page and false of the product. `instruction` routes here and nowhere else on this harness -- cursor's CLI has no global instruction *file*, which is why this provider's plugin carries its rule through a manifest."
+        "note": "The product's own rule-creation picker offers two scopes, and the second is this one:\n  {value:\"user\", label:\"User Rule\", hint:\"Applies to all your projects\", path: join(homedir(), \".cursor\", \"rules\")}\nDeclared 2026-08-28. It had been declined as *\"No global rules directory exists\"*, which was true of the vendor's page and false of the product. `instruction` routes here and nowhere else on this harness -- cursor's CLI has no global instruction *file*, which is why this provider's plugin carries its rule through a manifest.\n\n**And the CLI does not load a plugin's rules, measured 2026-08-29.** This provider's setups used to carry the working floor as a rule inside a local plugin, on the reasoning recorded above -- *a plugin rather than a loose rule file, so what this provider owns is one directory it created rather than a directory the product also writes to.* The reasoning was sound and the mechanism does not exist: in the pinned `2026.08.25-3e8eec8` bundle the listing switch reads `case \"rules\": t = k(R)` and consults nothing else, while `case \"skills\"` explicitly merges `getAllEnabledPlugins()`. Searched with that as the control -- `for … of <plugin>.skills` has three real loaders, `for … of <plugin>.rules` has four and **all four are in the bundled JSON-schema validator**, about keyword rules.\n\nSo a rule shipped through a plugin manifest reached the model through nothing. The setups write `rules/<name>.mdc` now -- this surface, the one the product's own picker writes to and `k(R)` reads, filtering `.mdc`. `bytes` and not `ran`: no credential-free command of this CLI lists resolved rules, and `about` prints *Not logged in*."
       },
       {
         "path": "commands",
@@ -403,7 +403,11 @@
       }
     },
     "version": "2026.08.25-3e8eec8",
-    "verified_at": "2026-08-28T23:03:37+00:00"
+    "verified_at": "2026-08-29T08:29:47+00:00"
   },
-  "setup_catalogue_digest": "sha256:3ce81019a1145041b6d73e3d177ab5299f72bfd25413d8e7126846416ff2e902"
+  "setup_catalogue_digest": "sha256:1b0df93ab330d41e7af6eaa165b93a0d945616c15aca92c7bb298462ed1e632e",
+  "second_pin_absent": {
+    "measured_at": "2026-08-29",
+    "note": "`software_update` and `rollback` cross two real releases, and this build pins one. The second slot fills by **rotation** rather than by choice: a vendor bump assigns `previous = current` and then sets `current`, so exactly one value moves per bump and the pair is always two consecutive real releases. `scripts/evidence.py::cross_two_releases` skips this harness and prints the reason, which is an absence of a second release rather than a failure.\n\nRecorded because a reader of this file otherwise cannot tell a gap from a fact. Four of the seven carry a second pin; these are the three that do not, and each for a different reason.\n\n**Cannot be seeded, and fills only on the next bump.** This vendor publishes no retrievable release index: `downloads.cursor.com/lab/` answers 403 and the site's versions route returns the application shell rather than data, both measured 2026-08-29. A prior version string is therefore not obtainable from the vendor, and an artifact URL here embeds the exact version. Nothing to seed from."
+  }
 }
