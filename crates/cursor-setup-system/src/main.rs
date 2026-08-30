@@ -7,9 +7,15 @@
 //! The owner assigned this harness the program lifecycle as well, and it is
 //! declared. Cursor is the one product with a genuinely large artifact: 569
 //! entries including 127 directories and a bundled `node`, carried in a GNU tar
-//! whose long-name headers no other vendor uses. `src/software.rs` names the
-//! four platforms it publishes, and says plainly that Windows is not among
-//! them.
+//! whose long-name headers no other vendor uses.
+//!
+//! `src/software.rs` is the list, and this paragraph deliberately does not
+//! restate it. It said *"the four platforms it publishes"* and *"Windows is
+//! not among them"* until `0b9207e`, when the vendor shipped Windows in a
+//! different container: there are six now, and the two Windows members are
+//! `Shape::Zip` beside four `Shape::GzipTar`. A vendor's platform list is true
+//! of the day it was read, so the generated table is the only place it is
+//! written down.
 
 use std::process::ExitCode;
 

@@ -2,20 +2,37 @@
 
 Use this reference before handing off work on a setup system.
 
-## The gate
+## Which repository you are in decides what you can run
 
-One entry point, run from the repository root:
+This setup ships in two places and the gate below exists in only one of them.
+**It belongs to the private authoring monorepo, `NDDev-it-com/setup-systems`,
+which renders this public tree.** A checkout of this public repository carries
+`crates/`, `setups/`, `references/` and `scripts/evidence.py` -- and neither
+`scripts/gate.sh` nor `tools/`.
+
+That is not a gap to fill. A rendered tree is generated: the fix for anything
+here is a change in the authoring repository and a re-render, never an edit to
+this checkout. What a reader of *this* tree can run is `cargo fmt --all
+--check`, `cargo clippy --workspace --all-targets -- -D warnings` and
+`cargo test --workspace`, which is what its own CI runs.
+
+Naming a command a reader cannot run used to be the whole of this page, and the
+reader is a model, which will try it and then work around the failure rather
+than say so.
+
+## The gate, in the authoring repository
+
+One entry point, from its root:
 
 ```bash
 scripts/gate.sh
 ```
 
-It runs the artifact-table transcription check, the estate readme check,
-`cargo fmt --all --check`, `cargo clippy --workspace --all-targets -- -D
-warnings` and `cargo test --workspace`. It exists rather than four bare `cargo`
-commands because the workspace pins a toolchain that a local `cargo` earlier on
-`PATH` will shadow, and a green run under the wrong compiler is worse than a red
-one.
+It exists rather than four bare `cargo` commands because the workspace pins a
+toolchain that a local `cargo` earlier on `PATH` will shadow, and a green run
+under the wrong compiler is worse than a red one. **`gate.sh` is the list of
+what it checks** -- it names each one as it runs, and this page does not carry a
+second copy. This paragraph used to enumerate them, and named five of the seven.
 
 ```bash
 scripts/gate.sh --render
