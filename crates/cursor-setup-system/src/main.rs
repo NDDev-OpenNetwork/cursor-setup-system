@@ -21,7 +21,7 @@ use std::process::ExitCode;
 
 mod software;
 
-use harness_runtime::{Harness, Scoped};
+use harness_runtime::{Harness, LaunchBinding, Scoped};
 use provider_v3::{ComponentKind, ProjectionKind, TargetScope};
 
 /// Everything specific to Cursor CLI, verified against `cursor-baseline.json`.
@@ -33,6 +33,21 @@ pub const CURSOR: Harness = Harness {
     vendor: "Anysphere",
     documented_config_home: "~/.cursor",
     config_home_env: "CURSOR_CONFIG_DIR",
+    // **Partial, and this is the one the inference got wrong.** This baseline's
+    // own note has said since 2026-08-28 that `cli-config.json` is *"one of the
+    // eight this build owns"* that follows the variable: `rules`, `commands`,
+    // `hooks.json`, `mcp.json` and the plugin pair are built from a literal
+    // join to the process home in `cursor-config/dist/paths.js` and reach no
+    // resolver at all. The declaration said launch anyway, because the rule
+    // asked whether a variable existed rather than what it moved.
+    //
+    // A launch here assembled a session from the caller's own rules, hooks and
+    // MCP servers and the target's settings file -- executable surfaces the
+    // selected setup never carried.
+    launch_binding: LaunchBinding::Partial {
+        unbound: "rules, commands, hooks.json, mcp.json, plugins/local and skills, which \
+                  the product joins to the process home rather than to this variable",
+    },
     // Not measured. The two artifacts this estate has read for this question are
     // claude's, which carries `DISABLE_UPDATES`, and codex's, which carries no
     // such literal. This product has been asked nothing, and an empty value here

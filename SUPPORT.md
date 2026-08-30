@@ -233,6 +233,22 @@ So the page documents a directory the current product does not read. Recorded at
 
 It gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`. ([source](measured by running the pinned 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28))
 
+**`sandbox.json`** -- **A ninth surface under this product's home, measured 2026-08-30 in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:
+
+```js
+join(homedir(), ".cursor", "sandbox.json")
+this.perUserSandboxConfigPath = a?.perUserSandboxConfigPath
+  ?? join(homedir(), ".cursor", "sandbox.json")
+```
+
+So it is home-rooted, exactly like `rules`, `commands`, `hooks.json`, `mcp.json` and the plugin pair, and `CURSOR_CONFIG_DIR` does not move it. `additionalReadwritePaths`, `networkPolicy`, `disableTmpWrite` and `enableSharedBuildCache` are all present in the same bytes; an invented filename searched in the same run returns zero, so the search discriminates.
+
+**Declined rather than owned, and the reason is routing rather than reluctance.** This provider already routes `setting` to `cli-config.json`. A second settings file under one kind is the direction the consumer's lookup cannot express -- it returns the *first* match for a `(kind, harness)` pair, so a second row would be unreachable and nothing would say so. Owning it needs a named settings surface in the contract, which is the same passport question `rules` and `workflows` wait on next door.
+
+**And it bears on what `full-auto` may claim.** That posture writes `sandbox.mode` into `cli-config.json`, and this file is a separate input the product reads from the process home. An administrator can also move it: `userSandboxDataFolderName` from the resolved permissions redirects the read to `join(homedir(), <that name>, "sandbox.json")`.
+
+The default this posture restates is in the same bytes: `sandbox:{mode:"disabled",networkAccess:"user_config_with_defaults"}`. ([source](https://prod.cursor.com/docs/reference/sandbox))
+
 ## Response
 
 One maintainer. Defects are triaged as time allows; security reports are

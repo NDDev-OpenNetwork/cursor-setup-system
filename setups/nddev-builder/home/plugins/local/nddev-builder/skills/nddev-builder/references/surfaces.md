@@ -60,7 +60,7 @@ whole, which would take or revert a neighbour's work.
 
 ## Considered and not owned
 
-14 rows. Each records what was searched, so the next reader does not repeat the search:
+15 rows. Each records what was searched, so the next reader does not repeat the search:
 
 - **`AGENTS.md`** — The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request.
 - **`agents`** — A plugin manifest key. The directory form `join(this.workspacePath, ".cursor", "agents")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.
@@ -76,3 +76,4 @@ whole, which would take or revert a neighbour's work.
 - **`skills-cursor`** — The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search.
 - **`cloud-skills`** — Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name.
 - **`cursor-compile-cache`** — Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.
+- **`sandbox.json`** — **A ninth surface under this product's home, measured 2026-08-30 in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:

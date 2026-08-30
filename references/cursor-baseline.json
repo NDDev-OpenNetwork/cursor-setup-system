@@ -327,6 +327,11 @@
         "path": "cursor-compile-cache",
         "reason": "Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.\n\nIt gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`.",
         "source": "measured by running the pinned 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28"
+      },
+      {
+        "path": "sandbox.json",
+        "source": "https://prod.cursor.com/docs/reference/sandbox",
+        "reason": "**A ninth surface under this product's home, measured 2026-08-30 in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:\n\n```js\njoin(homedir(), \".cursor\", \"sandbox.json\")\nthis.perUserSandboxConfigPath = a?.perUserSandboxConfigPath\n  ?? join(homedir(), \".cursor\", \"sandbox.json\")\n```\n\nSo it is home-rooted, exactly like `rules`, `commands`, `hooks.json`, `mcp.json` and the plugin pair, and `CURSOR_CONFIG_DIR` does not move it. `additionalReadwritePaths`, `networkPolicy`, `disableTmpWrite` and `enableSharedBuildCache` are all present in the same bytes; an invented filename searched in the same run returns zero, so the search discriminates.\n\n**Declined rather than owned, and the reason is routing rather than reluctance.** This provider already routes `setting` to `cli-config.json`. A second settings file under one kind is the direction the consumer's lookup cannot express -- it returns the *first* match for a `(kind, harness)` pair, so a second row would be unreachable and nothing would say so. Owning it needs a named settings surface in the contract, which is the same passport question `rules` and `workflows` wait on next door.\n\n**And it bears on what `full-auto` may claim.** That posture writes `sandbox.mode` into `cli-config.json`, and this file is a separate input the product reads from the process home. An administrator can also move it: `userSandboxDataFolderName` from the resolved permissions redirects the read to `join(homedir(), <that name>, \"sandbox.json\")`.\n\nThe default this posture restates is in the same bytes: `sandbox:{mode:\"disabled\",networkAccess:\"user_config_with_defaults\"}`."
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
@@ -408,9 +413,22 @@
     "version": "2026.08.25-3e8eec8",
     "verified_at": "2026-08-29T08:29:47+00:00"
   },
-  "setup_catalogue_digest": "sha256:81f65142685ce78862e60cc32b2297a842189b992cc8f97957691922c1bb83e5",
+  "setup_catalogue_digest": "sha256:a24fd027f178d813deb1363127f02b3d43792cf09901ec93ea564dec10b68eb3",
   "second_pin_absent": {
     "measured_at": "2026-08-29",
     "note": "`software_update` and `rollback` cross two real releases, and this build pins one. The second slot fills by **rotation** rather than by choice: a vendor bump assigns `previous = current` and then sets `current`, so exactly one value moves per bump and the pair is always two consecutive real releases. `scripts/evidence.py::cross_two_releases` skips this harness and prints the reason, which is an absence of a second release rather than a failure.\n\nRecorded because a reader of this file otherwise cannot tell a gap from a fact. Four of the seven carry a second pin; these are the three that do not, and each for a different reason.\n\n**Cannot be seeded, and fills only on the next bump.** This vendor publishes no retrievable release index: `downloads.cursor.com/lab/` answers 403 and the site's versions route returns the application shell rather than data, both measured 2026-08-29. A prior version string is therefore not obtainable from the vendor, and an artifact URL here embeds the exact version. Nothing to seed from."
+  },
+  "command_names": {
+    "measured_at": "2026-08-30",
+    "measured_against": "2026.08.25-3e8eec8",
+    "platform": "linux/x86_64",
+    "evidence": "bytes",
+    "vendor_bin_names": [
+      "agent",
+      "cursor-agent"
+    ],
+    "archive_member": "dist-package/cursor-agent",
+    "this_provider_exposes": "agent",
+    "note": "**Three names get confused here, and two of them are the vendor's.** Read from the pinned bundle's own installer object:\n\n```js\n{ rootDirName: \"cursor-agent\", executableName: \"cursor-agent\",\n  packageFileName: \"agent-cli-package.tar.gz\",\n  binNames: [\"agent\", \"cursor-agent\"], updateCursorShim: true }\n```\n\nand `activeBinNames = [\"agent\", \"cursor-agent\"]` beside it, with a shim that writes `exec \"$HOME/.local/bin/agent\" \"$@\"`. So the vendor installs **both** names into `~/.local/bin`; neither is more canonical than the other.\n\n  * `agent` -- what this provider exposes inside its own prefix, and one of the two the\n    vendor installs.\n  * `cursor-agent` -- the other vendor name, and the archive member's filename.\n  * `dist-package/cursor-agent.cmd` -- the Windows member inside the archive, which is a\n    path and not a command at all.\n\nRecorded because the consumer's harness catalogue detects this product on PATH by the second name and this provider exposes the first, and the two look like a disagreement. They are not: both are installed, and the catalogue is detecting the vendor's installation while this provider names its own. An example written from a sentence about exposure collapsed the first two once already."
   }
 }
