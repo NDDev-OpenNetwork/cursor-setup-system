@@ -42,13 +42,19 @@ target-explicit, reversible, and backed by the repository's own gate.
   `references/configuration-profiles.md`.
 - **Permissions, approval, sandbox, and network policy**: read
   `references/permissions-sandbox.md`.
-- **Agents and subagents**: read `references/agents-subagents.md`.
-- **Skills, rules, instructions, and AGENTS.md behavior**: read
-  `references/skills-instructions.md`.
-- **Plugins, local installation, commands, and marketplace boundary**: read
-  `references/plugins-marketplace.md`.
-- **Hooks**: read `references/hooks.md`.
-- **MCP**: read `references/mcp.md`.
+- **Writing a skill**: read `references/authoring-skills.md`. Generated from the
+  vendor's own reference, with the field table and what each field does on the
+  six harnesses next door.
+- **Writing a command**: read `references/authoring-commands.md`. Also
+  generated.
+- **Writing a hook**: read `references/authoring-hooks.md`, which carries the
+  full event list.
+- **Writing the plugin manifest**: read `references/authoring-plugins.md`. This
+  is also where **agents** reach the product, through the manifest's `agents`
+  key -- the directory under the configuration home is workspace-scoped only.
+- **Writing an MCP server entry**: read `references/authoring-mcp.md`.
+- **Agents and subagents**, for what an agent file itself looks like: read
+  `references/agents-subagents.md`.
 - **Official install artifact, target-owned runtime, launch, migration, restore,
   and removal**: read `references/installation-lifecycle.md`.
 - **Creator/checker/release validation workflow**: read
