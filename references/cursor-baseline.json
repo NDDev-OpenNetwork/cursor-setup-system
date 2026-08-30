@@ -408,7 +408,7 @@
     "version": "2026.08.25-3e8eec8",
     "verified_at": "2026-08-29T08:29:47+00:00"
   },
-  "setup_catalogue_digest": "sha256:c6872c2533c1aa9df9a63032b4c729e7d1db4d6a0efe7a71e3d7b217cc690348",
+  "setup_catalogue_digest": "sha256:6c4622858b0167889335a2d41790339536a2cb4d5c345d95764c9d364ac26aac",
   "second_pin_absent": {
     "measured_at": "2026-08-29",
     "note": "`software_update` and `rollback` cross two real releases, and this build pins one. The second slot fills by **rotation** rather than by choice: a vendor bump assigns `previous = current` and then sets `current`, so exactly one value moves per bump and the pair is always two consecutive real releases. `scripts/evidence.py::cross_two_releases` skips this harness and prints the reason, which is an absence of a second release rather than a failure.\n\nRecorded because a reader of this file otherwise cannot tell a gap from a fact. Four of the seven carry a second pin; these are the three that do not, and each for a different reason.\n\n**Cannot be seeded, and fills only on the next bump.** This vendor publishes no retrievable release index: `downloads.cursor.com/lab/` answers 403 and the site's versions route returns the application shell rather than data, both measured 2026-08-29. A prior version string is therefore not obtainable from the vendor, and an artifact URL here embeds the exact version. Nothing to seed from."
