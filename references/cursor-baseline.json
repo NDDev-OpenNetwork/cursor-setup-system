@@ -175,7 +175,7 @@
   },
   "verified_at": "2026-08-29T10:57:02+00:00",
   "native_surfaces": {
-    "verified_at": "2026-08-27",
+    "verified_at": "2026-08-31",
     "config_home": "~/.cursor",
     "surfaces": [
       {
@@ -329,6 +329,11 @@
         "path": "plugins",
         "reason": "Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now.",
         "source": "https://cursor.com/docs/plugins; anchored literal measured in the pinned artifact by scripts/evidence.py"
+      },
+      {
+        "path": "plugin.json $schema",
+        "reason": "**A published schema this estate deliberately does not name, and naming it would break the plugin.** Cursor is the only one of the four unschemaed harnesses that publishes a machine-readable manifest schema: `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`, reachable (200) and referenced once in the pinned artifact.\n\nThe obvious move -- add `$schema` and validate against it -- is wrong, and the binary says why. Measured in `agent-cli-package.tar.gz` for 2026.08.25-3e8eec8, digest checked before reading:\n\n    const B = new Set([\".../plugin.schema.json\", \".../mcp.schema.json\"])\n    function Q(e){ const t = e.$schema; return typeof t === \"string\" && t.length > 0 ? t : undefined }\n    function P(e){ return e === undefined ? {kind:\"absent\"}\n                        : B.has(e)        ? {kind:\"supported\", ...}\n                        :                   {kind:\"unsupported\", id:e} }\n\nSo the schema is **opt-in**: a manifest carrying no `$schema` is `absent` and takes the product's own native path, and one that declares a known id is held to the Agent Plugins 1.0.0 interop spec. That spec is `additionalProperties: false` with `required: [\"$schema\", \"name\"]`, and its properties are `name, version, description, author, homepage, repository, license, keywords, extensions` -- **no `agents`, `commands` or `skills`**, the three surfaces this plugin exists to carry. Validated to be sure: our manifest against that schema gives exactly two errors, a missing `$schema` and *Additional properties are not allowed ('agents', 'commands', 'skills' were unexpected)*.\n\nAdding the line would therefore move a working plugin from the product's own grammar into a narrower one it does not fit. The interop spec's own answer is `extensions`, keyed by reverse-domain namespace -- a migration with a cost and no benefit while the native path is what Cursor reads. Recorded rather than left as an absence, because the next reader running a schema survey will find the url and reach the opposite conclusion in one step.",
+        "source": "measured in agent-cli-package.tar.gz 2026.08.25-3e8eec8; schema fetched 200 and validated against the shipped manifest"
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
@@ -456,7 +461,7 @@
     "version": "2026.08.11-e8db854",
     "verified_at": "2026-08-31T00:32:09+00:00"
   },
-  "setup_catalogue_digest": "sha256:6aba48879953d73667f638b392ebc309c81d941e542a659f76260cf79a2f9cdb",
+  "setup_catalogue_digest": "sha256:8ee48f47623746dd8e127f31a96c6247cb87ee2cf73180c286352bbbd45f6f13",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."

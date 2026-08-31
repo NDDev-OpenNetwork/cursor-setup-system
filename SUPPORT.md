@@ -164,13 +164,13 @@ Configuration home as the product documents it: `~/.cursor`.
 
 | Path | Component kinds routed here | Decided by |
 | --- | --- | --- |
-| `cli-config.json` | `setting` | [source](https://cursor.com/docs/cli/reference/configuration; filename and default object read from the pinned 2026.08.25-3e8eec8 bundle) |
+| `cli-config.json` | `setting` | [source](https://cursor.com/docs/cli/reference/configuration) -- filename and default object read from the pinned 2026.08.25-3e8eec8 bundle |
 | `plugins/local` | `plugin` | [source](https://cursor.com/docs/plugins) |
-| `rules` | `instruction` | [source](https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
-| `commands` | `command` | [source](https://cursor.com/docs/reference/plugins; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
-| `hooks.json` | `hook` | [source](https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
-| `mcp.json` | `mcp` | [source](https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
-| `skills` | `skill` | [source](measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28) |
+| `rules` | `instruction` | [source](https://cursor.com/docs/rules) -- measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading |
+| `commands` | `command` | [source](https://cursor.com/docs/reference/plugins) -- measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading |
+| `hooks.json` | `hook` | [source](https://cursor.com/docs/hooks) -- measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading |
+| `mcp.json` | `mcp` | [source](https://cursor.com/docs/mcp) -- measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading |
+| `skills` | `skill` | measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28 |
 
 A path routing no component kind is owned so a setup can carry it;
 nothing compiles a component to it.
@@ -183,7 +183,7 @@ every path below is relative to that root.
 
 | Path | Component kinds routed here | Decided by |
 | --- | --- | --- |
-| `skills` | `skill` | measured from the product's own bytes |
+| `skills` | `skill` | measured from the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading (dist-package/index.js, the skill-root table and its home-rooted mapper), 2026-08-29 |
 
 This root is read by several products at once, so under this scope
 `remove`, the backup and a restore act on the files this program
@@ -204,31 +204,31 @@ other file beside a target.
 
 So the page documents a directory the current product does not read. Recorded at length because the next reader will find that page and take this declaration for an oversight: **a page can promise more than the product does, and declaring on it would have this provider claim a path nothing reads.** Re-measure when the pin moves rather than when the page changes. ([source](https://cursor.com/docs/subagents))
 
-**`hooks`** -- **Corrected 2026-08-28: a user-level file exists.** This row read "a plugin manifest key, not a directory under the config home". The product resolves `userConfigPath: join(homedir(), ".cursor", "hooks.json")`, alongside an enterprise path and the manifest key. Not owned, for the same reason as `rules` and `commands`. Raised. ([source](https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+**`hooks`** -- **Corrected 2026-08-28: a user-level file exists.** This row read "a plugin manifest key, not a directory under the config home". The product resolves `userConfigPath: join(homedir(), ".cursor", "hooks.json")`, alongside an enterprise path and the manifest key. Not owned, for the same reason as `rules` and `commands`. Raised. ([source](https://cursor.com/docs/hooks) -- measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`NDDEV-CURSOR-PROVIDER.json`** -- This provider's own state file: which setup is applied, the identity it recorded, and which slot reverses the last operation. Written by every operation and excluded from target identity, because counting it would leave a target different from the identity the operation just wrote. Not a projection surface and never ownable as one. ([source](this provider's own contract; no vendor page is involved))
+**`NDDEV-CURSOR-PROVIDER.json`** -- This provider's own state file: which setup is applied, the identity it recorded, and which slot reverses the last operation. Written by every operation and excluded from target identity, because counting it would leave a target different from the identity the operation just wrote. Not a projection surface and never ownable as one. (this provider's own contract; no vendor page is involved)
 
-**`.cursor-setup-system`** -- This provider's own control directory: the target lock, the backup slots and their payloads. Kept out of the declaration for the same reason as the state file, and recorded here because the declined list is where a reader looks before opening a file to find out what it is. ([source](this provider's own contract; no vendor page is involved))
+**`.cursor-setup-system`** -- This provider's own control directory: the target lock, the backup slots and their payloads. Kept out of the declaration for the same reason as the state file, and recorded here because the declined list is where a reader looks before opening a file to find out what it is. (this provider's own contract; no vendor page is involved)
 
-**`plugins/cache`** -- The product's own plugin cache, a sibling of the owned `plugins/local`. Named in the same joins. It matters because this provider owns the parent `plugins` during the transition window, so a `remove` takes this with it. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+**`plugins/cache`** -- The product's own plugin cache, a sibling of the owned `plugins/local`. Named in the same joins. It matters because this provider owns the parent `plugins` during the transition window, so a `remove` takes this with it. (measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`plugins/marketplaces`** -- Where the product records the marketplaces a person added, sibling to `plugins/local`. Taken by a `remove` of the owned parent, which is the concrete cost of the transition window. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+**`plugins/marketplaces`** -- Where the product records the marketplaces a person added, sibling to `plugins/local`. Taken by a `remove` of the owned parent, which is the concrete cost of the transition window. (measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`plugins/local-marketplaces.json`** -- The product's record of locally added marketplaces. Same sibling relationship and the same consequence. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+**`plugins/local-marketplaces.json`** -- The product's record of locally added marketplaces. Same sibling relationship and the same consequence. (measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`plugins/installed_plugins.json`** -- The product's own record of what it installed. A `remove` of the owned parent takes it, and the product then no longer knows about plugins a person installed by hand. Recoverable from the capture that runs first, and the sharpest single reason the window should close when the consumer's corpus objects naming `plugins` retire. ([source](measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading))
+**`plugins/installed_plugins.json`** -- The product's own record of what it installed. A `remove` of the owned parent takes it, and the product then no longer knows about plugins a person installed by hand. Recoverable from the capture that runs first, and the sharpest single reason the window should close when the consumer's corpus objects naming `plugins` retire. (measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`cli-runtime-state`** -- One row for the subtree a run leaves behind: `agent-cli-state.json`, `ai-tracking/ai-code-tracking.db`, `cli-workspaces.json`, `ide_state.json`, `plans`, `projects`. The product's own lifetime. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle))
+**`cli-runtime-state`** -- One row for the subtree a run leaves behind: `agent-cli-state.json`, `ai-tracking/ai-code-tracking.db`, `cli-workspaces.json`, `ide_state.json`, `plans`, `projects`. The product's own lifetime. (measured from the pinned 2026.08.25-3e8eec8 bundle)
 
-**`policy.json`** -- An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle))
+**`policy.json`** -- An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length. (measured from the pinned 2026.08.25-3e8eec8 bundle)
 
-**`skills-cursor`** -- The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle's skill-root table, 2026-08-28))
+**`skills-cursor`** -- The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search. (measured from the pinned 2026.08.25-3e8eec8 bundle's skill-root table, 2026-08-28)
 
-**`cloud-skills`** -- Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name. ([source](measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts, 2026-08-28))
+**`cloud-skills`** -- Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name. (measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts, 2026-08-28)
 
 **`cursor-compile-cache`** -- Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.
 
-It gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`. ([source](measured by running the pinned 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28))
+It gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`. (measured by running the pinned 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28)
 
 **`sandbox.json`** -- **A ninth surface under this product's home, measured 2026-08-30 in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:
 
@@ -246,7 +246,21 @@ So it is home-rooted, exactly like `rules`, `commands`, `hooks.json`, `mcp.json`
 
 The default this posture restates is in the same bytes: `sandbox:{mode:"disabled",networkAccess:"user_config_with_defaults"}`. ([source](https://prod.cursor.com/docs/reference/sandbox))
 
-**`plugins`** -- Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now. ([source](https://cursor.com/docs/plugins; anchored literal measured in the pinned artifact by scripts/evidence.py))
+**`plugins`** -- Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now. ([source](https://cursor.com/docs/plugins) -- anchored literal measured in the pinned artifact by scripts/evidence.py)
+
+**`plugin.json $schema`** -- **A published schema this estate deliberately does not name, and naming it would break the plugin.** Cursor is the only one of the four unschemaed harnesses that publishes a machine-readable manifest schema: `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`, reachable (200) and referenced once in the pinned artifact.
+
+The obvious move -- add `$schema` and validate against it -- is wrong, and the binary says why. Measured in `agent-cli-package.tar.gz` for 2026.08.25-3e8eec8, digest checked before reading:
+
+    const B = new Set([".../plugin.schema.json", ".../mcp.schema.json"])
+    function Q(e){ const t = e.$schema; return typeof t === "string" && t.length > 0 ? t : undefined }
+    function P(e){ return e === undefined ? {kind:"absent"}
+                        : B.has(e)        ? {kind:"supported", ...}
+                        :                   {kind:"unsupported", id:e} }
+
+So the schema is **opt-in**: a manifest carrying no `$schema` is `absent` and takes the product's own native path, and one that declares a known id is held to the Agent Plugins 1.0.0 interop spec. That spec is `additionalProperties: false` with `required: ["$schema", "name"]`, and its properties are `name, version, description, author, homepage, repository, license, keywords, extensions` -- **no `agents`, `commands` or `skills`**, the three surfaces this plugin exists to carry. Validated to be sure: our manifest against that schema gives exactly two errors, a missing `$schema` and *Additional properties are not allowed ('agents', 'commands', 'skills' were unexpected)*.
+
+Adding the line would therefore move a working plugin from the product's own grammar into a narrower one it does not fit. The interop spec's own answer is `extensions`, keyed by reverse-domain namespace -- a migration with a cost and no benefit while the native path is what Cursor reads. Recorded rather than left as an absence, because the next reader running a schema survey will find the url and reach the opposite conclusion in one step. (measured in agent-cli-package.tar.gz 2026.08.25-3e8eec8; schema fetched 200 and validated against the shipped manifest)
 
 ## Response
 
