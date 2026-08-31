@@ -189,22 +189,14 @@
         "note": "Named as a literal by the pinned 2026.08.25-3e8eec8 bundle, which joins it to the configuration directory in one function and matches it as `**/.cursor/**/cli-config.json` in its own watch table. The same bundle carries the default object this file is parsed into -- approvalMode \"allowlist\", autoAcceptWebSearch false, sandbox mode \"disabled\" -- so the grammar and the key set both come from the artifact rather than from the page beside them."
       },
       {
-        "path": "plugins",
-        "kinds": [],
-        "shape": "directory",
-        "source": "https://cursor.com/docs/plugins; anchored literal measured in the pinned artifact by scripts/evidence.py",
-        "evidence": "bytes",
-        "note": "The vendor page names no path for a marketplace-installed plugin, and names `~/.cursor/plugins/local/<name>` twice for a local one. So this parent routes nothing that can be sourced, and the kind belongs on the child -- where 0.0.8 had already moved the bytes, leaving the kind here. Still owned rather than dropped, and **the reason has a subject now**. It read *\"its published corpus objects were compiled against a table naming this path, so narrowing now would refuse every one of them\"* -- plural, and wrong in both the plural and the *every one*. Measured by the consumer against its deployed catalogue on 2026-08-31: fourteen cursor component versions inspected, **one** rooted at this parent --\n\n    component_01M0SSJPYR4VH8R2YSHYESHK9N  v1.0  active  plugins/nddev-builder\n\nIt is this estate's own builder plugin, and its `v1.1` already carries `plugins/local/nddev-builder`, so the two sit side by side and the old one is superseded in practice. Nothing regenerates the shape: the consumer's `rule_for(\"plugin\", \"cursor\")` answers `plugins/local`.\n\nSo the window is held open by one immutable first-party artefact rather than by a population. It cannot be corrected in place -- a published version is immutable -- only superseded, which has happened, or deprecated, which changes a published object's lifecycle and is the owner's decision rather than the consumer's. Dropping this namespace before that decision would make it by proxy: the object would simply start being refused. The same window, for the same reason, as antigravity-cli/plugins. Confirmed 2026-08-29 by `scripts/evidence.py`, which installs the pinned artifact into a temporary prefix and searches the installed bytes for each declared namespace joined to the configuration home the binary itself documents -- 1 occurrence(s) of `.cursor/plugins`. A namespace no product can own is searched alongside the real ones in the same pass and was absent, which is what separates a reading from a search that matches everything. One occurrence, and it is recorded as one: a single hit is the anchored form appearing exactly once, which is weaker than eleven and stronger than the bare name, and rounding it up would be the promotion this column exists to prevent."
-      },
-      {
         "path": "plugins/local",
         "kinds": [
           "plugin"
         ],
         "shape": "directory",
         "source": "https://cursor.com/docs/plugins",
-        "evidence": "page",
-        "note": "Where the vendor tells a person to put a plugin -- \"Create a folder for your plugin: ~/.cursor/plugins/local/my-plugin\" -- and where this provider's twenty-six shipped plugin files have landed since 0.0.8. The kind stayed one directory up for two releases after the bytes moved, because nothing compared what a setup writes with what a surface routes.\n\n**Searched in the product's own pinned bytes on 2026-08-29 and not found, which argues nothing either way.** Fixed-string, anchored to this product's configuration home -- the bare leaf name is in every one of these binaries and proves nothing, so only the anchored form counts. An invented path was searched in the same run and was also absent, so the search discriminates.\n\nThis row stays `page` because **a path built by joining a directory to a name at runtime never appears as a literal**, and that is the shape of every remaining one. Moving it off `page` needs the product run against a target and asked what it resolved, not a deeper grep.\n\n**Two manifest formats live one directory apart, and the schema in the product's bytes governs the other one.** The pinned binary names `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`, which requires `$schema` and `name`, sets `additionalProperties: false`, and puts every client-specific key under an `extensions` object keyed by reverse domain. The manifest this provider writes carries none of that and is still correct: the vendor's own plugins page says `$schema` is *\"only required for Agent Plugins (the root `plugin.json` format)\"* and that *\"Cursor Plugin manifests only require a `name`\"*.\n\nThe binary's own path list is where the two are told apart -- `[\".cursor-plugin/plugin.json\", \".claude-plugin/plugin.json\", \"plugin.json\"]` -- and the schema governs the third entry. This provider writes the first.\n\nRecorded 2026-08-29 because validating the shipped manifest against that schema reports it invalid, correctly and irrelevantly, and the next reader who finds the URL in the bytes will reach for it exactly as this one did. Checked in the same pass: neither the antigravity nor the grok binary mentions `agent-plugins.org` at all, with `plugin.json` present 14 and 10 times as the control, so their root manifests are their own formats and not this specification."
+        "evidence": "bytes",
+        "note": "Where the vendor tells a person to put a plugin -- \"Create a folder for your plugin: ~/.cursor/plugins/local/my-plugin\" -- and where this provider's twenty-six shipped plugin files have landed since 0.0.8. The kind stayed one directory up for two releases after the bytes moved, because nothing compared what a setup writes with what a surface routes.\n\n**Searched in the product's own pinned bytes on 2026-08-29 and not found, which argues nothing either way.** Fixed-string, anchored to this product's configuration home -- the bare leaf name is in every one of these binaries and proves nothing, so only the anchored form counts. An invented path was searched in the same run and was also absent, so the search discriminates.\n\nThis row stays `page` because **a path built by joining a directory to a name at runtime never appears as a literal**, and that is the shape of every remaining one. Moving it off `page` needs the product run against a target and asked what it resolved, not a deeper grep.\n\n**Two manifest formats live one directory apart, and the schema in the product's bytes governs the other one.** The pinned binary names `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`, which requires `$schema` and `name`, sets `additionalProperties: false`, and puts every client-specific key under an `extensions` object keyed by reverse domain. The manifest this provider writes carries none of that and is still correct: the vendor's own plugins page says `$schema` is *\"only required for Agent Plugins (the root `plugin.json` format)\"* and that *\"Cursor Plugin manifests only require a `name`\"*.\n\nThe binary's own path list is where the two are told apart -- `[\".cursor-plugin/plugin.json\", \".claude-plugin/plugin.json\", \"plugin.json\"]` -- and the schema governs the third entry. This provider writes the first.\n\nRecorded 2026-08-29 because validating the shipped manifest against that schema reports it invalid, correctly and irrelevantly, and the next reader who finds the URL in the bytes will reach for it exactly as this one did. Checked in the same pass: neither the antigravity nor the grok binary mentions `agent-plugins.org` at all, with `plugin.json` present 14 and 10 times as the control, so their root manifests are their own formats and not this specification.\n\n**Off `page` on 2026-08-31, and the parent is gone with it.** The pinned bundle builds this root in a function named `loadUserLocalPlugins`: `join(userHomeDir ?? process.env.HOME, \".cursor\", \"plugins\", \"local\")`, read with `readdir`. That is the construction rather than the string, which is the standard this record set for this product when a run needs credentials.\n\n**The same search found a live defect of ours.** Two lines away the bundle builds `join(home, \".cursor\", \"plugins\", \"local-marketplaces.json\")` -- a person's marketplace sources, a *sibling* of this namespace and not a child. This provider declared `plugins` **and** `plugins/local`, and a parent is exact state: reproduced with the released binary, `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the `plugins` directory itself. Nothing this estate ships has ever been written outside `plugins/local`, so the parent covered nothing and cost a directory. It was declared when the kind routed one directory up and outlived the move by four releases.\n\n`profile_id` is `cursor/native-and-plugins/2` because ownership narrowed, and the repository's namespace-shape check refuses the shape for all seven now: a parent cannot be exact state while a child is separately owned, whatever lives between them."
       },
       {
         "path": "rules",
@@ -332,6 +324,11 @@
         "path": "sandbox.json",
         "source": "https://prod.cursor.com/docs/reference/sandbox",
         "reason": "**A ninth surface under this product's home, measured 2026-08-30 in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:\n\n```js\njoin(homedir(), \".cursor\", \"sandbox.json\")\nthis.perUserSandboxConfigPath = a?.perUserSandboxConfigPath\n  ?? join(homedir(), \".cursor\", \"sandbox.json\")\n```\n\nSo it is home-rooted, exactly like `rules`, `commands`, `hooks.json`, `mcp.json` and the plugin pair, and `CURSOR_CONFIG_DIR` does not move it. `additionalReadwritePaths`, `networkPolicy`, `disableTmpWrite` and `enableSharedBuildCache` are all present in the same bytes; an invented filename searched in the same run returns zero, so the search discriminates.\n\n**Declined rather than owned, and the reason is routing rather than reluctance.** This provider already routes `setting` to `cli-config.json`. A second settings file under one kind is the direction the consumer's lookup cannot express -- it returns the *first* match for a `(kind, harness)` pair, so a second row would be unreachable and nothing would say so. Owning it needs a named settings surface in the contract, which is the same passport question `rules` and `workflows` wait on next door.\n\n**And it bears on what `full-auto` may claim.** That posture writes `sandbox.mode` into `cli-config.json`, and this file is a separate input the product reads from the process home. An administrator can also move it: `userSandboxDataFolderName` from the resolved permissions redirects the read to `join(homedir(), <that name>, \"sandbox.json\")`.\n\nThe default this posture restates is in the same bytes: `sandbox:{mode:\"disabled\",networkAccess:\"user_config_with_defaults\"}`."
+      },
+      {
+        "path": "plugins",
+        "reason": "Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now.",
+        "source": "https://cursor.com/docs/plugins; anchored literal measured in the pinned artifact by scripts/evidence.py"
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
@@ -413,10 +410,56 @@
     "version": "2026.08.25-3e8eec8",
     "verified_at": "2026-08-29T08:29:47+00:00"
   },
-  "setup_catalogue_digest": "sha256:a24fd027f178d813deb1363127f02b3d43792cf09901ec93ea564dec10b68eb3",
-  "second_pin_absent": {
-    "measured_at": "2026-08-29",
-    "note": "`software_update` and `rollback` cross two real releases, and this build pins one. The second slot fills by **rotation** rather than by choice: a vendor bump assigns `previous = current` and then sets `current`, so exactly one value moves per bump and the pair is always two consecutive real releases. `scripts/evidence.py::cross_two_releases` skips this harness and prints the reason, which is an absence of a second release rather than a failure.\n\nRecorded because a reader of this file otherwise cannot tell a gap from a fact. Four of the seven carry a second pin; these are the three that do not, and each for a different reason.\n\n**Cannot be seeded, and fills only on the next bump.** This vendor publishes no retrievable release index: `downloads.cursor.com/lab/` answers 403 and the site's versions route returns the application shell rather than data, both measured 2026-08-29. A prior version string is therefore not obtainable from the vendor, and an artifact URL here embeds the exact version. Nothing to seed from."
+  "previous_software_artifacts": {
+    "command": "agent",
+    "shape": "gzip-tar",
+    "platforms": {
+      "linux/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/linux/arm64/agent-cli-package.tar.gz",
+        "bytes": 83117637,
+        "sha256": "sha256:ea13f92e295f523a99ce8d8f57d6894d21e5d1e2d030ffad718ccd5955ca2eed",
+        "member": "dist-package/cursor-agent"
+      },
+      "linux/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/linux/x64/agent-cli-package.tar.gz",
+        "bytes": 84532310,
+        "sha256": "sha256:bfff4bf6f4e9dd30c1d0ef0a70b6077b074015dd2948e4c50685d53afdcfce5a",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/darwin/arm64/agent-cli-package.tar.gz",
+        "bytes": 74746275,
+        "sha256": "sha256:46044d6d7bcbd7b49a0cf1cd01aa4ca79aaa2ea5f2c7a32965fc0ebe29841790",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/darwin/x64/agent-cli-package.tar.gz",
+        "bytes": 77650670,
+        "sha256": "sha256:d5c1ce96dd36469e0231d818d4ccf390caac52d94e607c56ebeecc247cab2b1b",
+        "member": "dist-package/cursor-agent"
+      },
+      "windows/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/windows/arm64/agent-cli-package.zip",
+        "bytes": 71739644,
+        "sha256": "sha256:67a0228a76fc631e132004007d384f95f32f2c77c7cf9cfaeadd53ae868efbe0",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      },
+      "windows/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/windows/x64/agent-cli-package.zip",
+        "bytes": 73841982,
+        "sha256": "sha256:0458981ffe0fda840d19b97d7cbcb26832dafcf01a9c229f3fb0e0d233d66c4b",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      }
+    },
+    "version": "2026.08.11-e8db854",
+    "verified_at": "2026-08-31T00:32:09+00:00"
+  },
+  "setup_catalogue_digest": "sha256:6aba48879953d73667f638b392ebc309c81d941e542a659f76260cf79a2f9cdb",
+  "previous_pin_recovery": {
+    "measured_at": "2026-08-31",
+    "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."
   },
   "command_names": {
     "measured_at": "2026-08-30",

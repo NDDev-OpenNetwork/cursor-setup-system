@@ -25,10 +25,8 @@ itself — is declared and does work. `plan` names the exact bytes offline,
 whoever holds the network fetches them, and `apply` verifies and installs
 with the network gone.
 
-`launch` is declared. It starts the exact executable a software install
-placed under `--prefix`, never a name found on `PATH`, and points the
-product at `--target` through the environment variable its own
-documentation names.
+`launch` is not declared here.
+The product's configuration-home override moves only part of what this provider owns. Launching would mix the requested target with the caller's own executable rules, hooks, MCP or plugin state.
 
 A provider that advertised an operation it cannot perform would let a caller ask
 for something that cannot be honoured, which is worse than not offering it.
@@ -167,7 +165,6 @@ Configuration home as the product documents it: `~/.cursor`.
 | Path | Component kinds routed here | Decided by |
 | --- | --- | --- |
 | `cli-config.json` | `setting` | [source](https://cursor.com/docs/cli/reference/configuration; filename and default object read from the pinned 2026.08.25-3e8eec8 bundle) |
-| `plugins` | -- | [source](https://cursor.com/docs/plugins; anchored literal measured in the pinned artifact by scripts/evidence.py) |
 | `plugins/local` | `plugin` | [source](https://cursor.com/docs/plugins) |
 | `rules` | `instruction` | [source](https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
 | `commands` | `command` | [source](https://cursor.com/docs/reference/plugins; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading) |
@@ -248,6 +245,8 @@ So it is home-rooted, exactly like `rules`, `commands`, `hooks.json`, `mcp.json`
 **And it bears on what `full-auto` may claim.** That posture writes `sandbox.mode` into `cli-config.json`, and this file is a separate input the product reads from the process home. An administrator can also move it: `userSandboxDataFolderName` from the resolved permissions redirects the read to `join(homedir(), <that name>, "sandbox.json")`.
 
 The default this posture restates is in the same bytes: `sandbox:{mode:"disabled",networkAccess:"user_config_with_defaults"}`. ([source](https://prod.cursor.com/docs/reference/sandbox))
+
+**`plugins`** -- Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now. ([source](https://cursor.com/docs/plugins; anchored literal measured in the pinned artifact by scripts/evidence.py))
 
 ## Response
 
