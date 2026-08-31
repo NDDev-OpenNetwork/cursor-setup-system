@@ -23,8 +23,7 @@ Strict JSON, and the vendor's own configuration reference says so explicitly: *"
 | path | kinds | shape | decided by | exercised by |
 |---|---|---|---|---|
 | `cli-config.json` | setting | file | <https://cursor.com/docs/cli/reference/configuration> | read its bytes |
-| `plugins` | *(routes no kind)* | directory | <https://cursor.com/docs/plugins> | read its bytes |
-| `plugins/local` | plugin | directory | <https://cursor.com/docs/plugins> | *nothing — a page* |
+| `plugins/local` | plugin | directory | <https://cursor.com/docs/plugins> | read its bytes |
 | `rules` | instruction | directory | <https://cursor.com/docs/rules> | read its bytes |
 | `commands` | command | directory | <https://cursor.com/docs/reference/plugins> | read its bytes |
 | `hooks.json` | hook | file | <https://cursor.com/docs/hooks> | read its bytes |
@@ -33,7 +32,7 @@ Strict JSON, and the vendor's own configuration reference says so explicitly: *"
 
 **A citation is not a measurement.** `decided by` says where a row came from; `exercised by` says whether anybody made the product demonstrate it. Where a row records no method the answer is a page and nothing else, because absence of a record of measurement is not evidence of measurement.
 
-Here that is **0 run**, **7 read from the product's own bytes**, and **1 resting on a page alone**. The last number is the one worth acting on: a row in it is not wrong, it is untested, and the two are indistinguishable from here.
+Here that is **0 run**, **7 read from the product's own bytes**, and **0 resting on a page alone**. The last number is the one worth acting on: a row in it is not wrong, it is untested, and the two are indistinguishable from here.
 
 A surface that routes no kind is owned deliberately: a backup captures
 it and a restore returns it, and no component is routed there because
@@ -60,7 +59,7 @@ whole, which would take or revert a neighbour's work.
 
 ## Considered and not owned
 
-15 rows. Each records what was searched, so the next reader does not repeat the search:
+16 rows. Each records what was searched, so the next reader does not repeat the search:
 
 - **`AGENTS.md`** — The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request.
 - **`agents`** — A plugin manifest key. The directory form `join(this.workspacePath, ".cursor", "agents")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.
@@ -77,3 +76,4 @@ whole, which would take or revert a neighbour's work.
 - **`cloud-skills`** — Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name.
 - **`cursor-compile-cache`** — Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.
 - **`sandbox.json`** — **A ninth surface under this product's home, measured 2026-08-30 in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:
+- **`plugins`** — Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now.

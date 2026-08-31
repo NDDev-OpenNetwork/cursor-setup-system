@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "nddev-builder",
-  "description": "The NDDev builder toolkit as a native Cursor plugin, plus configuration. Carries two rules, which is this product's own shape for it: the NDDev floor its six sibling systems all keep in their builder setup, and the authoring policy beside it. Until 2026-08-29 this setup shipped the policy alone, so installing the builder here dropped a floor every other harness kept -- the six carry theirs byte-identical from `baseline` to `nddev-builder`, and only this one replaced it.",
+  "description": "The native Cursor full-auto posture plus the NDDev builder plugin: autonomous implementation with product-native rules, skills, agents, commands, MCP guidance, lifecycle checks and release handoff.",
   "sources": [
     "https://cursor.com/docs/cli/reference/configuration",
     "https://cursor.com/docs/cli/reference/permissions",
