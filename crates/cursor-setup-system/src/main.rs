@@ -232,19 +232,65 @@ pub const CURSOR: Harness = Harness {
     // leaves a neighbour's file as it was. Five of the seven products read
     // this root and one declared it; the reason was simply not re-read when
     // the thing it described changed.
-    scoped_projections: &[Scoped {
-        target_scope: TargetScope::UserRoot,
-        // Distinct from the global identity, because the digest binds a
-        // declaration together with the scope it owns.
-        profile_id: "cursor/native-files/user-root/1",
-        component_kinds: &[ComponentKind::Skill],
-        projection_kinds: &[ProjectionKind::NativeFiles],
-        // Relative to `~/.agents`, which is the target this scope names -- so a
-        // skill is `skills/<name>` rather than `.agents/skills/<name>`. Writing
-        // the root into the path would put the skills at
-        // `~/.agents/.agents/skills`.
-        native_namespaces: &["skills"],
-    }],
+    scoped_projections: &[
+        Scoped {
+            target_scope: TargetScope::UserRoot,
+            // Distinct from the global identity, because the digest binds a
+            // declaration together with the scope it owns.
+            profile_id: "cursor/native-files/user-root/1",
+            component_kinds: &[ComponentKind::Skill],
+            projection_kinds: &[ProjectionKind::NativeFiles],
+            // Relative to `~/.agents`, which is the target this scope names -- so a
+            // skill is `skills/<name>` rather than `.agents/skills/<name>`. Writing
+            // the root into the path would put the skills at
+            // `~/.agents/.agents/skills`.
+            native_namespaces: &["skills"],
+        },
+        // **The workspace, measured 2026-09-02 in the pinned 2026.08.31-4057e58
+        // bytes, every member of the package and not only `index.js`.** The
+        // consumer's cursor#94 asked for `agents` at the home; the product joins
+        // `.cursor/agents` to `resolve(this.workspacePath)` and to nothing else
+        // (`computeAgentsDirs()`), so the home answer stayed no and the true
+        // surface got its own scope. Each path below is a literal join to a
+        // workspace root in the product's own bytes:
+        //
+        // * `.cursor/rules` -- `LocalCursorRulesService` joins it to each
+        //   workspace path and walks the ancestors; `**/*.mdc` under it.
+        // * `.cursor/commands` -- `loadCommandsFromDirectory(join(e, ".cursor",
+        //   "commands"), "workspace")`, beside the `"user"` call at the home.
+        // * `.cursor/hooks.json` -- `projectConfigPath: join(e, ".cursor",
+        //   "hooks.json")`, in the same table as `userConfigPath` at the home.
+        // * `.cursor/mcp.json` -- `join(projectRoot, ".cursor", "mcp.json")`,
+        //   read beside the home file wherever MCP servers are loaded.
+        // * `.cursor/agents` -- `computeAgentsDirs()`, `**/*.md|.mdc|.markdown`.
+        // * `.cursor/skills` -- the skill-root table's `.cursor/skills` row
+        //   joined to each workspace with `scope: "project"` (`Hr`).
+        //
+        // An invented name was searched the same way in the same run and found
+        // nowhere. Relative to the workspace, as antigravity's are: the scope
+        // names the root, and the `.cursor` segment is part of the path.
+        Scoped {
+            target_scope: TargetScope::Project,
+            profile_id: "cursor/native-files/project/1",
+            component_kinds: &[
+                ComponentKind::Instruction,
+                ComponentKind::Command,
+                ComponentKind::Hook,
+                ComponentKind::Mcp,
+                ComponentKind::Agent,
+                ComponentKind::Skill,
+            ],
+            projection_kinds: &[ProjectionKind::NativeFiles],
+            native_namespaces: &[
+                ".cursor/rules",
+                ".cursor/commands",
+                ".cursor/hooks.json",
+                ".cursor/mcp.json",
+                ".cursor/agents",
+                ".cursor/skills",
+            ],
+        },
+    ],
     max_files: 8192,
     max_bytes: 64 * 1024 * 1024,
     kit_identity: include_str!("../../../provider-kit/v3/KIT-IDENTITY.json"),

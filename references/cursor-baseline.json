@@ -2,34 +2,34 @@
   "schema_version": 3,
   "verified_ref": "references/cursor-cli-baseline.json",
   "release": {
-    "version": "2026.08.25-3e8eec8",
+    "version": "2026.08.31-4057e58",
     "installer": "https://cursor.com/install",
-    "installer_sha256": "f145a23a600d42c79bdf6a4cd36b77decb7b68359f4f0b86f60be3c84deea96c",
-    "artifact_template": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/{os}/{arch}/agent-cli-package.{extension}",
+    "installer_sha256": "5364f95f66879f0e38f3e9ea7a5a44c24bfd8b3baf17964f0de46a065afff13f",
+    "artifact_template": "https://downloads.cursor.com/lab/2026.08.31-4057e58/{os}/{arch}/agent-cli-package.{extension}",
     "artifacts": {
       "darwin/arm64/agent-cli-package.tar.gz": {
-        "sha256": "81d4de7349e208d4ce441ca9c2d4e7d019ec2fbeb1137a79099fd8c4b8662f5f",
-        "size": 74709950
+        "sha256": "a94483cf5a1607bfe12cb34216be0c8f95899f0f698fb85e500ba28d7332fbb0",
+        "size": 74720796
       },
       "darwin/x64/agent-cli-package.tar.gz": {
-        "sha256": "851f5412f603cff4cb37d4d87d5a940c5e642077c0459238398c866a69d3f495",
-        "size": 77602336
+        "sha256": "03e6693071036bc4c5259b825edad5ad0be5265ba0d7cd0f6b83004f8664aa6e",
+        "size": 77618267
       },
       "linux/arm64/agent-cli-package.tar.gz": {
-        "sha256": "f1c1c2330d89fa4ef5b6cc04fcffba15012ff50eacd07e0f3baec0716f25ac5d",
-        "size": 83111698
+        "sha256": "cf5db6b5047b3280d8a49471cfd41beb1d5e475774177df5df2851857ab6514a",
+        "size": 83127421
       },
       "linux/x64/agent-cli-package.tar.gz": {
-        "sha256": "7a212e5a17ff9316f5acc78808e33c536940d5455645022e6388d99ba48c8425",
-        "size": 84518977
+        "sha256": "7e306db5750219a99c00ed517fe8b235d3c54e4ca5f77e2ff160cc97ce707798",
+        "size": 84537653
       },
       "windows/x64/agent-cli-package.zip": {
-        "sha256": "44559cf096025e9e74144797a4bf43afe4348d6b09a0c6a24e7c78139f2860fb",
-        "size": 73776085
+        "sha256": "64ac8c45e059893f44ce5802901b4727d3ddd59af42aee3730fa36208e974e05",
+        "size": 73782384
       },
       "windows/arm64/agent-cli-package.zip": {
-        "sha256": "5ad327a98759ef2238740777ad3834b3ed3c785691d470a5e74df5e5169b553b",
-        "size": 71681755
+        "sha256": "d1d859ceaf59ac10d30915dbbe8e5b48eb68c594c8d4e478c5913501920dcf41",
+        "size": 71680177
       }
     }
   },
@@ -98,7 +98,7 @@
   "software_install": {
     "mechanism": "official-cursor-agent-artifact",
     "managed_command": "bin/agent",
-    "version": "2026.08.25-3e8eec8",
+    "version": "2026.08.31-4057e58",
     "npm": null,
     "pip": null
   },
@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-08-29T10:57:02+00:00",
+  "verified_at": "2026-09-02T00:41:54+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-31",
     "config_home": "~/.cursor",
@@ -184,9 +184,9 @@
           "setting"
         ],
         "shape": "file",
-        "source": "https://cursor.com/docs/cli/reference/configuration; filename and default object read from the pinned 2026.08.25-3e8eec8 bundle",
+        "source": "https://cursor.com/docs/cli/reference/configuration; filename and default object read from the 2026.08.25-3e8eec8 bundle",
         "evidence": "bytes",
-        "note": "Named as a literal by the pinned 2026.08.25-3e8eec8 bundle, which joins it to the configuration directory in one function and matches it as `**/.cursor/**/cli-config.json` in its own watch table. The same bundle carries the default object this file is parsed into -- approvalMode \"allowlist\", autoAcceptWebSearch false, sandbox mode \"disabled\" -- so the grammar and the key set both come from the artifact rather than from the page beside them."
+        "note": "Named as a literal by the 2026.08.25-3e8eec8 bundle, which joins it to the configuration directory in one function and matches it as `**/.cursor/**/cli-config.json` in its own watch table. The same bundle carries the default object this file is parsed into -- approvalMode \"allowlist\", autoAcceptWebSearch false, sandbox mode \"disabled\" -- so the grammar and the key set both come from the artifact rather than from the page beside them."
       },
       {
         "path": "plugins/local",
@@ -204,7 +204,7 @@
           "instruction"
         ],
         "shape": "directory",
-        "source": "https://cursor.com/docs/rules; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "source": "https://cursor.com/docs/rules; measured in the 2026.08.25-3e8eec8 bundle, digest verified before reading",
         "evidence": "bytes",
         "note": "The product's own rule-creation picker offers two scopes, and the second is this one:\n  {value:\"user\", label:\"User Rule\", hint:\"Applies to all your projects\", path: join(homedir(), \".cursor\", \"rules\")}\nDeclared 2026-08-28. It had been declined as *\"No global rules directory exists\"*, which was true of the vendor's page and false of the product. `instruction` routes here and nowhere else on this harness -- cursor's CLI has no global instruction *file*, which is why this provider's plugin carries its rule through a manifest.\n\n**And the CLI does not load a plugin's rules, measured 2026-08-29.** This provider's setups used to carry the working floor as a rule inside a local plugin, on the reasoning recorded above -- *a plugin rather than a loose rule file, so what this provider owns is one directory it created rather than a directory the product also writes to.* The reasoning was sound and the mechanism does not exist: in the pinned `2026.08.25-3e8eec8` bundle the listing switch reads `case \"rules\": t = k(R)` and consults nothing else, while `case \"skills\"` explicitly merges `getAllEnabledPlugins()`. Searched with that as the control -- `for … of <plugin>.skills` has three real loaders, `for … of <plugin>.rules` has four and **all four are in the bundled JSON-schema validator**, about keyword rules.\n\nSo a rule shipped through a plugin manifest reached the model through nothing. The setups write `rules/<name>.mdc` now -- this surface, the one the product's own picker writes to and `k(R)` reads, filtering `.mdc`. `bytes` and not `ran`: no credential-free command of this CLI lists resolved rules, and `about` prints *Not logged in*."
       },
@@ -214,7 +214,7 @@
           "command"
         ],
         "shape": "directory",
-        "source": "https://cursor.com/docs/reference/plugins; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "source": "https://cursor.com/docs/reference/plugins; measured in the 2026.08.25-3e8eec8 bundle, digest verified before reading",
         "evidence": "bytes",
         "note": "`loadCommandsFromDirectory(join(this.userHomeDirectory, \".cursor\", \"commands\"))`, alongside the same call against a workspace directory. Declared 2026-08-28, having been declined as a plugin-manifest key only -- the manifest key is real and so is the directory, and a consumer could route a `command` component to five of the seven but not to this one."
       },
@@ -224,7 +224,7 @@
           "hook"
         ],
         "shape": "file",
-        "source": "https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "source": "https://cursor.com/docs/hooks; measured in the 2026.08.25-3e8eec8 bundle, digest verified before reading",
         "evidence": "bytes",
         "note": "`userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")`, beside an enterprise path and the manifest key. Declared 2026-08-28. A file rather than a directory, and unlike claude-code's withdrawn `plugin` that is not a problem here: a hook component *is* this file, so writing a bundle's bytes verbatim produces exactly the right result. The distinction that mattered there was merge semantics, not shape."
       },
@@ -234,7 +234,7 @@
           "mcp"
         ],
         "shape": "file",
-        "source": "https://cursor.com/docs/mcp; measured in the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading",
+        "source": "https://cursor.com/docs/mcp; measured in the 2026.08.25-3e8eec8 bundle, digest verified before reading",
         "evidence": "bytes",
         "note": "`join(homedir(), \".cursor\", \"mcp.json\")` for the user scope, and a second path under the working directory for the project scope. Declared 2026-08-28, having been declined as *\"No ownable file surface under ~/.cursor\"*. Same shape as `hooks.json`: the component is the file."
       },
@@ -244,7 +244,7 @@
           "skill"
         ],
         "shape": "directory",
-        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28",
+        "source": "measured from the 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28",
         "evidence": "bytes",
         "note": "The bundle carries a table of skill roots -- `.cursor/skills` beside `.claude/skills`, `.codex/skills`, `.grok/skills` and `.agents/skills` -- and a mapper joining each to the home directory with `scope: \"user\"`. The product's own ignore file names it in prose: *\"# User's personal skills\"*.\n\n**This row replaces a declined one**, which read *\"A plugin manifest key, not a directory under the config home\"* and cited `cursor.com/docs/skills` -- a page about the manifest key that does not mention the directory. Same shape as the nine surfaces found on 2026-08-28: declined on a page that does not discuss them, and present in the product. Reading the product rather than its pages is what found it."
       }
@@ -257,13 +257,13 @@
       },
       {
         "path": "agents",
-        "reason": "A plugin manifest key. The directory form `join(this.workspacePath, \".cursor\", \"agents\")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.\n\n**The vendor's page says the opposite, and the shipping binary decides.** cursor.com/docs/subagents, read 2026-08-29, lists user-level locations explicitly -- `~/.cursor/agents/` *\"All projects for current user\"*, beside `~/.claude/agents/` and `~/.codex/agents/` as compatibility paths. Measured against the pinned 2026.08.25-3e8eec8 bytes, which the pin refresher confirms is the current release: `computeAgentsDirs()` resolves `join(resolve(this.workspacePath), \".cursor\", \"agents\")` and nothing else. Every other occurrence of the path is a glob or an ignore rule tagged `{type:\"workspace\"}`, and a search for a home-joined form returns zero while the positive controls return hits and an invented path returns none.\n\nSo the page documents a directory the current product does not read. Recorded at length because the next reader will find that page and take this declaration for an oversight: **a page can promise more than the product does, and declaring on it would have this provider claim a path nothing reads.** Re-measure when the pin moves rather than when the page changes.",
+        "reason": "A plugin manifest key. The directory form `join(this.workspacePath, \".cursor\", \"agents\")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.\n\n**The vendor's page says the opposite, and the shipping binary decides.** cursor.com/docs/subagents, read 2026-08-29, lists user-level locations explicitly -- `~/.cursor/agents/` *\"All projects for current user\"*, beside `~/.claude/agents/` and `~/.codex/agents/` as compatibility paths. Measured against the 2026.08.25-3e8eec8 bytes, which the pin refresher confirms is the current release: `computeAgentsDirs()` resolves `join(resolve(this.workspacePath), \".cursor\", \"agents\")` and nothing else. Every other occurrence of the path is a glob or an ignore rule tagged `{type:\"workspace\"}`, and a search for a home-joined form returns zero while the positive controls return hits and an invented path returns none.\n\nSo the page documents a directory the current product does not read. Recorded at length because the next reader will find that page and take this declaration for an oversight: **a page can promise more than the product does, and declaring on it would have this provider claim a path nothing reads.** Re-measure when the pin moves rather than when the page changes.\n\n**Re-measured 2026-09-02 when the pin moved to 2026.08.31-4057e58**, this time across every JavaScript member of the package: `computeAgentsDirs()` is unchanged -- the workspace join and, under third-party extensibility, the workspace's `.claude/agents` -- and a home-joined form is still absent while the invented control is absent and the home joins for `commands`, `hooks.json`, `mcp.json` and `rules` are present. The consumer's cursor#94 asked for this directory at the home on the strength of the `**/.cursor/agents` globs, which are workspace-index rules. The answer at the home stays no; the workspace surface is declared under the `project` scope, where the product actually reads it.",
         "source": "https://cursor.com/docs/subagents"
       },
       {
         "path": "hooks",
         "reason": "**Corrected 2026-08-28: a user-level file exists.** This row read \"a plugin manifest key, not a directory under the config home\". The product resolves `userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")`, alongside an enterprise path and the manifest key. Not owned, for the same reason as `rules` and `commands`. Raised.",
-        "source": "https://cursor.com/docs/hooks; measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+        "source": "https://cursor.com/docs/hooks; measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
       },
       {
         "path": "NDDEV-CURSOR-PROVIDER.json",
@@ -278,52 +278,52 @@
       {
         "path": "plugins/cache",
         "reason": "The product's own plugin cache, a sibling of the owned `plugins/local`. Named in the same joins. It matters because this provider owns the parent `plugins` during the transition window, so a `remove` takes this with it.",
-        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+        "source": "measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
       },
       {
         "path": "plugins/marketplaces",
         "reason": "Where the product records the marketplaces a person added, sibling to `plugins/local`. Taken by a `remove` of the owned parent, which is the concrete cost of the transition window.",
-        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+        "source": "measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
       },
       {
         "path": "plugins/local-marketplaces.json",
         "reason": "The product's record of locally added marketplaces. Same sibling relationship and the same consequence.",
-        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+        "source": "measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
       },
       {
         "path": "plugins/installed_plugins.json",
         "reason": "The product's own record of what it installed. A `remove` of the owned parent takes it, and the product then no longer knows about plugins a person installed by hand. Recoverable from the capture that runs first, and the sharpest single reason the window should close when the consumer's corpus objects naming `plugins` retire.",
-        "source": "measured in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
+        "source": "measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading"
       },
       {
         "path": "cli-runtime-state",
         "reason": "One row for the subtree a run leaves behind: `agent-cli-state.json`, `ai-tracking/ai-code-tracking.db`, `cli-workspaces.json`, `ide_state.json`, `plans`, `projects`. The product's own lifetime.",
-        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle"
+        "source": "measured from the 2026.08.25-3e8eec8 bundle"
       },
       {
         "path": "policy.json",
         "reason": "An enterprise policy file, sibling to `managed/active-team-hooks/hooks.json`. Administrator-pushed and never a setup's to write, for the reason grok's `managed_config.toml` row gives at greater length.",
-        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle"
+        "source": "measured from the 2026.08.25-3e8eec8 bundle"
       },
       {
         "path": "skills-cursor",
         "reason": "The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search.",
-        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle's skill-root table, 2026-08-28"
+        "source": "measured from the 2026.08.25-3e8eec8 bundle's skill-root table, 2026-08-28"
       },
       {
         "path": "cloud-skills",
         "reason": "Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name.",
-        "source": "measured from the pinned 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts, 2026-08-28"
+        "source": "measured from the 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts, 2026-08-28"
       },
       {
         "path": "cursor-compile-cache",
         "reason": "Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.\n\nIt gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`.",
-        "source": "measured by running the pinned 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28"
+        "source": "measured by running the 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28"
       },
       {
         "path": "sandbox.json",
         "source": "https://prod.cursor.com/docs/reference/sandbox",
-        "reason": "**A ninth surface under this product's home, measured 2026-08-30 in the pinned 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:\n\n```js\njoin(homedir(), \".cursor\", \"sandbox.json\")\nthis.perUserSandboxConfigPath = a?.perUserSandboxConfigPath\n  ?? join(homedir(), \".cursor\", \"sandbox.json\")\n```\n\nSo it is home-rooted, exactly like `rules`, `commands`, `hooks.json`, `mcp.json` and the plugin pair, and `CURSOR_CONFIG_DIR` does not move it. `additionalReadwritePaths`, `networkPolicy`, `disableTmpWrite` and `enableSharedBuildCache` are all present in the same bytes; an invented filename searched in the same run returns zero, so the search discriminates.\n\n**Declined rather than owned, and the reason is routing rather than reluctance.** This provider already routes `setting` to `cli-config.json`. A second settings file under one kind is the direction the consumer's lookup cannot express -- it returns the *first* match for a `(kind, harness)` pair, so a second row would be unreachable and nothing would say so. Owning it needs a named settings surface in the contract, which is the same passport question `rules` and `workflows` wait on next door.\n\n**And it bears on what `full-auto` may claim.** That posture writes `sandbox.mode` into `cli-config.json`, and this file is a separate input the product reads from the process home. An administrator can also move it: `userSandboxDataFolderName` from the resolved permissions redirects the read to `join(homedir(), <that name>, \"sandbox.json\")`.\n\nThe default this posture restates is in the same bytes: `sandbox:{mode:\"disabled\",networkAccess:\"user_config_with_defaults\"}`."
+        "reason": "**A ninth surface under this product's home, measured 2026-08-30 in the 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:\n\n```js\njoin(homedir(), \".cursor\", \"sandbox.json\")\nthis.perUserSandboxConfigPath = a?.perUserSandboxConfigPath\n  ?? join(homedir(), \".cursor\", \"sandbox.json\")\n```\n\nSo it is home-rooted, exactly like `rules`, `commands`, `hooks.json`, `mcp.json` and the plugin pair, and `CURSOR_CONFIG_DIR` does not move it. `additionalReadwritePaths`, `networkPolicy`, `disableTmpWrite` and `enableSharedBuildCache` are all present in the same bytes; an invented filename searched in the same run returns zero, so the search discriminates.\n\n**Declined rather than owned, and the reason is routing rather than reluctance.** This provider already routes `setting` to `cli-config.json`. A second settings file under one kind is the direction the consumer's lookup cannot express -- it returns the *first* match for a `(kind, harness)` pair, so a second row would be unreachable and nothing would say so. Owning it needs a named settings surface in the contract, which is the same passport question `rules` and `workflows` wait on next door.\n\n**And it bears on what `full-auto` may claim.** That posture writes `sandbox.mode` into `cli-config.json`, and this file is a separate input the product reads from the process home. An administrator can also move it: `userSandboxDataFolderName` from the resolved permissions redirects the read to `join(homedir(), <that name>, \"sandbox.json\")`.\n\nThe default this posture restates is in the same bytes: `sandbox:{mode:\"disabled\",networkAccess:\"user_config_with_defaults\"}`."
       },
       {
         "path": "plugins",
@@ -357,9 +357,76 @@
               "skill"
             ],
             "shape": "directory",
-            "source": "measured from the pinned 2026.08.25-3e8eec8 bundle, digest verified before reading (dist-package/index.js, the skill-root table and its home-rooted mapper), 2026-08-29",
+            "source": "measured from the 2026.08.25-3e8eec8 bundle, digest verified before reading (dist-package/index.js, the skill-root table and its home-rooted mapper), 2026-08-29",
             "evidence": "bytes",
             "note": "The bundle carries a table of skill roots -- `{configDir: \".agents\", subdir: \"skills\", thirdParty: false}` beside `.cursor`, `.claude`, `.codex` and `.grok` -- and a mapper `Gr(t).map(t => ({dirPath: join(e, t.configDir, t.subdir), scope: \"user\"}))` that the skill scan calls with `homedir()`. `.agents` is *not* marked third-party, so it is scanned whether or not third-party roots are enabled.\n\n**This row did not exist, and the baseline that measured the fact is the one that did not record it**: the `skills` row's own note already quoted the table. Found with a control -- an invented root searched for in the same bytes and absent.\n\n**`bytes` and not `ran`, and what was tried.** The pinned bundle was extracted and every credential-free subcommand of `cursor-agent` exercised: `about`, `status`, `models`, `mcp` and `plugin`. None reports the resolved skill set, and the ones that would need an account -- `about` prints *User Email: Not logged in*. The read stands on the product's own bytes, which is the strongest evidence available here without a credential.\n\nThe one root in this estate that belongs to a convention rather than to a product. `$HOME/.agents/skills` is a *sibling* of this product's configuration home, not a child, so nothing declared against this provider's own target can reach it -- that is what `user_root` exists for.\n\n**Owning a shared root, and the reason this record used to decline it.** Five of the seven products read this root, and the decline said: *a namespace is removed whole, so a second declaration would make either provider's remove take the other's skills.* That sentence was true when it was written and stopped being true when `written_paths` shipped -- `remove` under this scope takes the files this provider recorded writing and refuses rather than widening when it cannot read the record, and each harness carries its own state file, so they coexist under one root. The reason was not re-read when the thing it described changed.\n\nRelative to this scope's own root the path is `skills`, not `.agents/skills`: the root is what the scope names, and writing it into the path again would put the skills at `~/.agents/.agents/skills`."
+          }
+        ],
+        "declined": []
+      },
+      {
+        "target_scope": "project",
+        "root": ".cursor",
+        "surfaces": [
+          {
+            "path": ".cursor/rules",
+            "kinds": [
+              "instruction"
+            ],
+            "shape": "directory",
+            "source": "https://cursor.com/docs/context/rules",
+            "evidence": "bytes",
+            "note": "`LocalCursorRulesService.loadRulesFromDirAndAncestors` joins `.cursor/rules` to the workspace path and walks up through every ancestor; `loadRulesFromDirectory` reads `**/*.mdc` under it; `computeFoldersToWatch` adds the same join for each workspace path. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. The home surface is the separate *User Rule* scope (`join(homedir(), \".cursor\", \"rules\")` in the rule-creation UI), already owned by the global profile."
+          },
+          {
+            "path": ".cursor/commands",
+            "kinds": [
+              "command"
+            ],
+            "shape": "directory",
+            "source": "https://cursor.com/docs/cli/reference/slash-commands",
+            "evidence": "bytes",
+            "note": "`loadCommandsFromDirectory(join(e, \".cursor\", \"commands\"), \"workspace\")` for each workspace path, in the same loader that then reads the home directory as `\"user\"` (member `7569.index.js`). measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. The first read of this build looked only in `index.js`, found no `commands` join at all, and would have declined a surface the product reads at both scopes: the loader lives in another member. A measurement of one file stated as a fact about the package."
+          },
+          {
+            "path": ".cursor/hooks.json",
+            "kinds": [
+              "hook"
+            ],
+            "shape": "file",
+            "source": "https://cursor.com/docs/cli/reference/hooks",
+            "evidence": "bytes",
+            "note": "The hooks path table (member `190.index.js`) names four tiers: `enterpriseConfigPath` (`/etc/cursor/hooks.json`, `/Library/Application Support/Cursor/hooks.json`, `C:\\\\ProgramData\\\\Cursor\\\\hooks.json`), a team file under `.cursor/managed/active-team-hooks`, `userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")` and `projectConfigPath: join(e, \".cursor\", \"hooks.json\")`. This row is the fourth; the third is the global profile's. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
+          },
+          {
+            "path": ".cursor/mcp.json",
+            "kinds": [
+              "mcp"
+            ],
+            "shape": "file",
+            "source": "https://cursor.com/docs/context/mcp",
+            "evidence": "bytes",
+            "note": "`join(projectRoot, \".cursor\", \"mcp.json\")` is read beside `join(homedir(), \".cursor\", \"mcp.json\")` wherever MCP servers are loaded -- the loader's own source table is `[{source: \"project\", ...}, {source: \"user\", ...}]` (member `9185.index.js`), and the CLI's own help text says *\"configured in .cursor/mcp.json or ~/.cursor/mcp.json\"*. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
+          },
+          {
+            "path": ".cursor/agents",
+            "kinds": [
+              "agent"
+            ],
+            "shape": "directory",
+            "source": "https://cursor.com/docs/subagents",
+            "evidence": "bytes",
+            "note": "`computeAgentsDirs()` resolves `join(resolve(this.workspacePath), \".cursor\", \"agents\")` and, with third-party extensibility on, `join(workspace, \".claude\", \"agents\")`; the loader accepts `.md`, `.mdc` and `.markdown` and parses each file's front matter into a subagent. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. This is the surface the consumer's cursor#94 measured with globs and asked for at the home; the globs are workspace-index rules and the join is workspace-only, so the home answer stays declined and the workspace gets its scope."
+          },
+          {
+            "path": ".cursor/skills",
+            "kinds": [
+              "skill"
+            ],
+            "shape": "directory",
+            "source": "https://cursor.com/docs/skills",
+            "evidence": "bytes",
+            "note": "The skill-root table's first row `{configDir: \".cursor\", subdir: \"skills\", thirdParty: false}` is joined to each workspace path by `Hr(e, t)` with `scope: \"project\", source: \"workspace\"`, the same table the home read maps through `Yr` with `scope: \"user\"`. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
           }
         ],
         "declined": []
@@ -370,6 +437,52 @@
     }
   },
   "software_artifacts": {
+    "command": "agent",
+    "shape": "gzip-tar",
+    "platforms": {
+      "linux/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.31-4057e58/linux/arm64/agent-cli-package.tar.gz",
+        "bytes": 83127421,
+        "sha256": "sha256:cf5db6b5047b3280d8a49471cfd41beb1d5e475774177df5df2851857ab6514a",
+        "member": "dist-package/cursor-agent"
+      },
+      "linux/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.31-4057e58/linux/x64/agent-cli-package.tar.gz",
+        "bytes": 84537653,
+        "sha256": "sha256:7e306db5750219a99c00ed517fe8b235d3c54e4ca5f77e2ff160cc97ce707798",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.31-4057e58/darwin/arm64/agent-cli-package.tar.gz",
+        "bytes": 74720796,
+        "sha256": "sha256:a94483cf5a1607bfe12cb34216be0c8f95899f0f698fb85e500ba28d7332fbb0",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.31-4057e58/darwin/x64/agent-cli-package.tar.gz",
+        "bytes": 77618267,
+        "sha256": "sha256:03e6693071036bc4c5259b825edad5ad0be5265ba0d7cd0f6b83004f8664aa6e",
+        "member": "dist-package/cursor-agent"
+      },
+      "windows/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.31-4057e58/windows/arm64/agent-cli-package.zip",
+        "bytes": 71680177,
+        "sha256": "sha256:d1d859ceaf59ac10d30915dbbe8e5b48eb68c594c8d4e478c5913501920dcf41",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      },
+      "windows/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.08.31-4057e58/windows/x64/agent-cli-package.zip",
+        "bytes": 73782384,
+        "sha256": "sha256:64ac8c45e059893f44ce5802901b4727d3ddd59af42aee3730fa36208e974e05",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      }
+    },
+    "version": "2026.08.31-4057e58",
+    "verified_at": "2026-09-02T00:41:54+00:00"
+  },
+  "previous_software_artifacts": {
     "command": "agent",
     "shape": "gzip-tar",
     "platforms": {
@@ -415,53 +528,7 @@
     "version": "2026.08.25-3e8eec8",
     "verified_at": "2026-08-29T08:29:47+00:00"
   },
-  "previous_software_artifacts": {
-    "command": "agent",
-    "shape": "gzip-tar",
-    "platforms": {
-      "linux/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/linux/arm64/agent-cli-package.tar.gz",
-        "bytes": 83117637,
-        "sha256": "sha256:ea13f92e295f523a99ce8d8f57d6894d21e5d1e2d030ffad718ccd5955ca2eed",
-        "member": "dist-package/cursor-agent"
-      },
-      "linux/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/linux/x64/agent-cli-package.tar.gz",
-        "bytes": 84532310,
-        "sha256": "sha256:bfff4bf6f4e9dd30c1d0ef0a70b6077b074015dd2948e4c50685d53afdcfce5a",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/darwin/arm64/agent-cli-package.tar.gz",
-        "bytes": 74746275,
-        "sha256": "sha256:46044d6d7bcbd7b49a0cf1cd01aa4ca79aaa2ea5f2c7a32965fc0ebe29841790",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/darwin/x64/agent-cli-package.tar.gz",
-        "bytes": 77650670,
-        "sha256": "sha256:d5c1ce96dd36469e0231d818d4ccf390caac52d94e607c56ebeecc247cab2b1b",
-        "member": "dist-package/cursor-agent"
-      },
-      "windows/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/windows/arm64/agent-cli-package.zip",
-        "bytes": 71739644,
-        "sha256": "sha256:67a0228a76fc631e132004007d384f95f32f2c77c7cf9cfaeadd53ae868efbe0",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      },
-      "windows/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.11-e8db854/windows/x64/agent-cli-package.zip",
-        "bytes": 73841982,
-        "sha256": "sha256:0458981ffe0fda840d19b97d7cbcb26832dafcf01a9c229f3fb0e0d233d66c4b",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      }
-    },
-    "version": "2026.08.11-e8db854",
-    "verified_at": "2026-08-31T00:32:09+00:00"
-  },
-  "setup_catalogue_digest": "sha256:8ee48f47623746dd8e127f31a96c6247cb87ee2cf73180c286352bbbd45f6f13",
+  "setup_catalogue_digest": "sha256:ccfa41f5dbcb3996284eb9cd7519f5ad1f8153f2d9f495b5b0c8b23deeaff881",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."
