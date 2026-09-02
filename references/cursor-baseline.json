@@ -545,5 +545,17 @@
     "archive_member": "dist-package/cursor-agent",
     "this_provider_exposes": "agent",
     "note": "**Three names get confused here, and two of them are the vendor's.** Read from the pinned bundle's own installer object:\n\n```js\n{ rootDirName: \"cursor-agent\", executableName: \"cursor-agent\",\n  packageFileName: \"agent-cli-package.tar.gz\",\n  binNames: [\"agent\", \"cursor-agent\"], updateCursorShim: true }\n```\n\nand `activeBinNames = [\"agent\", \"cursor-agent\"]` beside it, with a shim that writes `exec \"$HOME/.local/bin/agent\" \"$@\"`. So the vendor installs **both** names into `~/.local/bin`; neither is more canonical than the other.\n\n  * `agent` -- what this provider exposes inside its own prefix, and one of the two the\n    vendor installs.\n  * `cursor-agent` -- the other vendor name, and the archive member's filename.\n  * `dist-package/cursor-agent.cmd` -- the Windows member inside the archive, which is a\n    path and not a command at all.\n\nRecorded because the consumer's harness catalogue detects this product on PATH by the second name and this provider exposes the first, and the two look like a disagreement. They are not: both are installed, and the catalogue is detecting the vendor's installation while this provider names its own. An example written from a sentence about exposure collapsed the first two once already."
+  },
+  "surface_presence": {
+    "measured_at": "2026-09-02",
+    "artifact": "https://downloads.cursor.com/lab/2026.08.31-4057e58/linux/x64/agent-cli-package.tar.gz",
+    "artifact_sha256": "sha256:7e306db5750219a99c00ed517fe8b235d3c54e4ca5f77e2ff160cc97ce707798",
+    "product_version": "2026.08.31-4057e58",
+    "declared_surfaces": 14,
+    "present": 14,
+    "absent": [],
+    "control": "zzq-invented-surface-nobody-ships",
+    "control_hits": 0,
+    "method": "Every namespace this harness declares, global and scoped, searched as a fixed string in the artifact the current pin names, digest verified before reading; both the declared path and its last segment counted, because a product that composes a path by joining segments never spells the whole of it. A count here is a lower bound and not a routing proof -- what it answers is whether a surface vanished from the product under a version bump, which five of the seven took on 2026-09-02. The invented control was searched in the same run and found nowhere, so the search discriminates."
   }
 }
