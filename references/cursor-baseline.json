@@ -394,9 +394,9 @@
               "hook"
             ],
             "shape": "file",
-            "source": "https://cursor.com/docs/cli/reference/hooks",
+            "source": "https://cursor.com/docs/hooks",
             "evidence": "bytes",
-            "note": "The hooks path table (member `190.index.js`) names four tiers: `enterpriseConfigPath` (`/etc/cursor/hooks.json`, `/Library/Application Support/Cursor/hooks.json`, `C:\\\\ProgramData\\\\Cursor\\\\hooks.json`), a team file under `.cursor/managed/active-team-hooks`, `userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")` and `projectConfigPath: join(e, \".cursor\", \"hooks.json\")`. This row is the fourth; the third is the global profile's. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
+            "note": "The hooks path table (member `190.index.js`) names four tiers: `enterpriseConfigPath` (`/etc/cursor/hooks.json`, `/Library/Application Support/Cursor/hooks.json`, `C:\\\\ProgramData\\\\Cursor\\\\hooks.json`), a team file under `.cursor/managed/active-team-hooks`, `userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")` and `projectConfigPath: join(e, \".cursor\", \"hooks.json\")`. This row is the fourth; the third is the global profile's. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. Re-cited 2026-09-02: the CLI reference page for hooks answered 404 within hours of being cited (control_sweep's citations check caught it); the page the global `hooks.json` row cites, `cursor.com/docs/hooks`, answers 200 and describes the same four tiers."
           },
           {
             "path": ".cursor/mcp.json",
@@ -528,7 +528,7 @@
     "version": "2026.08.25-3e8eec8",
     "verified_at": "2026-08-29T08:29:47+00:00"
   },
-  "setup_catalogue_digest": "sha256:ccfa41f5dbcb3996284eb9cd7519f5ad1f8153f2d9f495b5b0c8b23deeaff881",
+  "setup_catalogue_digest": "sha256:efc8ebf09c6c05e95e2864ad88a69922a6643ee5808c9e9bb36cd7230ac3e400",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."

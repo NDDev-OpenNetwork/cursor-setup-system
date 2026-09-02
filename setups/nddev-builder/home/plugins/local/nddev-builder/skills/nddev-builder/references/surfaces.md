@@ -68,7 +68,7 @@ above -- writing the root into the path again would nest it twice.
 | --- | --- | --- | --- | --- |
 | `.cursor/rules` | instruction | directory | <https://cursor.com/docs/context/rules> | read its bytes |
 | `.cursor/commands` | command | directory | <https://cursor.com/docs/cli/reference/slash-commands> | read its bytes |
-| `.cursor/hooks.json` | hook | file | <https://cursor.com/docs/cli/reference/hooks> | read its bytes |
+| `.cursor/hooks.json` | hook | file | <https://cursor.com/docs/hooks> | read its bytes |
 | `.cursor/mcp.json` | mcp | file | <https://cursor.com/docs/context/mcp> | read its bytes |
 | `.cursor/agents` | agent | directory | <https://cursor.com/docs/subagents> | read its bytes |
 | `.cursor/skills` | skill | directory | <https://cursor.com/docs/skills> | read its bytes |

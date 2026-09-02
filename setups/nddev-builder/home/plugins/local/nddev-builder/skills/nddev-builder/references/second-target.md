@@ -51,7 +51,7 @@ twice, which is a mistake this estate has made and shipped.
 |---|---|---|---|
 | `.cursor/rules` | instruction | <https://cursor.com/docs/context/rules> | read its bytes |
 | `.cursor/commands` | command | <https://cursor.com/docs/cli/reference/slash-commands> | read its bytes |
-| `.cursor/hooks.json` | hook | <https://cursor.com/docs/cli/reference/hooks> | read its bytes |
+| `.cursor/hooks.json` | hook | <https://cursor.com/docs/hooks> | read its bytes |
 | `.cursor/mcp.json` | mcp | <https://cursor.com/docs/context/mcp> | read its bytes |
 | `.cursor/agents` | agent | <https://cursor.com/docs/subagents> | read its bytes |
 | `.cursor/skills` | skill | <https://cursor.com/docs/skills> | read its bytes |
@@ -65,7 +65,7 @@ twice, which is a mistake this estate has made and shipped.
 
 ### `.cursor/hooks.json`, as measured
 
-The hooks path table (member `190.index.js`) names four tiers: `enterpriseConfigPath` (`/etc/cursor/hooks.json`, `/Library/Application Support/Cursor/hooks.json`, `C:\\ProgramData\\Cursor\\hooks.json`), a team file under `.cursor/managed/active-team-hooks`, `userConfigPath: join(homedir(), ".cursor", "hooks.json")` and `projectConfigPath: join(e, ".cursor", "hooks.json")`. This row is the fourth; the third is the global profile's. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`.
+The hooks path table (member `190.index.js`) names four tiers: `enterpriseConfigPath` (`/etc/cursor/hooks.json`, `/Library/Application Support/Cursor/hooks.json`, `C:\\ProgramData\\Cursor\\hooks.json`), a team file under `.cursor/managed/active-team-hooks`, `userConfigPath: join(homedir(), ".cursor", "hooks.json")` and `projectConfigPath: join(e, ".cursor", "hooks.json")`. This row is the fourth; the third is the global profile's. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. Re-cited 2026-09-02: the CLI reference page for hooks answered 404 within hours of being cited (control_sweep's citations check caught it); the page the global `hooks.json` row cites, `cursor.com/docs/hooks`, answers 200 and describes the same four tiers.
 
 ### `.cursor/mcp.json`, as measured
 

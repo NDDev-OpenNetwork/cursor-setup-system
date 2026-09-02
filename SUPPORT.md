@@ -201,7 +201,7 @@ every path below is relative to that root.
 | --- | --- | --- |
 | `.cursor/rules` | `instruction` | [source](https://cursor.com/docs/context/rules) |
 | `.cursor/commands` | `command` | [source](https://cursor.com/docs/cli/reference/slash-commands) |
-| `.cursor/hooks.json` | `hook` | [source](https://cursor.com/docs/cli/reference/hooks) |
+| `.cursor/hooks.json` | `hook` | [source](https://cursor.com/docs/hooks) |
 | `.cursor/mcp.json` | `mcp` | [source](https://cursor.com/docs/context/mcp) |
 | `.cursor/agents` | `agent` | [source](https://cursor.com/docs/subagents) |
 | `.cursor/skills` | `skill` | [source](https://cursor.com/docs/skills) |
