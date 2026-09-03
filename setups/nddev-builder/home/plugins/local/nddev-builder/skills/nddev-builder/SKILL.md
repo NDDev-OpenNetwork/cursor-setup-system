@@ -6,7 +6,7 @@ description: Build, review, or validate a Cursor CLI setup: permissions, lifecyc
 # NDDev Builder
 
 Use this skill as the entry point for `cursor-setup-system` work. Keep edits
-target-explicit, reversible, and backed by the repository's own gate.
+target-explicit, reversible, and backed by this tree's checks.
 
 ## Workflow
 
@@ -20,9 +20,8 @@ target-explicit, reversible, and backed by the repository's own gate.
 4. Keep versions, artifact pins and setup ids machine-owned. Ask the binary or
    read the baseline; a list restated in prose is the copy that goes stale, and
    several sections of this toolkit have been exactly that.
-5. Run `scripts/gate.sh` before handing off -- see
-   `references/validation-release.md` for what it covers and why it exists
-   rather than four bare `cargo` commands.
+5. Run this tree's CI checks before handing off -- see
+   `references/validation-release.md` for the exact commands.
 
 ## Routing
 
