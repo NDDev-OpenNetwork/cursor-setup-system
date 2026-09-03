@@ -2,34 +2,34 @@
   "schema_version": 3,
   "verified_ref": "references/cursor-cli-baseline.json",
   "release": {
-    "version": "2026.08.31-4057e58",
+    "version": "2026.09.02-c22c1a3",
     "installer": "https://cursor.com/install",
-    "installer_sha256": "5364f95f66879f0e38f3e9ea7a5a44c24bfd8b3baf17964f0de46a065afff13f",
-    "artifact_template": "https://downloads.cursor.com/lab/2026.08.31-4057e58/{os}/{arch}/agent-cli-package.{extension}",
+    "installer_sha256": "e3f0427f5391edeb3cf22f78d340281cffb192255496eeeaca8b6c4d0c34330f",
+    "artifact_template": "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/{os}/{arch}/agent-cli-package.{extension}",
     "artifacts": {
       "darwin/arm64/agent-cli-package.tar.gz": {
-        "sha256": "a94483cf5a1607bfe12cb34216be0c8f95899f0f698fb85e500ba28d7332fbb0",
-        "size": 74720796
+        "sha256": "3d814861be3225fc8c38be320fb22e344d8f711a24279f1f9119e7b313ea51e7",
+        "size": 174181041
       },
       "darwin/x64/agent-cli-package.tar.gz": {
-        "sha256": "03e6693071036bc4c5259b825edad5ad0be5265ba0d7cd0f6b83004f8664aa6e",
-        "size": 77618267
+        "sha256": "59e8afd9b4f5eba44682018b9428c4a94e230d090871eae19e703540aad6ef6a",
+        "size": 181413402
       },
       "linux/arm64/agent-cli-package.tar.gz": {
-        "sha256": "cf5db6b5047b3280d8a49471cfd41beb1d5e475774177df5df2851857ab6514a",
-        "size": 83127421
+        "sha256": "fb7bc635be6172ebcf68f907fd9217e3614da51916455c6d7fdb66690997884c",
+        "size": 177647834
       },
       "linux/x64/agent-cli-package.tar.gz": {
-        "sha256": "7e306db5750219a99c00ed517fe8b235d3c54e4ca5f77e2ff160cc97ce707798",
-        "size": 84537653
+        "sha256": "b73b59854762535c0fc20d7ccc51c3b5a356a851491088d60a362be48750f53c",
+        "size": 179684142
       },
       "windows/x64/agent-cli-package.zip": {
-        "sha256": "64ac8c45e059893f44ce5802901b4727d3ddd59af42aee3730fa36208e974e05",
-        "size": 73782384
+        "sha256": "2a560a7629828fa00c1d6a67eef5ea9bd3e99609abd45cb02ef2e743e83b9d47",
+        "size": 74166530
       },
       "windows/arm64/agent-cli-package.zip": {
-        "sha256": "d1d859ceaf59ac10d30915dbbe8e5b48eb68c594c8d4e478c5913501920dcf41",
-        "size": 71680177
+        "sha256": "a503b66a18c175ead4bad2c1dd7abf96161fd03a4fccb7d1372d4a74df1d0b07",
+        "size": 72044862
       }
     }
   },
@@ -98,7 +98,7 @@
   "software_install": {
     "mechanism": "official-cursor-agent-artifact",
     "managed_command": "bin/agent",
-    "version": "2026.08.31-4057e58",
+    "version": "2026.09.02-c22c1a3",
     "npm": null,
     "pip": null
   },
@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-09-02T00:41:54+00:00",
+  "verified_at": "2026-09-03T14:16:54+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-31",
     "config_home": "~/.cursor",
@@ -376,7 +376,7 @@
             "shape": "directory",
             "source": "https://cursor.com/docs/context/rules",
             "evidence": "bytes",
-            "note": "`LocalCursorRulesService.loadRulesFromDirAndAncestors` joins `.cursor/rules` to the workspace path and walks up through every ancestor; `loadRulesFromDirectory` reads `**/*.mdc` under it; `computeFoldersToWatch` adds the same join for each workspace path. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. The home surface is the separate *User Rule* scope (`join(homedir(), \".cursor\", \"rules\")` in the rule-creation UI), already owned by the global profile."
+            "note": "`LocalCursorRulesService.loadRulesFromDirAndAncestors` joins `.cursor/rules` to the workspace path and walks up through every ancestor; `loadRulesFromDirectory` reads `**/*.mdc` under it; `computeFoldersToWatch` adds the same join for each workspace path. measured 2026-09-02 in the 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. The home surface is the separate *User Rule* scope (`join(homedir(), \".cursor\", \"rules\")` in the rule-creation UI), already owned by the global profile."
           },
           {
             "path": ".cursor/commands",
@@ -386,7 +386,7 @@
             "shape": "directory",
             "source": "https://cursor.com/docs/cli/reference/slash-commands",
             "evidence": "bytes",
-            "note": "`loadCommandsFromDirectory(join(e, \".cursor\", \"commands\"), \"workspace\")` for each workspace path, in the same loader that then reads the home directory as `\"user\"` (member `7569.index.js`). measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. The first read of this build looked only in `index.js`, found no `commands` join at all, and would have declined a surface the product reads at both scopes: the loader lives in another member. A measurement of one file stated as a fact about the package."
+            "note": "`loadCommandsFromDirectory(join(e, \".cursor\", \"commands\"), \"workspace\")` for each workspace path, in the same loader that then reads the home directory as `\"user\"` (member `7569.index.js`). measured 2026-09-02 in the 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. The first read of this build looked only in `index.js`, found no `commands` join at all, and would have declined a surface the product reads at both scopes: the loader lives in another member. A measurement of one file stated as a fact about the package."
           },
           {
             "path": ".cursor/hooks.json",
@@ -396,7 +396,7 @@
             "shape": "file",
             "source": "https://cursor.com/docs/hooks",
             "evidence": "bytes",
-            "note": "The hooks path table (member `190.index.js`) names four tiers: `enterpriseConfigPath` (`/etc/cursor/hooks.json`, `/Library/Application Support/Cursor/hooks.json`, `C:\\\\ProgramData\\\\Cursor\\\\hooks.json`), a team file under `.cursor/managed/active-team-hooks`, `userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")` and `projectConfigPath: join(e, \".cursor\", \"hooks.json\")`. This row is the fourth; the third is the global profile's. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. Re-cited 2026-09-02: the CLI reference page for hooks answered 404 within hours of being cited (control_sweep's citations check caught it); the page the global `hooks.json` row cites, `cursor.com/docs/hooks`, answers 200 and describes the same four tiers."
+            "note": "The hooks path table (member `190.index.js`) names four tiers: `enterpriseConfigPath` (`/etc/cursor/hooks.json`, `/Library/Application Support/Cursor/hooks.json`, `C:\\\\ProgramData\\\\Cursor\\\\hooks.json`), a team file under `.cursor/managed/active-team-hooks`, `userConfigPath: join(homedir(), \".cursor\", \"hooks.json\")` and `projectConfigPath: join(e, \".cursor\", \"hooks.json\")`. This row is the fourth; the third is the global profile's. measured 2026-09-02 in the 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. Re-cited 2026-09-02: the CLI reference page for hooks answered 404 within hours of being cited (control_sweep's citations check caught it); the page the global `hooks.json` row cites, `cursor.com/docs/hooks`, answers 200 and describes the same four tiers."
           },
           {
             "path": ".cursor/mcp.json",
@@ -406,7 +406,7 @@
             "shape": "file",
             "source": "https://cursor.com/docs/context/mcp",
             "evidence": "bytes",
-            "note": "`join(projectRoot, \".cursor\", \"mcp.json\")` is read beside `join(homedir(), \".cursor\", \"mcp.json\")` wherever MCP servers are loaded -- the loader's own source table is `[{source: \"project\", ...}, {source: \"user\", ...}]` (member `9185.index.js`), and the CLI's own help text says *\"configured in .cursor/mcp.json or ~/.cursor/mcp.json\"*. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
+            "note": "`join(projectRoot, \".cursor\", \"mcp.json\")` is read beside `join(homedir(), \".cursor\", \"mcp.json\")` wherever MCP servers are loaded -- the loader's own source table is `[{source: \"project\", ...}, {source: \"user\", ...}]` (member `9185.index.js`), and the CLI's own help text says *\"configured in .cursor/mcp.json or ~/.cursor/mcp.json\"*. measured 2026-09-02 in the 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
           },
           {
             "path": ".cursor/agents",
@@ -416,7 +416,7 @@
             "shape": "directory",
             "source": "https://cursor.com/docs/subagents",
             "evidence": "bytes",
-            "note": "`computeAgentsDirs()` resolves `join(resolve(this.workspacePath), \".cursor\", \"agents\")` and, with third-party extensibility on, `join(workspace, \".claude\", \"agents\")`; the loader accepts `.md`, `.mdc` and `.markdown` and parses each file's front matter into a subagent. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. This is the surface the consumer's cursor#94 measured with globs and asked for at the home; the globs are workspace-index rules and the join is workspace-only, so the home answer stays declined and the workspace gets its scope."
+            "note": "`computeAgentsDirs()` resolves `join(resolve(this.workspacePath), \".cursor\", \"agents\")` and, with third-party extensibility on, `join(workspace, \".claude\", \"agents\")`; the loader accepts `.md`, `.mdc` and `.markdown` and parses each file's front matter into a subagent. measured 2026-09-02 in the 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`. This is the surface the consumer's cursor#94 measured with globs and asked for at the home; the globs are workspace-index rules and the join is workspace-only, so the home answer stays declined and the workspace gets its scope."
           },
           {
             "path": ".cursor/skills",
@@ -426,7 +426,7 @@
             "shape": "directory",
             "source": "https://cursor.com/docs/skills",
             "evidence": "bytes",
-            "note": "The skill-root table's first row `{configDir: \".cursor\", subdir: \"skills\", thirdParty: false}` is joined to each workspace path by `Hr(e, t)` with `scope: \"project\", source: \"workspace\"`, the same table the home read maps through `Yr` with `scope: \"user\"`. measured 2026-09-02 in the pinned 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
+            "note": "The skill-root table's first row `{configDir: \".cursor\", subdir: \"skills\", thirdParty: false}` is joined to each workspace path by `Hr(e, t)` with `scope: \"project\", source: \"workspace\"`, the same table the home read maps through `Yr` with `scope: \"user\"`. measured 2026-09-02 in the 2026.08.31-4057e58 linux/x64 bundle (sha256:7e306db5..., digest verified against the artifact table before reading), every one of the package's 137 JavaScript members and not only `index.js`."
           }
         ],
         "declined": []
@@ -437,6 +437,52 @@
     }
   },
   "software_artifacts": {
+    "command": "agent",
+    "shape": "gzip-tar",
+    "platforms": {
+      "linux/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/linux/arm64/agent-cli-package.tar.gz",
+        "bytes": 177647834,
+        "sha256": "sha256:fb7bc635be6172ebcf68f907fd9217e3614da51916455c6d7fdb66690997884c",
+        "member": "dist-package/cursor-agent"
+      },
+      "linux/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/linux/x64/agent-cli-package.tar.gz",
+        "bytes": 179684142,
+        "sha256": "sha256:b73b59854762535c0fc20d7ccc51c3b5a356a851491088d60a362be48750f53c",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/darwin/arm64/agent-cli-package.tar.gz",
+        "bytes": 174181041,
+        "sha256": "sha256:3d814861be3225fc8c38be320fb22e344d8f711a24279f1f9119e7b313ea51e7",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/darwin/x64/agent-cli-package.tar.gz",
+        "bytes": 181413402,
+        "sha256": "sha256:59e8afd9b4f5eba44682018b9428c4a94e230d090871eae19e703540aad6ef6a",
+        "member": "dist-package/cursor-agent"
+      },
+      "windows/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/windows/arm64/agent-cli-package.zip",
+        "bytes": 72044862,
+        "sha256": "sha256:a503b66a18c175ead4bad2c1dd7abf96161fd03a4fccb7d1372d4a74df1d0b07",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      },
+      "windows/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/windows/x64/agent-cli-package.zip",
+        "bytes": 74166530,
+        "sha256": "sha256:2a560a7629828fa00c1d6a67eef5ea9bd3e99609abd45cb02ef2e743e83b9d47",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      }
+    },
+    "version": "2026.09.02-c22c1a3",
+    "verified_at": "2026-09-03T14:16:54+00:00"
+  },
+  "previous_software_artifacts": {
     "command": "agent",
     "shape": "gzip-tar",
     "platforms": {
@@ -482,53 +528,7 @@
     "version": "2026.08.31-4057e58",
     "verified_at": "2026-09-02T00:41:54+00:00"
   },
-  "previous_software_artifacts": {
-    "command": "agent",
-    "shape": "gzip-tar",
-    "platforms": {
-      "linux/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/linux/arm64/agent-cli-package.tar.gz",
-        "bytes": 83111698,
-        "sha256": "sha256:f1c1c2330d89fa4ef5b6cc04fcffba15012ff50eacd07e0f3baec0716f25ac5d",
-        "member": "dist-package/cursor-agent"
-      },
-      "linux/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/linux/x64/agent-cli-package.tar.gz",
-        "bytes": 84518977,
-        "sha256": "sha256:7a212e5a17ff9316f5acc78808e33c536940d5455645022e6388d99ba48c8425",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/darwin/arm64/agent-cli-package.tar.gz",
-        "bytes": 74709950,
-        "sha256": "sha256:81d4de7349e208d4ce441ca9c2d4e7d019ec2fbeb1137a79099fd8c4b8662f5f",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/darwin/x64/agent-cli-package.tar.gz",
-        "bytes": 77602336,
-        "sha256": "sha256:851f5412f603cff4cb37d4d87d5a940c5e642077c0459238398c866a69d3f495",
-        "member": "dist-package/cursor-agent"
-      },
-      "windows/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/windows/arm64/agent-cli-package.zip",
-        "bytes": 71681755,
-        "sha256": "sha256:5ad327a98759ef2238740777ad3834b3ed3c785691d470a5e74df5e5169b553b",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      },
-      "windows/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.08.25-3e8eec8/windows/x64/agent-cli-package.zip",
-        "bytes": 73776085,
-        "sha256": "sha256:44559cf096025e9e74144797a4bf43afe4348d6b09a0c6a24e7c78139f2860fb",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      }
-    },
-    "version": "2026.08.25-3e8eec8",
-    "verified_at": "2026-08-29T08:29:47+00:00"
-  },
-  "setup_catalogue_digest": "sha256:b346ea3c338c7fc66190cb3ba705e0827efa6ac6b507aec730763d8bbc82bd28",
+  "setup_catalogue_digest": "sha256:15ef26079a23fce42c8760d015d349f9a323a4b2e908362bb294b4c483b993ad",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."
