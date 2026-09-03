@@ -5,7 +5,7 @@ Use this reference before handing off work on a setup system.
 ## Which repository you are in decides what you can run
 
 This setup ships in two places and the gate below exists in only one of them.
-**It belongs to the private authoring monorepo, `NDDev-it-com/setup-systems`,
+**It belongs to the private authoring monorepo, the source workspace,
 which renders this public tree.** A checkout of this public repository carries
 `crates/`, `setups/`, `references/` and `scripts/evidence.py` -- and neither
 `scripts/gate.sh` nor `tools/`.
