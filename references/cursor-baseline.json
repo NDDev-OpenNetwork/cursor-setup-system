@@ -528,7 +528,7 @@
     "version": "2026.08.31-4057e58",
     "verified_at": "2026-09-02T00:41:54+00:00"
   },
-  "setup_catalogue_digest": "sha256:83442be692aefdd6917101bed00655bc470d9bf3dddef1d93338f701f8b4f61c",
+  "setup_catalogue_digest": "sha256:a4bba51912289b4b8f152cb67f2698ac97c8891159e38bd6b48570450c6018c4",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."
