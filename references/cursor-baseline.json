@@ -93,7 +93,7 @@
         "note": "As above. Measured from the vendor's own PowerShell installer and the archive it fetches."
       }
     },
-    "coverage_note": "Platform coverage is decided by `software_artifacts` and nothing else. This block held `windows` under unsupported until 2026-08-29, inherited from the retired nddev-*-app line, and by then it was false: the vendor ships Windows and this provider installs it. It said so for as long as it did because nothing in this repository read the block -- see `tools/transcribe_software.py --check`, which now compares it against the artifact table so the two cannot disagree again."
+    "coverage_note": "Platform coverage is decided by `software_artifacts` and nothing else. This block held `windows` under unsupported until 2026-08-29, inherited from the retired nddev-*-app line, and by then it was false: the vendor ships Windows and this provider installs it. It said so for as long as it did because nothing in this repository read the block -- see `the artifact-table transcription check`, which now compares it against the artifact table so the two cannot disagree again."
   },
   "software_install": {
     "mechanism": "official-cursor-agent-artifact",
