@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "baseline",
-  "description": "A working floor: instructions as a native plugin rule, plus a conservative permission rule.",
+  "description": "A working floor: the same autonomous approval and sandbox posture as the other standard variants, plus a static deny of `.env*` reads and `*.key` writes.",
   "sources": [
     "https://cursor.com/docs/cli/reference/configuration",
     "https://cursor.com/docs/cli/reference/permissions",
