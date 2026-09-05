@@ -25,8 +25,10 @@ itself — is declared and does work. `plan` names the exact bytes offline,
 whoever holds the network fetches them, and `apply` verifies and installs
 with the network gone.
 
-`launch` is not declared here.
-The product's configuration-home override moves only part of what this provider owns. Launching would mix the requested target with the caller's own executable rules, hooks, MCP or plugin state.
+`launch` is declared. It starts the exact executable a software install
+placed under `--prefix`, never a name found on `PATH`, and points the
+product at `--target` through the environment variable its own
+documentation names.
 
 A provider that advertised an operation it cannot perform would let a caller ask
 for something that cannot be honoured, which is worse than not offering it.
