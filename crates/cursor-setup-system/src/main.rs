@@ -47,6 +47,14 @@ pub const CURSOR: Harness = Harness {
     launch_binding: LaunchBinding::Partial {
         unbound: "rules, commands, hooks.json, mcp.json, plugins/local and skills, which \
                   the product joins to the process home rather than to this variable",
+        home_rooted: &[
+            "rules",
+            "commands",
+            "hooks.json",
+            "mcp.json",
+            "plugins/local",
+            "skills",
+        ],
     },
     // **Asked, and there is none.** Measured 2026-08-31 against the pinned
     // 2026.08.25-3e8eec8 artifact, its digest checked against the artifact table:
