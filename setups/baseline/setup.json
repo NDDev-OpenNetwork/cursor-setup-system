@@ -6,5 +6,22 @@
     "https://cursor.com/docs/cli/reference/configuration",
     "https://cursor.com/docs/cli/reference/permissions",
     "https://cursor.com/docs/reference/plugins"
+  ],
+  "setup_stable_id": "setup_01M18ZRMXDEMK608B7EZGFKZKW",
+  "setup_version": "1.2",
+  "setup_passport_digest": "sha256:670012fbe7f9c921632c09d5ae90973fcd89a8ee4cdba3e94b27c6ada53a7b9f",
+  "component_refs": [
+    {
+      "stable_id": "component_01M18ZRMXDEMK608B7EZGFKZKX",
+      "version": "1.2",
+      "passport_digest": "sha256:db2fc8f438de66bee30f9a480468401a63efa8e3d3c8ec1ca1f94d58a5ba4417",
+      "adaptation_id": "adaptation_7c84af733329139a76e202b105e066b0147631fd3afcbca39cebb4d6119bcab8"
+    },
+    {
+      "stable_id": "component_01M18ZRNFAF0PJK1ZJ5T1BMTV7",
+      "version": "1.2",
+      "passport_digest": "sha256:31d3b8f613c3c639c618ac839a7be1289915223a7239032a1bce92dabd4e0678",
+      "adaptation_id": "adaptation_25625ef1f058b7c0c84415f63629d53f4603b2a03c68adee26bf96198aa24f39"
+    }
   ]
 }
