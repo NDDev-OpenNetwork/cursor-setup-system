@@ -6,5 +6,34 @@
     "https://cursor.com/docs/cli/reference/configuration",
     "https://cursor.com/docs/cli/reference/permissions",
     "https://cursor.com/docs/reference/plugins"
+  ],
+  "setup_stable_id": "setup_01M15ENRBHRMHPE7XP20T1R1R1",
+  "setup_version": "1.5",
+  "setup_passport_digest": "sha256:b8981fcc80caa2da7eefaf956213b6d97bf7ad9670dd5619bbca835934c2bf47",
+  "component_refs": [
+    {
+      "stable_id": "component_01M15ENA8V8YPFJVKV5Y33YR53",
+      "version": "1.4",
+      "passport_digest": "sha256:de90f936e996a2180cb295228110016d4d8b3e1bab706fe8b4a7f7b16de6cae9",
+      "adaptation_id": "adaptation_5a4cc23366cabd03ef3c3bebd85b54845091192482ece6813d1837bc6cdc6dab"
+    },
+    {
+      "stable_id": "component_01M15ENATCBK67EJY0Z20Z7BE0",
+      "version": "1.6",
+      "passport_digest": "sha256:87f4ab251c97152ee7c4907e738dfbd23de3397737d47c909a01c76d1de8dfce",
+      "adaptation_id": "adaptation_9e219409c7afc06dfc63a846eaed991f74a32d72c040ec8399d57b413238970b"
+    },
+    {
+      "stable_id": "component_01M18ZS819FHWME7SEQDAMW274",
+      "version": "1.3",
+      "passport_digest": "sha256:51ddf82dd4405c4c1c9bc0165fab0c934e34bf6a997f97f9df4c371030c0d709",
+      "adaptation_id": "adaptation_8faa12ce13e515b30a0e34e459f475766c16ad16eb81a482079d2e5e47644d24"
+    },
+    {
+      "stable_id": "component_01M18ZS81AJ1278AZ6NJPXH1TB",
+      "version": "1.3",
+      "passport_digest": "sha256:a5726f46e8c1f413d0b83649c4928234c1e4b6ec7f76331c8f4a844e16641da5",
+      "adaptation_id": "adaptation_a9d55520140b94bc17e7062592bae74909dd3a2c648d72f3c22a791493916080"
+    }
   ]
 }
