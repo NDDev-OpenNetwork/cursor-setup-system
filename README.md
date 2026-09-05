@@ -16,7 +16,9 @@ instructions, skills, commands, hooks, MCP entries, plugins and settings togethe
 > exact bytes offline, whoever holds the network fetches them, and apply
 > verifies and installs with the network gone.
 >
-> `launch` is optional in the contract and is not declared here.
+> `launch` starts the exact executable that install placed, never a name
+> found on `PATH`, and points the product at the target through the
+> environment variable its own documentation names.
 
 ## Using it
 
