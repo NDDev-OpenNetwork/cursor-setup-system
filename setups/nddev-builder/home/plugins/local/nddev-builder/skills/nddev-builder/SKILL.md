@@ -56,6 +56,8 @@ target-explicit, reversible, and backed by this tree's checks.
   `references/agents-subagents.md`.
 - **Official install artifact, target-owned runtime, launch, migration, restore,
   and removal**: read `references/installation-lifecycle.md`.
+- **The ai-stp CLI lifecycle: scaffold, compose, install, release, publish**:
+  read `references/ai-stp-lifecycle.md`.
 - **Creator/checker/release validation workflow**: read
   `references/validation-release.md`.
 
