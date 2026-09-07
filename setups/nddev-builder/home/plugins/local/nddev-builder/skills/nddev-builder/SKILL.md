@@ -1,12 +1,13 @@
 ---
 name: nddev-builder
-description: Build, review, or validate a Cursor CLI setup: permissions, lifecycle, plugins, rules, skills, agents, commands, MCP and release surfaces. Use when changing or checking cursor-setup-system behaviour or the native Cursor artifacts a setup carries.
+description: Create, improve or review a complete Cursor CLI setup -- a native collection of tools. Use to select and author components, compose exact setups, explain capabilities, and validate native placement, installation and recovery.
 ---
 
 # NDDev Builder
 
-Use this skill as the entry point for `cursor-setup-system` work. Keep edits
-target-explicit, reversible, and backed by this tree's checks.
+Start with `references/ai-stp-lifecycle.md` to turn the user's tasks into a complete setup: inventory components, fill capability gaps, compose, evaluate and deliver a usable tool collection.
+
+Read the native references below for this harness's formats and activation rules. Provider implementation changes use the additional provider checks; ordinary setup authoring needs no Rust checkout.
 
 ## Workflow
 
@@ -34,8 +35,7 @@ target-explicit, reversible, and backed by this tree's checks.
   cross-harness half of it is the part no vendor page carries.
 - **The instruction file, and which products read a neighbour's**: read
   `references/authoring-instructions.md`. Also generated.
-- **The second target this harness owns, and why a setup cannot carry a
-  component for it**: read `references/second-target.md`. Generated from the
+- **Additional roots this harness owns and how a setup coordinates them**: read `references/second-target.md`. Generated from the
   baseline's scoped block.
 - **Configuration and setup/profile model**: read
   `references/configuration-profiles.md`.
@@ -63,10 +63,11 @@ target-explicit, reversible, and backed by this tree's checks.
 
 ## Boundaries
 
-- Do not write private harness artifacts or live user configuration from this
-  public toolkit.
-- Do not install software, start MCP servers, activate hooks, approve MCPs, push,
-  tag, or mutate team marketplace state.
+- Validate with disposable homes, prefixes and targets. Exercise native
+  activation only for the components and accounts authorized by the task.
+- Publishing or applying to a live target requires that effect in the task;
+  authoring alone does not imply it. Use the exact provider lifecycle and
+  preserve the running agent's own active configuration.
 - A target the frozen estate still stamps is taken over by `adopt`, which is a
   command someone types and never something `install` does behind them. Nothing
   is deleted: the old stamp moves aside and the pre-adoption state is one `mv`

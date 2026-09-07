@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-09-03T14:16:54+00:00",
+  "verified_at": "2026-09-07T03:18:13+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-31",
     "config_home": "~/.cursor",
@@ -480,7 +480,7 @@
       }
     },
     "version": "2026.09.02-c22c1a3",
-    "verified_at": "2026-09-03T14:16:54+00:00"
+    "verified_at": "2026-09-07T03:18:13+00:00"
   },
   "previous_software_artifacts": {
     "command": "agent",
@@ -528,7 +528,7 @@
     "version": "2026.08.31-4057e58",
     "verified_at": "2026-09-02T00:41:54+00:00"
   },
-  "setup_catalogue_digest": "sha256:51067fdc2870f178e31418e12d6ed022237da190a4be6433713ec5277ab3fb2a",
+  "setup_catalogue_digest": "sha256:2339c03bbb648890de5d7f15aaa8e8a7ba262f38ae5d5e9179f127e0833ea9a6",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."
