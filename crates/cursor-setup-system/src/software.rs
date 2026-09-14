@@ -20,6 +20,60 @@ use harness_runtime::{Artifact, Delivery, Previous, Shape, Software};
 pub(crate) const ARTIFACTS: &[Artifact] = &[
     Artifact {
         platform: "linux/arm64",
+        url: "https://downloads.cursor.com/lab/2026.09.10-fd3934a/linux/arm64/agent-cli-package.tar.gz",
+        bytes: 177_655_979,
+        sha256: "sha256:e0494438b01c37bc34848491d1f3478ef469494c56caf020de11796d146db64a",
+        shape: Shape::GzipTar,
+        member: "dist-package/cursor-agent",
+    },
+    Artifact {
+        platform: "linux/x86_64",
+        url: "https://downloads.cursor.com/lab/2026.09.10-fd3934a/linux/x64/agent-cli-package.tar.gz",
+        bytes: 179_673_253,
+        sha256: "sha256:27997c8391ad853a5a732b1845db8ef82a8ba6afb0f7829cc739464f8966e96e",
+        shape: Shape::GzipTar,
+        member: "dist-package/cursor-agent",
+    },
+    Artifact {
+        platform: "macos/arm64",
+        url: "https://downloads.cursor.com/lab/2026.09.10-fd3934a/darwin/arm64/agent-cli-package.tar.gz",
+        bytes: 174_178_929,
+        sha256: "sha256:aec0b01ae056de48a02fe315fbf0580eb91377752d993307499988cbe0285423",
+        shape: Shape::GzipTar,
+        member: "dist-package/cursor-agent",
+    },
+    Artifact {
+        platform: "macos/x86_64",
+        url: "https://downloads.cursor.com/lab/2026.09.10-fd3934a/darwin/x64/agent-cli-package.tar.gz",
+        bytes: 181_409_095,
+        sha256: "sha256:964cc72e88125c6b48ecaaebef68bf7cb752eb7b9d010a5535cf9f8e677dcf83",
+        shape: Shape::GzipTar,
+        member: "dist-package/cursor-agent",
+    },
+    Artifact {
+        platform: "windows/arm64",
+        url: "https://downloads.cursor.com/lab/2026.09.10-fd3934a/windows/arm64/agent-cli-package.zip",
+        bytes: 72_069_603,
+        sha256: "sha256:acb34343a1915085fd882d392b4d3c35ecf54b15467df6a4cf34c62e065412e8",
+        shape: Shape::Zip,
+        member: "dist-package/cursor-agent.cmd",
+    },
+    Artifact {
+        platform: "windows/x86_64",
+        url: "https://downloads.cursor.com/lab/2026.09.10-fd3934a/windows/x64/agent-cli-package.zip",
+        bytes: 74_169_932,
+        sha256: "sha256:cdf0b9b7c2f8892d4c2d2ccbf38226c831a0d56a043e2132d90f1aefac90b846",
+        shape: Shape::Zip,
+        member: "dist-package/cursor-agent.cmd",
+    },
+];
+
+/// The artifacts 2026.09.02-c22c1a3 was published as, kept so
+/// `software_update` has a version to move from and `rollback` a tree to
+/// return to. Measured from bytes when it was the current pin.
+pub(crate) const PREVIOUS_ARTIFACTS: &[Artifact] = &[
+    Artifact {
+        platform: "linux/arm64",
         url: "https://downloads.cursor.com/lab/2026.09.02-c22c1a3/linux/arm64/agent-cli-package.tar.gz",
         bytes: 177_647_834,
         sha256: "sha256:fb7bc635be6172ebcf68f907fd9217e3614da51916455c6d7fdb66690997884c",
@@ -68,68 +122,14 @@ pub(crate) const ARTIFACTS: &[Artifact] = &[
     },
 ];
 
-/// The artifacts 2026.08.31-4057e58 was published as, kept so
-/// `software_update` has a version to move from and `rollback` a tree to
-/// return to. Measured from bytes when it was the current pin.
-pub(crate) const PREVIOUS_ARTIFACTS: &[Artifact] = &[
-    Artifact {
-        platform: "linux/arm64",
-        url: "https://downloads.cursor.com/lab/2026.08.31-4057e58/linux/arm64/agent-cli-package.tar.gz",
-        bytes: 83_127_421,
-        sha256: "sha256:cf5db6b5047b3280d8a49471cfd41beb1d5e475774177df5df2851857ab6514a",
-        shape: Shape::GzipTar,
-        member: "dist-package/cursor-agent",
-    },
-    Artifact {
-        platform: "linux/x86_64",
-        url: "https://downloads.cursor.com/lab/2026.08.31-4057e58/linux/x64/agent-cli-package.tar.gz",
-        bytes: 84_537_653,
-        sha256: "sha256:7e306db5750219a99c00ed517fe8b235d3c54e4ca5f77e2ff160cc97ce707798",
-        shape: Shape::GzipTar,
-        member: "dist-package/cursor-agent",
-    },
-    Artifact {
-        platform: "macos/arm64",
-        url: "https://downloads.cursor.com/lab/2026.08.31-4057e58/darwin/arm64/agent-cli-package.tar.gz",
-        bytes: 74_720_796,
-        sha256: "sha256:a94483cf5a1607bfe12cb34216be0c8f95899f0f698fb85e500ba28d7332fbb0",
-        shape: Shape::GzipTar,
-        member: "dist-package/cursor-agent",
-    },
-    Artifact {
-        platform: "macos/x86_64",
-        url: "https://downloads.cursor.com/lab/2026.08.31-4057e58/darwin/x64/agent-cli-package.tar.gz",
-        bytes: 77_618_267,
-        sha256: "sha256:03e6693071036bc4c5259b825edad5ad0be5265ba0d7cd0f6b83004f8664aa6e",
-        shape: Shape::GzipTar,
-        member: "dist-package/cursor-agent",
-    },
-    Artifact {
-        platform: "windows/arm64",
-        url: "https://downloads.cursor.com/lab/2026.08.31-4057e58/windows/arm64/agent-cli-package.zip",
-        bytes: 71_680_177,
-        sha256: "sha256:d1d859ceaf59ac10d30915dbbe8e5b48eb68c594c8d4e478c5913501920dcf41",
-        shape: Shape::Zip,
-        member: "dist-package/cursor-agent.cmd",
-    },
-    Artifact {
-        platform: "windows/x86_64",
-        url: "https://downloads.cursor.com/lab/2026.08.31-4057e58/windows/x64/agent-cli-package.zip",
-        bytes: 73_782_384,
-        sha256: "sha256:64ac8c45e059893f44ce5802901b4727d3ddd59af42aee3730fa36208e974e05",
-        shape: Shape::Zip,
-        member: "dist-package/cursor-agent.cmd",
-    },
-];
-
 /// Cursor's program, and where its bytes come from.
 pub(crate) const SOFTWARE: Software = Software {
-    version: "2026.09.02-c22c1a3",
+    version: "2026.09.10-fd3934a",
     command: "agent",
     delivery: Delivery::Artifacts(ARTIFACTS),
     unsupported: &[],
     previous: Some(Previous {
-        version: "2026.08.31-4057e58",
+        version: "2026.09.02-c22c1a3",
         artifacts: PREVIOUS_ARTIFACTS,
     }),
 };

@@ -5,7 +5,12 @@
   "sources": [
     "https://cursor.com/docs/cli/reference/configuration",
     "https://cursor.com/docs/cli/reference/permissions",
-    "https://cursor.com/docs/reference/plugins"
+    "https://cursor.com/docs/hooks",
+    "https://cursor.com/docs/mcp",
+    "https://cursor.com/docs/plugins",
+    "https://cursor.com/docs/reference/plugins",
+    "https://cursor.com/docs/rules",
+    "https://cursor.com/docs/skills"
   ],
   "setup_stable_id": "setup_01M15ENRBHRMHPE7XP20T1R1R1",
   "setup_version": "1.5",
