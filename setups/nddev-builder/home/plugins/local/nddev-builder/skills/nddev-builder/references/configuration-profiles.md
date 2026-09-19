@@ -10,7 +10,7 @@ Use this reference when creating, changing, or reviewing what a setup writes.
   Agent at the target-local `cli-config.json` for the child process only.
 
 Do not claim that Cursor discovers `AGENTS.md` through `CURSOR_CONFIG_DIR`.
-Workspace instructions are covered in `skills-instructions.md`.
+Workspace instructions are covered in `authoring-instructions.md`.
 
 ## Public module model
 
