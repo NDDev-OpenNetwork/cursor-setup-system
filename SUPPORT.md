@@ -287,6 +287,8 @@ So the schema is **opt-in**: a manifest carrying no `$schema` is `absent` and ta
 
 Adding the line would therefore move a working plugin from the product's own grammar into a narrower one it does not fit. The interop spec's own answer is `extensions`, keyed by reverse-domain namespace -- a migration with a cost and no benefit while the native path is what Cursor reads. Recorded rather than left as an absence, because the next reader running a schema survey will find the url and reach the opposite conclusion in one step. (measured in agent-cli-package.tar.gz 2026.08.25-3e8eec8; schema fetched 200 and validated against the shipped manifest)
 
+**`permissions.json`** -- The product's own permission store: `load` reads `{permissions, autoRunInstructions}` from it, i.e. the allow/deny decisions a person made in the UI, remembered across runs. It is state the product writes, not configuration a setup ships -- a replace would erase remembered grants, and the posture's own permissions travel in `cli-config.json`'s `permissions` object. (measured in the 2026.09.15-d2fe57e bundle (class getPermissionsFilePath: join(configHome, "permissions.json")), 2026-09-27)
+
 ## Response
 
 One maintainer. Defects are triaged as time allows; security reports are

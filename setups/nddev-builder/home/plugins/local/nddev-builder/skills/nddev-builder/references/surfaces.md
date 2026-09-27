@@ -81,7 +81,7 @@ whole, which would take or revert a neighbour's work.
 
 ## Considered and not owned
 
-17 rows. Each records what was searched, so the next reader does not repeat the search:
+18 rows. Each records what was searched, so the next reader does not repeat the search:
 
 - **`AGENTS.md`** — The CLI reads AGENTS.md at the project root and upward, not from ~/.cursor. Global user rules are set in the application under Customize -> Rules and have no file under the config home; the absence is a standing community request.
 - **`agents`** — A plugin manifest key. The directory form `join(this.workspacePath, ".cursor", "agents")` is workspace-scoped only -- unlike `rules`, `commands`, `hooks.json` and `mcp.json`, which all resolve against the home directory as well. measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading, and it is the one of the five where the original reason survives the measurement.
@@ -100,3 +100,4 @@ whole, which would take or revert a neighbour's work.
 - **`sandbox.json`** — **A ninth surface under this product's home, measured 2026-08-30 in the 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:
 - **`plugins`** — Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now.
 - **`plugin.json $schema`** — **A published schema this estate deliberately does not name, and naming it would break the plugin.** Cursor is the only one of the four unschemaed harnesses that publishes a machine-readable manifest schema: `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`, reachable (200) and referenced once in the pinned artifact.
+- **`permissions.json`** — The product's own permission store: `load` reads `{permissions, autoRunInstructions}` from it, i.e. the allow/deny decisions a person made in the UI, remembered across runs. It is state the product writes, not configuration a setup ships -- a replace would erase remembered grants, and the posture's own permissions travel in `cli-config.json`'s `permissions` object.
