@@ -2,7 +2,7 @@
 
 Generated from the vendor's own reference and the pinned binary. Do not edit: the next render overwrites it, and a correction belongs in the source this file is derived from.
 
-**Where it goes**: `~/.cursor/mcp.json/mcp.json`
+**Where it goes**: `~/.cursor/mcp.json`
 
 **Decided by**: https://cursor.com/docs/mcp
 
@@ -14,11 +14,12 @@ Generated from the vendor's own reference and the pinned binary. Do not edit: th
 |---|---|---|
 | `mcpServers` | **yes** | An object keyed by server name. Each entry names a `command` with `args` and `env`, or a `url`. |
 | `type` | no | Transport, on the Agent Plugin schema. A Cursor Plugin infers it from whether `command` or `url` is present. |
-| `env` | no | Environment for a stdio server. `${VAR}` here is a **plugin variable**, not a shell expansion and not `${env:...}`. |
+| `env` | no | Environment for a stdio server. Values interpolate -- `${env:NAME}` reads the process environment, `${VAR}` without the `env:` prefix is a **plugin variable** declared under `variables` and filled from the dashboard. |
 
 ## What bites
 
-- **`${...}` is not shell here.** A plugin variable placeholder is declared under `variables` in the manifest and filled from the dashboard. Writing `${env:HOME}` produces a literal, not a value.
+- **Two namespaces share one `${...}` spelling.** `${env:NAME}` is the product's own mcp.json interpolation -- it reads the process environment in `command`, `args`, `env`, `url` and `headers`, and the same page names `${userHome}`, `${workspaceFolder}`, `${workspaceFolderBasename}` and `${pathSeparator}`. A bare `${NAME}` with no prefix is a *plugin variable*: declared under `variables` in the manifest, filled from the dashboard, and a literal if never declared.
+- `envFile` loads more variables for stdio servers; remote servers do not get it.
 - Plugin-managed MCP config is read-only in the dashboard, so a person cannot repair a server this provider installed from the UI -- they have to change the setup.
 
 ## The same file on the other harnesses

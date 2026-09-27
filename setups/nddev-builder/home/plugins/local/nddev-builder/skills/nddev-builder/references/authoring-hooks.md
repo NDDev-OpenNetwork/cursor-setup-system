@@ -2,7 +2,7 @@
 
 Generated from the vendor's own reference and the pinned binary. Do not edit: the next render overwrites it, and a correction belongs in the source this file is derived from.
 
-**Where it goes**: `~/.cursor/hooks.json/hooks.json`
+**Where it goes**: `~/.cursor/hooks.json`
 
 **Decided by**: https://cursor.com/docs/hooks
 

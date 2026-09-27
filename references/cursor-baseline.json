@@ -1,35 +1,35 @@
 {
   "schema_version": 3,
-  "verified_ref": "references/cursor-cli-baseline.json",
+  "verified_ref": "references/cursor-baseline.json",
   "release": {
-    "version": "2026.09.23-86fc751",
+    "version": "2026.09.26-dd393fe",
     "installer": "https://cursor.com/install",
-    "installer_sha256": "f696d9eacaacfa8ad84c0c382bb33f30512b41f8e7735446e57a0a6ca9e76b5e",
-    "artifact_template": "https://downloads.cursor.com/lab/2026.09.23-86fc751/{os}/{arch}/agent-cli-package.{extension}",
+    "installer_sha256": "e4da20d214f3467a76f992b3fed11f574e0458b4fcaf3ba9f63ba181883a283f",
+    "artifact_template": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/{os}/{arch}/agent-cli-package.{extension}",
     "artifacts": {
       "darwin/arm64/agent-cli-package.tar.gz": {
-        "sha256": "fa3fe13d5589c586ff132a24c16eea96fb8efde88afdefddcd11d80fa199f3a5",
-        "size": 177065953
+        "sha256": "538827d96a779bab854a865c8e42859e8e87db34b5f69770261b90fc8cfff191",
+        "size": 177072900
       },
       "darwin/x64/agent-cli-package.tar.gz": {
-        "sha256": "809335cd4a92f7c11a20f605213585b6136c7bfe6722069facf94e988d3ed0e7",
-        "size": 184447094
+        "sha256": "ed1771c44cbf0f8059c67cac0d939e6a60eb730bd066d7dc4cbb14de314cfb6e",
+        "size": 184454203
       },
       "linux/arm64/agent-cli-package.tar.gz": {
-        "sha256": "38d1482c945172926e780206fce8cc51c67dd4f96162bcec680903aa70d80417",
-        "size": 180809100
+        "sha256": "ab1178d0d8c10b254e7e427d1d673533a389338424e75034be9ab9da02845bde",
+        "size": 180807234
       },
       "linux/x64/agent-cli-package.tar.gz": {
-        "sha256": "740dd9d6eb5aec36ca90eaedf9fd5e2c489cd674d69b5147b3c2670f02d9776d",
-        "size": 182867455
+        "sha256": "8085fd120f5c71f4eae7fea26a043718e5644e3071e4fab3220a0e58c51f9593",
+        "size": 182876559
       },
       "windows/x64/agent-cli-package.zip": {
-        "sha256": "9c7232600ca77e7a6327dc9a0036277bd57b66923c6b65fc7abe9d957eb728e2",
-        "size": 77219487
+        "sha256": "b0ce0ea2bfedafe1b6b1e19a854a6c0fbeb2ed95c37993e8b30d260c271550b2",
+        "size": 77216555
       },
       "windows/arm64/agent-cli-package.zip": {
-        "sha256": "9044b00326ffdee83b6c809f2ba5d6545dd9bc85d5d26695ba1db529f7c3cee5",
-        "size": 75119584
+        "sha256": "0871f39b65d6b08b4b854e8c04125ab11733d7b59360d714e1768a96d1da1ff9",
+        "size": 75134401
       }
     }
   },
@@ -98,7 +98,7 @@
   "software_install": {
     "mechanism": "official-cursor-agent-artifact",
     "managed_command": "bin/agent",
-    "version": "2026.09.23-86fc751",
+    "version": "2026.09.26-dd393fe",
     "npm": null,
     "pip": null
   },
@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-09-25T11:49:37+00:00",
+  "verified_at": "2026-09-27T07:42:36+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-31",
     "config_home": "~/.cursor",
@@ -334,6 +334,11 @@
         "path": "plugin.json $schema",
         "reason": "**A published schema this estate deliberately does not name, and naming it would break the plugin.** Cursor is the only one of the four unschemaed harnesses that publishes a machine-readable manifest schema: `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`, reachable (200) and referenced once in the pinned artifact.\n\nThe obvious move -- add `$schema` and validate against it -- is wrong, and the binary says why. Measured in `agent-cli-package.tar.gz` for 2026.08.25-3e8eec8, digest checked before reading:\n\n    const B = new Set([\".../plugin.schema.json\", \".../mcp.schema.json\"])\n    function Q(e){ const t = e.$schema; return typeof t === \"string\" && t.length > 0 ? t : undefined }\n    function P(e){ return e === undefined ? {kind:\"absent\"}\n                        : B.has(e)        ? {kind:\"supported\", ...}\n                        :                   {kind:\"unsupported\", id:e} }\n\nSo the schema is **opt-in**: a manifest carrying no `$schema` is `absent` and takes the product's own native path, and one that declares a known id is held to the Agent Plugins 1.0.0 interop spec. That spec is `additionalProperties: false` with `required: [\"$schema\", \"name\"]`, and its properties are `name, version, description, author, homepage, repository, license, keywords, extensions` -- **no `agents`, `commands` or `skills`**, the three surfaces this plugin exists to carry. Validated to be sure: our manifest against that schema gives exactly two errors, a missing `$schema` and *Additional properties are not allowed ('agents', 'commands', 'skills' were unexpected)*.\n\nAdding the line would therefore move a working plugin from the product's own grammar into a narrower one it does not fit. The interop spec's own answer is `extensions`, keyed by reverse-domain namespace -- a migration with a cost and no benefit while the native path is what Cursor reads. Recorded rather than left as an absence, because the next reader running a schema survey will find the url and reach the opposite conclusion in one step.",
         "source": "measured in agent-cli-package.tar.gz 2026.08.25-3e8eec8; schema fetched 200 and validated against the shipped manifest"
+      },
+      {
+        "path": "permissions.json",
+        "source": "measured in the 2026.09.15-d2fe57e bundle (class getPermissionsFilePath: join(configHome, \"permissions.json\")), 2026-09-27",
+        "reason": "The product's own permission store: `load` reads `{permissions, autoRunInstructions}` from it, i.e. the allow/deny decisions a person made in the UI, remembered across runs. It is state the product writes, not configuration a setup ships -- a replace would erase remembered grants, and the posture's own permissions travel in `cli-config.json`'s `permissions` object."
       }
     ],
     "config_home_env": "CURSOR_CONFIG_DIR",
@@ -441,6 +446,52 @@
     "shape": "gzip-tar",
     "platforms": {
       "linux/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/linux/arm64/agent-cli-package.tar.gz",
+        "bytes": 180807234,
+        "sha256": "sha256:ab1178d0d8c10b254e7e427d1d673533a389338424e75034be9ab9da02845bde",
+        "member": "dist-package/cursor-agent"
+      },
+      "linux/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/linux/x64/agent-cli-package.tar.gz",
+        "bytes": 182876559,
+        "sha256": "sha256:8085fd120f5c71f4eae7fea26a043718e5644e3071e4fab3220a0e58c51f9593",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/darwin/arm64/agent-cli-package.tar.gz",
+        "bytes": 177072900,
+        "sha256": "sha256:538827d96a779bab854a865c8e42859e8e87db34b5f69770261b90fc8cfff191",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/darwin/x64/agent-cli-package.tar.gz",
+        "bytes": 184454203,
+        "sha256": "sha256:ed1771c44cbf0f8059c67cac0d939e6a60eb730bd066d7dc4cbb14de314cfb6e",
+        "member": "dist-package/cursor-agent"
+      },
+      "windows/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/windows/arm64/agent-cli-package.zip",
+        "bytes": 75134401,
+        "sha256": "sha256:0871f39b65d6b08b4b854e8c04125ab11733d7b59360d714e1768a96d1da1ff9",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      },
+      "windows/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/windows/x64/agent-cli-package.zip",
+        "bytes": 77216555,
+        "sha256": "sha256:b0ce0ea2bfedafe1b6b1e19a854a6c0fbeb2ed95c37993e8b30d260c271550b2",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      }
+    },
+    "version": "2026.09.26-dd393fe",
+    "verified_at": "2026-09-27T07:42:36+00:00"
+  },
+  "previous_software_artifacts": {
+    "command": "agent",
+    "shape": "gzip-tar",
+    "platforms": {
+      "linux/arm64": {
         "url": "https://downloads.cursor.com/lab/2026.09.23-86fc751/linux/arm64/agent-cli-package.tar.gz",
         "bytes": 180809100,
         "sha256": "sha256:38d1482c945172926e780206fce8cc51c67dd4f96162bcec680903aa70d80417",
@@ -482,53 +533,7 @@
     "version": "2026.09.23-86fc751",
     "verified_at": "2026-09-25T11:49:37+00:00"
   },
-  "previous_software_artifacts": {
-    "command": "agent",
-    "shape": "gzip-tar",
-    "platforms": {
-      "linux/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.18-9a7762b/linux/arm64/agent-cli-package.tar.gz",
-        "bytes": 180513813,
-        "sha256": "sha256:210d58f850f4616e4f265ff7006c558d5a2a008fce3e2bf8a0105c25ae3456a0",
-        "member": "dist-package/cursor-agent"
-      },
-      "linux/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.18-9a7762b/linux/x64/agent-cli-package.tar.gz",
-        "bytes": 182574768,
-        "sha256": "sha256:b1308f5a2fc05458b9d8966752986bb23a971bbcc67c842c1df94c4b8132bad9",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.18-9a7762b/darwin/arm64/agent-cli-package.tar.gz",
-        "bytes": 176832653,
-        "sha256": "sha256:4e67b9ac80cc4a56e0a91b3b437894e0ba489ef7ec37f120d8084d2bfd02095d",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.18-9a7762b/darwin/x64/agent-cli-package.tar.gz",
-        "bytes": 184225658,
-        "sha256": "sha256:f4298af7114a57ce317ddc13a49c273e1113b027e3e6b7a0769b8ef3565e6897",
-        "member": "dist-package/cursor-agent"
-      },
-      "windows/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.18-9a7762b/windows/arm64/agent-cli-package.zip",
-        "bytes": 74962496,
-        "sha256": "sha256:69090ef4cf44dc20b93dd9a6f99b0604b20217b22268d97e6a47ca546d7a0d4b",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      },
-      "windows/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.18-9a7762b/windows/x64/agent-cli-package.zip",
-        "bytes": 77054222,
-        "sha256": "sha256:9c1fbcda9f0a39667689a6a3146b549ffec465caf47723e0a7bb345142d5bde4",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      }
-    },
-    "version": "2026.09.18-9a7762b",
-    "verified_at": "2026-09-19T14:52:38+00:00"
-  },
-  "setup_catalogue_digest": "sha256:068eaee8acd4c2b7c925387385a233047f568ae93e48e64825fa6a7ab6d0614e",
+  "setup_catalogue_digest": "sha256:c3b76eb7dea99964e23526356d1a8b0dfa6317706960b22c43ce993464d6fc28",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."
