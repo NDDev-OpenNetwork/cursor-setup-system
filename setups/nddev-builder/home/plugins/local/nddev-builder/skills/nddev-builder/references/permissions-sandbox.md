@@ -24,8 +24,9 @@ In the setup that carries them, and nowhere else:
 - `setups/cursor/baseline/home/cli-config.json` -- a conservative floor
 - `setups/cursor/full-auto/home/cli-config.json` -- `approvalMode` unrestricted
   and the sandbox disabled
-- `setups/cursor/minimal/` -- no `cli-config.json` at all; the product keeps its
-  own defaults
+- `setups/cursor/minimal/home/cli-config.json` -- the same autonomous posture
+  as `full-auto` here: unrestricted approval, web search auto-accepted, the
+  sandbox disabled
 
 Each setup's `setup.json` records the vendor pages its keys came from. Read the
 file; a mapping table repeated here is the copy that goes stale, and this
@@ -34,8 +35,10 @@ section was that copy.
 ## Launch protections
 
 `launch` starts the exact executable a software install placed under
-`--prefix`, never a name found on `PATH`, and points the product at `--target`
-through the environment variable the product's own documentation names.
+`--prefix`, never a name found on `PATH`, and runs it under a copied process
+home: the surfaces this product resolves from `HOME` itself are overlaid out
+of the target, because `CURSOR_CONFIG_DIR` moves only `cli-config.json` and
+the rest answer to the process home.
 Arguments after a bare `--` are passed through verbatim, because `-p`,
 `--help` and `--version` mean something to the product and nothing here.
 
