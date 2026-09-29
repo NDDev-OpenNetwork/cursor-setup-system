@@ -34,8 +34,8 @@ pub const CURSOR: Harness = Harness {
     documented_config_home: "~/.cursor",
     config_home_env: "CURSOR_CONFIG_DIR",
     // **Partial, and this is the one the inference got wrong.** This baseline's
-    // own note has said since 2026-08-28 that `cli-config.json` is *"one of the
-    // eight this build owns"* that follows the variable: `rules`, `commands`,
+    // own note has said since 2026-08-28 that `cli-config.json` is the one
+    // owned surface that follows the variable: `rules`, `commands`,
     // `hooks.json`, `mcp.json` and the plugin pair are built from a literal
     // join to the process home in `cursor-config/dist/paths.js` and reach no
     // resolver at all. The declaration said launch anyway, because the rule
@@ -76,7 +76,7 @@ pub const CURSOR: Harness = Harness {
     // `cursor` -- not `.cursor` -- then falls back to the home. The data
     // root reads `CURSOR_DATA_DIR` and is not XDG-aware.
     //
-    // **Of the eight namespaces this build owns, exactly one goes through
+    // **Of the seven namespaces this build owns, exactly one goes through
     // either.** `cli-config.json` is `join(configRoot(), "cli-config.json")`.
     // `commands`, `rules`, `hooks.json`, `mcp.json` and the `plugins` pair
     // are built from a literal `join(homedir(), ".cursor", ...)` and go
@@ -85,8 +85,8 @@ pub const CURSOR: Harness = Harness {
     // `permissions.json` and `statsig-cache.json` -- none of them ours.
     //
     // The first note said the product reads `$XDG_CONFIG_HOME/cursor`
-    // without qualification. True of the resolver, false of seven of the
-    // eight paths this provider writes: a measurement of one thing stated
+    // without qualification. True of the resolver, false of six of the
+    // seven paths this provider writes: a measurement of one thing stated
     // as a fact about another.
     config_home_note: "XDG_CONFIG_HOME moves cli-config.json to $XDG_CONFIG_HOME/cursor and moves nothing else this build owns",
     control_directory: ".cursor-setup-system",
@@ -666,7 +666,7 @@ mod tests {
     }
     /// Three postures, on every one of the seven.
     ///
-    /// `baseline` is a working floor, `minimal` is the product's own defaults,
+    /// `baseline` is a working floor, `minimal` is the shared autonomous posture and nothing else,
     /// and `full-auto` asks nothing and sandboxes nothing. A caller who learns
     /// them on one product knows them on all seven, which is the whole reason
     /// the names are the estate's rather than each harness's.

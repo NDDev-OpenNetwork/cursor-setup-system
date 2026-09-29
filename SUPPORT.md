@@ -34,23 +34,18 @@ A provider that advertised an operation it cannot perform would let a caller ask
 for something that cannot be honoured, which is worse than not offering it.
 
 All five core operations do work: `backup`, `restore`, `remove`, `install` and
-`replace`, both from the local setup catalog and from an `ai-stp-bundle/1`
+`replace`, both from the local setup catalog and from an `ai-stp-bundle/2`
 arriving over the wire.
 
 ## Using this against a home you already have
 
-**An owned namespace is removed whole.** The table below says what this build
-owns; `remove` deletes each of those paths entirely, and a backup slot holds
-what was there first. That includes content this build never wrote -- if the
-product itself put a key in a configuration file this provider owns, `remove`
-takes the file, not the keys this provider added to it.
+**Removal follows receipts, not namespaces.** The table below says what this
+build owns; `remove` withdraws the files this provider recorded writing, and
+in a JSON file it owns it strips the keys it added rather than taking the
+file. Anything under those paths this build never wrote stays. Emptying every
+owned namespace is a separate, explicitly named operation: `reset`.
 
-Measured, with the real product: launching Codex through `launch` and running
-`mcp add` writes `~/.codex/config.toml` with an `[mcp_servers.*]` entry; a
-later `install` captures that file into a slot and replaces it; a later
-`remove` deletes it. The entry is not lost -- `backups` lists the slot as
-*before install, setup none*, and restoring it returns the file byte for byte
--- but it is not in the target either.
+No credential-free command is measured writing this product's home -- the dated measurement lives in `references/` and the absence is recorded, not assumed. The receipt discipline is the same for whatever arrives later: a file this provider wrote is captured into a slot before the next `install`, withdrawn by `remove`, and returned byte for byte by `restore`.
 
 So: point `--target` at a home you are willing to have managed. `backups
 --target <dir>` names every earlier state and which setup each preceded, and
@@ -229,19 +224,19 @@ So the page documents a directory the current product does not read. Recorded at
 
 **Re-measured 2026-09-02 when the pin moved to 2026.08.31-4057e58**, this time across every JavaScript member of the package: `computeAgentsDirs()` is unchanged -- the workspace join and, under third-party extensibility, the workspace's `.claude/agents` -- and a home-joined form is still absent while the invented control is absent and the home joins for `commands`, `hooks.json`, `mcp.json` and `rules` are present. The consumer's cursor#94 asked for this directory at the home on the strength of the `**/.cursor/agents` globs, which are workspace-index rules. The answer at the home stays no; the workspace surface is declared under the `project` scope, where the product actually reads it. ([source](https://cursor.com/docs/subagents))
 
-**`hooks`** -- **Corrected 2026-08-28: a user-level file exists.** This row read "a plugin manifest key, not a directory under the config home". The product resolves `userConfigPath: join(homedir(), ".cursor", "hooks.json")`, alongside an enterprise path and the manifest key. Not owned, for the same reason as `rules` and `commands`. Raised. ([source](https://cursor.com/docs/hooks) -- measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
+**`hooks`** -- **Corrected 2026-09-29: the comparison this ended on no longer holds.** The product resolves `userConfigPath: join(homedir(), ".cursor", "hooks.json")`, and the file form `hooks.json` is owned -- as are `rules` and `commands`, added 2026-08-28. What stays declined is the *directory* `hooks` this row names: ownership is by exact surface, and the directory form the manifest key implies is not a path this provider writes. ([source](https://cursor.com/docs/hooks) -- measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
 **`NDDEV-CURSOR-PROVIDER.json`** -- This provider's own state file: which setup is applied, the identity it recorded, and which slot reverses the last operation. Written by every operation and excluded from target identity, because counting it would leave a target different from the identity the operation just wrote. Not a projection surface and never ownable as one. (this provider's own contract; no vendor page is involved)
 
 **`.cursor-setup-system`** -- This provider's own control directory: the target lock, the backup slots and their payloads. Kept out of the declaration for the same reason as the state file, and recorded here because the declined list is where a reader looks before opening a file to find out what it is. (this provider's own contract; no vendor page is involved)
 
-**`plugins/cache`** -- The product's own plugin cache, a sibling of the owned `plugins/local`. Named in the same joins. It matters because this provider owns the parent `plugins` during the transition window, so a `remove` takes this with it. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
+**`plugins/cache`** -- The product's own plugin cache, a sibling of the owned `plugins/local`. Corrected 2026-09-29: the parent `plugins` is no longer owned -- owning it made `remove` take the product's own siblings, which is the cost that removed the declaration -- so a `remove` leaves this where it is. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`plugins/marketplaces`** -- Where the product records the marketplaces a person added, sibling to `plugins/local`. Taken by a `remove` of the owned parent, which is the concrete cost of the transition window. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
+**`plugins/marketplaces`** -- Where the product records the marketplaces a person added, sibling to `plugins/local`. Corrected 2026-09-29: the parent `plugins` is no longer owned, so `remove` no longer takes this with it. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`plugins/local-marketplaces.json`** -- The product's record of locally added marketplaces. Same sibling relationship and the same consequence. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
+**`plugins/local-marketplaces.json`** -- The product's record of locally added marketplaces. Same sibling relationship and, after 2026-09-29, the same standing: the parent is not owned, so `remove` leaves it alone. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
-**`plugins/installed_plugins.json`** -- The product's own record of what it installed. A `remove` of the owned parent takes it, and the product then no longer knows about plugins a person installed by hand. Recoverable from the capture that runs first, and the sharpest single reason the window should close when the consumer's corpus objects naming `plugins` retire. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
+**`plugins/installed_plugins.json`** -- The product's own record of what it installed. Corrected 2026-09-29: the parent `plugins` is no longer owned, so `remove` leaves this record -- and the product's knowledge of hand-installed plugins -- alone. (measured in the 2026.08.25-3e8eec8 linux/x86_64 bytes (sha256:7a212e5a...), digest verified before reading)
 
 **`cli-runtime-state`** -- One row for the subtree a run leaves behind: `agent-cli-state.json`, `ai-tracking/ai-code-tracking.db`, `cli-workspaces.json`, `ide_state.json`, `plans`, `projects`. The product's own lifetime. (measured from the 2026.08.25-3e8eec8 bundle)
 

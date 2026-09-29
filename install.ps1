@@ -8,7 +8,7 @@
 [CmdletBinding()]
 param(
   [string]$Version = "0.0.81",
-  [string]$InstallDir = "$env:LOCALAPPDATA\Programs\cursor-setup-system"
+  [string]$InstallDir = $(if ($env:CURSOR_INSTALL_DIR) { $env:CURSOR_INSTALL_DIR } else { "$env:LOCALAPPDATA\Programs\cursor-setup-system" })
 )
 $ErrorActionPreference = "Stop"
 

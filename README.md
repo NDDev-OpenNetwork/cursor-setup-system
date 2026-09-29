@@ -17,22 +17,23 @@ instructions, skills, commands, hooks, MCP entries, plugins and settings togethe
 > verifies and installs with the network gone.
 >
 > `launch` starts the exact executable that install placed, never a name
-> found on `PATH`, and points the product at the target through the
-> environment variable its own documentation names.
+> found on `PATH`, and runs it under a copied process home: the surfaces
+> this product resolves from `HOME` itself are overlaid out of the target,
+> so the session it assembles is the target's and not the caller's.
 
 ## Using it
 
 ```bash
 cursor-setup-system list
-cursor-setup-system install baseline    --target ~/.tool-config
-cursor-setup-system status              --target ~/.tool-config
-cursor-setup-system select full-auto    --target ~/.tool-config
-cursor-setup-system diff                --target ~/.tool-config
-cursor-setup-system reinstall           --target ~/.tool-config
-cursor-setup-system backups             --target ~/.tool-config
-cursor-setup-system hold --backup slot-000000000001 --reason "before the experiment" --target ~/.tool-config
-cursor-setup-system restore --backup slot-000000000001 --target ~/.tool-config
-cursor-setup-system remove              --target ~/.tool-config
+cursor-setup-system install baseline    --target ~/.cursor
+cursor-setup-system status              --target ~/.cursor
+cursor-setup-system select full-auto    --target ~/.cursor
+cursor-setup-system diff                --target ~/.cursor
+cursor-setup-system reinstall           --target ~/.cursor
+cursor-setup-system backups             --target ~/.cursor
+cursor-setup-system hold --backup slot-000000000001 --reason "before the experiment" --target ~/.cursor
+cursor-setup-system restore --backup slot-000000000001 --target ~/.cursor
+cursor-setup-system remove              --target ~/.cursor
 ```
 
 Every command takes an explicit `--target`. There is no default and no fallback
@@ -47,8 +48,8 @@ seven setup systems, expressed in each product's own format:
 
 | | |
 | --- | --- |
-| `baseline` | a working floor: instructions plus a conservative configuration |
-| `minimal` | the product's own defaults, and the state a restore proves it can reach |
+| `baseline` | a working floor: instructions plus the shared autonomous posture |
+| `minimal` | instructions plus the shared autonomous posture, and nothing else |
 | `full-auto` | nothing asked and nothing sandboxed, in this product's own keys |
 | `nddev-builder` | the full-auto posture plus the product-native NDDev authoring toolkit |
 
