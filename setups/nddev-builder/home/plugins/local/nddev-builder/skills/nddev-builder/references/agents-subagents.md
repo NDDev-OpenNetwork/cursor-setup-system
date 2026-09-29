@@ -8,8 +8,8 @@ This page is hand-written because there is no generated one: the generator
 writes an `authoring-<kind>.md` only for a kind the baseline routes, and
 `references/cursor-baseline.json` **declines** the `agents` directory. Its reason
 is measured rather than assumed — `join(this.workspacePath, ".cursor", "agents")`
-is workspace-scoped only, unlike `rules`, `commands` and `hooks`, which resolve
-under the configuration home as well.
+is workspace-scoped only, unlike `rules`, `commands`, `hooks.json` and
+`mcp.json`, which resolve under the configuration home as well.
 
 ## Where an agent can live
 

@@ -26,9 +26,12 @@ whoever holds the network fetches them, and `apply` verifies and installs
 with the network gone.
 
 `launch` is declared. It starts the exact executable a software install
-placed under `--prefix`, never a name found on `PATH`, and points the
-product at `--target` through the environment variable its own
-documentation names.
+placed under `--prefix`, never a name found on `PATH`, and runs it under
+a copied process home: the surfaces this product resolves from `HOME`
+itself are overlaid out of the target, so a session assembled there reads
+the installed setup rather than the caller's own rules, hooks and MCP
+servers. The variable the product documents moves only a part of that
+set.
 
 A provider that advertised an operation it cannot perform would let a caller ask
 for something that cannot be honoured, which is worse than not offering it.
@@ -45,7 +48,7 @@ in a JSON file it owns it strips the keys it added rather than taking the
 file. Anything under those paths this build never wrote stays. Emptying every
 owned namespace is a separate, explicitly named operation: `reset`.
 
-No credential-free command is measured writing this product's home -- the dated measurement lives in `references/` and the absence is recorded, not assumed. The receipt discipline is the same for whatever arrives later: a file this provider wrote is captured into a slot before the next `install`, withdrawn by `remove`, and returned byte for byte by `restore`.
+No credential-free command is measured writing a surface this provider owns through `--target` -- its mcp takes no arguments in the released CLI. The receipt discipline is the same for whatever arrives later: a file this provider wrote is captured into a slot before the next `install`, withdrawn by `remove`, and returned byte for byte by `restore`.
 
 So: point `--target` at a home you are willing to have managed. `backups
 --target <dir>` names every earlier state and which setup each preceded, and
@@ -169,8 +172,6 @@ Configuration home as the product documents it: `~/.cursor`.
 | `mcp.json` | `mcp` | [source](https://cursor.com/docs/mcp) -- measured in the 2026.08.25-3e8eec8 bundle, digest verified before reading |
 | `skills` | `skill` | measured from the 2026.08.25-3e8eec8 bundle: src/utils/skill-path-utils.ts and the skill-root table in index.js, 2026-08-28 |
 
-A path routing no component kind is owned so a setup can carry it;
-nothing compiles a component to it.
 
 ### A second target: `target_scope: user_root`
 
@@ -190,9 +191,12 @@ by a restore.
 
 ### A second target: `target_scope: project`
 
-Rooted at `.cursor`, which is not the configuration home
-above. A consumer reaches it by naming the scope on the request, and
-every path below is relative to that root.
+This scope's target is the workspace root rather than the
+configuration home above; the scope record names its anchor
+`.cursor`. A consumer reaches it by naming the scope on
+the request, and every path below is relative to the workspace
+root -- where the product owns a directory there, that directory
+is part of the path.
 
 | Path | Component kinds routed here | Decided by |
 | --- | --- | --- |
@@ -250,7 +254,7 @@ So the page documents a directory the current product does not read. Recorded at
 
 It gets a name here rather than a path because every recorded path is relative to the target and this one is not; the `rooted_elsewhere` guard refuses such a row. Recorded so a reader looking for everything the product writes does not stop at `~/.cursor`. (measured by running the 2026.08.25-3e8eec8 binary in a clean HOME, 2026-08-28)
 
-**`sandbox.json`** -- **A ninth surface under this product's home, measured 2026-08-30 in the 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:
+**`sandbox.json`** -- **An eighth surface under this product's home** -- ninth at the measurement, 2026-08-30, before `plugins` left the owned set -- read out of the 2026.08.25-3e8eec8 linux/x86_64 bytes, sha256 checked against this baseline's own table before extracting. Two independent joins in the bundle resolve it, both landing on `join(homedir(), ".cursor", "sandbox.json")`.
 
 ```js
 join(homedir(), ".cursor", "sandbox.json")

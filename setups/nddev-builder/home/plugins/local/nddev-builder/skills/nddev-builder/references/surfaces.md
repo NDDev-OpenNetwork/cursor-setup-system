@@ -42,10 +42,11 @@ surfaces makes a consumer's route ambiguous, and the guard in
 
 ## A second target: `target_scope: user_root`
 
-Rooted at `~/.agents`, which is **not** this product's configuration
-home. A consumer reaches it by naming the scope on the request, and
-every path below is relative to that root rather than to the home
-above -- writing the root into the path again would nest it twice.
+Rooted at `~/.agents`, which is **not** this product's
+configuration home. A consumer reaches it by naming the scope
+on the request, and every path below is relative to that root
+rather than to the home above -- writing the root into the
+path again would nest it twice.
 
 | path | routes | shape | decided by | exercised by |
 | --- | --- | --- | --- | --- |
@@ -59,10 +60,12 @@ whole, which would take or revert a neighbour's work.
 
 ## A second target: `target_scope: project`
 
-Rooted at `.cursor`, which is **not** this product's configuration
-home. A consumer reaches it by naming the scope on the request, and
-every path below is relative to that root rather than to the home
-above -- writing the root into the path again would nest it twice.
+This scope's target is the workspace root (the record names
+its anchor `.cursor`), which is **not** this product's
+configuration home. A consumer reaches it by naming the scope
+on the request, and every path below is relative to the
+workspace root -- a product-owned directory stays part of the
+path.
 
 | path | routes | shape | decided by | exercised by |
 | --- | --- | --- | --- | --- |
@@ -97,7 +100,7 @@ whole, which would take or revert a neighbour's work.
 - **`skills-cursor`** — The same skill-root table flags this one `builtin: true` -- it is the product's own shipped skills, not a place a person or a consumer writes. Owning it would put this provider's backup and remove across bytes the product manages for itself. Recorded rather than left absent because the directory is real, sits beside the owned `skills`, and a reader who found it would otherwise have to repeat this search.
 - **`cloud-skills`** — Listed as a skill path in the same bundle and filled from the account rather than from disk. Nothing this provider installs belongs there, and a backup of it would capture someone's server-side state under a local name.
 - **`cursor-compile-cache`** — Not a path in the target: the product writes `~/.cache/cursor-compile-cache/<node-version>-<hash>-<uid>` **outside its configuration home**, measured 2026-08-28 by running the pinned `2026.08.25-3e8eec8` binary in a clean `HOME`. A bare `--version` was enough to create it.
-- **`sandbox.json`** — **A ninth surface under this product's home, measured 2026-08-30 in the 2026.08.25-3e8eec8 linux/x86_64 bytes** (sha256 checked against this baseline's own table before extracting). Two independent joins in the bundle:
+- **`sandbox.json`** — **An eighth surface under this product's home** -- ninth at the measurement, 2026-08-30, before `plugins` left the owned set -- read out of the 2026.08.25-3e8eec8 linux/x86_64 bytes, sha256 checked against this baseline's own table before extracting. Two independent joins in the bundle resolve it, both landing on `join(homedir(), ".cursor", "sandbox.json")`.
 - **`plugins`** — Real, and deliberately not owned. This provider's payload lives one level down at `plugins/local`, which is declared. Owning the parent as well made it exact state, and the product writes `plugins/local-marketplaces.json` there itself -- a person's marketplace sources, a sibling of ours rather than a child. Reproduced 2026-08-31 with the released binary: `select nddev-builder` then `select minimal` removed that file, an unrelated file beside it, and the directory. The parent was declared when the plugin kind routed one level up and outlived the move by four releases. The repository's namespace-shape check refuses the shape for all seven now.
 - **`plugin.json $schema`** — **A published schema this estate deliberately does not name, and naming it would break the plugin.** Cursor is the only one of the four unschemaed harnesses that publishes a machine-readable manifest schema: `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`, reachable (200) and referenced once in the pinned artifact.
 - **`permissions.json`** — The product's own permission store: `load` reads `{permissions, autoRunInstructions}` from it, i.e. the allow/deny decisions a person made in the UI, remembered across runs. It is state the product writes, not configuration a setup ships -- a replace would erase remembered grants, and the posture's own permissions travel in `cli-config.json`'s `permissions` object.

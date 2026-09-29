@@ -109,12 +109,12 @@ pub const CURSOR: Harness = Harness {
     // manifest names its `rules`.
     //
     // `plugins/local` is where the product reads a local plugin from, and where
-    // those setups write. It is declared *beside* `plugins`, not instead of it,
-    // and the redundancy is deliberate. Ownership here is by prefix, so `plugins`
-    // already covers it -- but the consumer validates a compiler's route by exact
-    // membership in this list, so a release declaring only one of the two refuses
-    // every install against a CLI that names the other. Declaring both is the
-    // only state in which either side may move first.
+    // those setups write. It is declared *without* `plugins`, and the omission
+    // is the fix: owning a parent makes the whole directory exact state, so a
+    // posture shipping no plugin would remove the sibling files the product
+    // keeps beside ours -- measured 2026-08-31, `select nddev-builder` then
+    // `select minimal` took `local-marketplaces.json` and the `plugins`
+    // directory itself.
     // Four were added 2026-08-28: `rules`, `commands`, `hooks.json` and
     // `mcp.json`. All four had been declined on the strength of vendor pages
     // that do not mention them, and all four are in the product. Its own
@@ -126,8 +126,7 @@ pub const CURSOR: Harness = Harness {
     //
     // Widening is safe in the direction a consumer reads: it matches a route by
     // membership in this list, so a larger set makes more routes valid and none
-    // that were valid invalid. Narrowing is the move that refuses things, which
-    // is why `plugins` stays beside `plugins/local`.
+    // that were valid invalid. Narrowing is the move that refuses things.
     native_namespaces: &[
         "cli-config.json",
         // **`plugins` is not here, and its absence is the fix.** It was declared
