@@ -2,34 +2,34 @@
   "schema_version": 3,
   "verified_ref": "references/cursor-baseline.json",
   "release": {
-    "version": "2026.09.26-dd393fe",
+    "version": "2026.09.28-64d2043",
     "installer": "https://cursor.com/install",
-    "installer_sha256": "e4da20d214f3467a76f992b3fed11f574e0458b4fcaf3ba9f63ba181883a283f",
-    "artifact_template": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/{os}/{arch}/agent-cli-package.{extension}",
+    "installer_sha256": "355ceed4ac821b5fed8faf286bd8ab4df4952423393e09b155052247e7c6ebb5",
+    "artifact_template": "https://downloads.cursor.com/lab/2026.09.28-64d2043/{os}/{arch}/agent-cli-package.{extension}",
     "artifacts": {
       "darwin/arm64/agent-cli-package.tar.gz": {
-        "sha256": "538827d96a779bab854a865c8e42859e8e87db34b5f69770261b90fc8cfff191",
-        "size": 177072900
+        "sha256": "c0d7e9cd2e62438610b886d3439907dc1f98c2923b07b3a41416cc919aaf53c7",
+        "size": 176795016
       },
       "darwin/x64/agent-cli-package.tar.gz": {
-        "sha256": "ed1771c44cbf0f8059c67cac0d939e6a60eb730bd066d7dc4cbb14de314cfb6e",
-        "size": 184454203
+        "sha256": "3efe0dff2f3d92a1e8139e33fef182801556b57ed50a6afd7bac19c4fad09549",
+        "size": 184187482
       },
       "linux/arm64/agent-cli-package.tar.gz": {
-        "sha256": "ab1178d0d8c10b254e7e427d1d673533a389338424e75034be9ab9da02845bde",
-        "size": 180807234
+        "sha256": "c737599b27d3d8d6743c72b487204e335f3a8ea2fdbaf18302ee207a646ffd8d",
+        "size": 180564349
       },
       "linux/x64/agent-cli-package.tar.gz": {
-        "sha256": "8085fd120f5c71f4eae7fea26a043718e5644e3071e4fab3220a0e58c51f9593",
-        "size": 182876559
+        "sha256": "6e4cd936a4866b8a77c50ff51a564460d715772fabc477a01aa0f0455d9559f0",
+        "size": 182618248
       },
       "windows/x64/agent-cli-package.zip": {
-        "sha256": "b0ce0ea2bfedafe1b6b1e19a854a6c0fbeb2ed95c37993e8b30d260c271550b2",
-        "size": 77216555
+        "sha256": "2d7abd33929520e2169d7392360e71a7b137144077d1574818960fe0949ec52a",
+        "size": 77143980
       },
       "windows/arm64/agent-cli-package.zip": {
-        "sha256": "0871f39b65d6b08b4b854e8c04125ab11733d7b59360d714e1768a96d1da1ff9",
-        "size": 75134401
+        "sha256": "72cfb4e4365a2c4b63c0c100c64c91d661bb619e2c890d8a7a2ba333df044f82",
+        "size": 75088705
       }
     }
   },
@@ -98,7 +98,7 @@
   "software_install": {
     "mechanism": "official-cursor-agent-artifact",
     "managed_command": "bin/agent",
-    "version": "2026.09.26-dd393fe",
+    "version": "2026.09.28-64d2043",
     "npm": null,
     "pip": null
   },
@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-09-28T14:28:17+00:00",
+  "verified_at": "2026-09-29T21:25:35+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-31",
     "config_home": "~/.cursor",
@@ -446,6 +446,52 @@
     "shape": "gzip-tar",
     "platforms": {
       "linux/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.28-64d2043/linux/arm64/agent-cli-package.tar.gz",
+        "bytes": 180564349,
+        "sha256": "sha256:c737599b27d3d8d6743c72b487204e335f3a8ea2fdbaf18302ee207a646ffd8d",
+        "member": "dist-package/cursor-agent"
+      },
+      "linux/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.28-64d2043/linux/x64/agent-cli-package.tar.gz",
+        "bytes": 182618248,
+        "sha256": "sha256:6e4cd936a4866b8a77c50ff51a564460d715772fabc477a01aa0f0455d9559f0",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.28-64d2043/darwin/arm64/agent-cli-package.tar.gz",
+        "bytes": 176795016,
+        "sha256": "sha256:c0d7e9cd2e62438610b886d3439907dc1f98c2923b07b3a41416cc919aaf53c7",
+        "member": "dist-package/cursor-agent"
+      },
+      "macos/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.28-64d2043/darwin/x64/agent-cli-package.tar.gz",
+        "bytes": 184187482,
+        "sha256": "sha256:3efe0dff2f3d92a1e8139e33fef182801556b57ed50a6afd7bac19c4fad09549",
+        "member": "dist-package/cursor-agent"
+      },
+      "windows/arm64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.28-64d2043/windows/arm64/agent-cli-package.zip",
+        "bytes": 75088705,
+        "sha256": "sha256:72cfb4e4365a2c4b63c0c100c64c91d661bb619e2c890d8a7a2ba333df044f82",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      },
+      "windows/x86_64": {
+        "url": "https://downloads.cursor.com/lab/2026.09.28-64d2043/windows/x64/agent-cli-package.zip",
+        "bytes": 77143980,
+        "sha256": "sha256:2d7abd33929520e2169d7392360e71a7b137144077d1574818960fe0949ec52a",
+        "shape": "zip",
+        "member": "dist-package/cursor-agent.cmd"
+      }
+    },
+    "version": "2026.09.28-64d2043",
+    "verified_at": "2026-09-29T21:25:35+00:00"
+  },
+  "previous_software_artifacts": {
+    "command": "agent",
+    "shape": "gzip-tar",
+    "platforms": {
+      "linux/arm64": {
         "url": "https://downloads.cursor.com/lab/2026.09.26-dd393fe/linux/arm64/agent-cli-package.tar.gz",
         "bytes": 180807234,
         "sha256": "sha256:ab1178d0d8c10b254e7e427d1d673533a389338424e75034be9ab9da02845bde",
@@ -487,53 +533,7 @@
     "version": "2026.09.26-dd393fe",
     "verified_at": "2026-09-28T14:28:17+00:00"
   },
-  "previous_software_artifacts": {
-    "command": "agent",
-    "shape": "gzip-tar",
-    "platforms": {
-      "linux/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.23-86fc751/linux/arm64/agent-cli-package.tar.gz",
-        "bytes": 180809100,
-        "sha256": "sha256:38d1482c945172926e780206fce8cc51c67dd4f96162bcec680903aa70d80417",
-        "member": "dist-package/cursor-agent"
-      },
-      "linux/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.23-86fc751/linux/x64/agent-cli-package.tar.gz",
-        "bytes": 182867455,
-        "sha256": "sha256:740dd9d6eb5aec36ca90eaedf9fd5e2c489cd674d69b5147b3c2670f02d9776d",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.23-86fc751/darwin/arm64/agent-cli-package.tar.gz",
-        "bytes": 177065953,
-        "sha256": "sha256:fa3fe13d5589c586ff132a24c16eea96fb8efde88afdefddcd11d80fa199f3a5",
-        "member": "dist-package/cursor-agent"
-      },
-      "macos/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.23-86fc751/darwin/x64/agent-cli-package.tar.gz",
-        "bytes": 184447094,
-        "sha256": "sha256:809335cd4a92f7c11a20f605213585b6136c7bfe6722069facf94e988d3ed0e7",
-        "member": "dist-package/cursor-agent"
-      },
-      "windows/arm64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.23-86fc751/windows/arm64/agent-cli-package.zip",
-        "bytes": 75119584,
-        "sha256": "sha256:9044b00326ffdee83b6c809f2ba5d6545dd9bc85d5d26695ba1db529f7c3cee5",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      },
-      "windows/x86_64": {
-        "url": "https://downloads.cursor.com/lab/2026.09.23-86fc751/windows/x64/agent-cli-package.zip",
-        "bytes": 77219487,
-        "sha256": "sha256:9c7232600ca77e7a6327dc9a0036277bd57b66923c6b65fc7abe9d957eb728e2",
-        "shape": "zip",
-        "member": "dist-package/cursor-agent.cmd"
-      }
-    },
-    "version": "2026.09.23-86fc751",
-    "verified_at": "2026-09-25T11:49:37+00:00"
-  },
-  "setup_catalogue_digest": "sha256:23649a85091881ab958704515ac4bdfdff2c5b9c6cd39a4891226c8ba51db268",
+  "setup_catalogue_digest": "sha256:44b0845cb11a492cca6134357ea7b89ee31bba8b57e6b6c64e09e4e39bfc10a6",
   "previous_pin_recovery": {
     "measured_at": "2026-08-31",
     "note": "The vendor exposes no release index, but this repository had already measured the immediately preceding release before the pin moved: exact version plus the four Unix URLs, lengths and digests. All six derived immutable URLs still answer; the two Windows archives were downloaded and hashed now, and their command-script members were read from the ZIPs. This is recovered measurement, not a second independently moving pin, and the next ordinary refresh replaces it through the same outgoing-current rotation as every other harness."
