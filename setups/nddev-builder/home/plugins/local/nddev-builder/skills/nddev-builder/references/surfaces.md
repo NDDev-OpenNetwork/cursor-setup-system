@@ -10,7 +10,7 @@ this file and the binary disagree, the binary is right -- ask it with
 
 **Configuration home**: `~/.cursor`
 **Environment override**: `CURSOR_CONFIG_DIR`
-**And**: XDG_CONFIG_HOME moves cli-config.json to $XDG_CONFIG_HOME/cursor and moves nothing else this build owns
+XDG_CONFIG_HOME moves cli-config.json to $XDG_CONFIG_HOME/cursor and moves nothing else this build owns
 
 ## The configuration file
 

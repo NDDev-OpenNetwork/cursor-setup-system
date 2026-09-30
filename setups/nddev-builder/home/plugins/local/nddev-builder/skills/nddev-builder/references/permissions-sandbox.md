@@ -21,10 +21,10 @@ without a reason a reader can check.
 
 In the setup that carries them, and nowhere else:
 
-- `setups/cursor/baseline/home/cli-config.json` -- a conservative floor
-- `setups/cursor/full-auto/home/cli-config.json` -- `approvalMode` unrestricted
+- `setups/baseline/home/cli-config.json` -- a conservative floor
+- `setups/full-auto/home/cli-config.json` -- `approvalMode` unrestricted
   and the sandbox disabled
-- `setups/cursor/minimal/home/cli-config.json` -- the same autonomous posture
+- `setups/minimal/home/cli-config.json` -- the same autonomous posture
   as `full-auto` here: unrestricted approval, web search auto-accepted, the
   sandbox disabled
 
