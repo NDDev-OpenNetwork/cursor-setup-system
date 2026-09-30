@@ -173,7 +173,7 @@
       "product_projection": "observed-by-manager"
     }
   },
-  "verified_at": "2026-09-29T21:25:35+00:00",
+  "verified_at": "2026-09-30T07:08:14+00:00",
   "native_surfaces": {
     "verified_at": "2026-08-31",
     "config_home": "~/.cursor",
@@ -485,7 +485,7 @@
       }
     },
     "version": "2026.09.28-64d2043",
-    "verified_at": "2026-09-29T21:25:35+00:00"
+    "verified_at": "2026-09-30T07:08:14+00:00"
   },
   "previous_software_artifacts": {
     "command": "agent",
