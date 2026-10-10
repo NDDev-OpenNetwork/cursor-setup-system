@@ -1,5 +1,18 @@
 # cursor-setup-system
 
+The ai-stp installation component for Cursor CLI.
+
+Use [ai-stp](https://github.com/ai-engineers-guild/ai-stp) as the product entry
+point. Its CLI owns selection, authenticated acquisition and lifecycle
+orchestration; this component owns the final harness files and recovery.
+This repository remains the public source and release boundary, with the
+existing package identity. It is part of ai-stp, not a separate user workflow.
+
+The isolated [Rust CLI preview](https://github.com/ai-engineers-guild/ai-stp/tree/dev/apps/cli-v2)
+reports its implemented capabilities through its executable registry. Native
+writable lifecycle and production cutover are separate acceptance steps;
+this component's commands below do not claim that the preview already installs.
+
 Installs, reselects, restores and removes a complete Cursor CLI harness configuration, and owns the program lifecycle.
 
 A *setup* here is the complete harness state — the system-prompt components and
@@ -7,7 +20,7 @@ the whole configuration — not a pointer to somewhere the content really lives.
 That is what makes restore mean something: it returns the
 instructions, skills, commands, hooks, MCP entries, plugins and settings together, in one step.
 
-> **Status: complete for the five core operations and the program lifecycle.**
+> **Status: implements the five core operations and the program lifecycle.**
 >
 > `install`, `replace`, `backup`, `restore` and `remove` all work, over the wire
 > and from the local catalog.
@@ -21,7 +34,10 @@ instructions, skills, commands, hooks, MCP entries, plugins and settings togethe
 > this product resolves from `HOME` itself are overlaid out of the target,
 > so the session it assembles is the target's and not the caller's.
 
-## Using it
+## Component maintenance and compatibility
+
+These direct entry points remain available for existing integrations and
+component development. New user workflows belong to the ai-stp CLI.
 
 ```bash
 cursor-setup-system list
