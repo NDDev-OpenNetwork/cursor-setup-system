@@ -3,10 +3,11 @@
   "version": "0.2.2",
   "description": "NDDev setup authoring guidance for a caller-named Cursor CLI target.",
   "author": {
-    "name": "NDDev"
+    "name": "NDDev",
+    "email": "danil@nddev.ai"
   },
-  "homepage": "https://github.com/NDDev-OpenNetwork/cursor-setup-system",
-  "repository": "https://github.com/NDDev-OpenNetwork/cursor-setup-system",
+  "homepage": "https://github.com/NDDev-Technocracy-OpenNetwork/cursor-setup-system",
+  "repository": "https://github.com/NDDev-Technocracy-OpenNetwork/cursor-setup-system",
   "skills": "./skills",
   "agents": "./agents",
   "commands": "./commands"
