@@ -204,7 +204,7 @@ does not acquire release publisher authentication by passing conformance.
 
 ```bash
 docker run --rm -v "$HOME/.config:/config" \
-  ghcr.io/nddev-technocracy-opennetwork/cursor-setup-system:0.0.94 \
+  ghcr.io/nddev-technocracy-archive/cursor-setup-system:0.0.94 \
   status --target /config/<dir> --json
 ```
 
