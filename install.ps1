@@ -12,7 +12,7 @@ param(
 )
 $ErrorActionPreference = "Stop"
 
-$repo   = "NDDev-Technocracy-OpenNetwork/cursor-setup-system"
+$repo   = "NDDev-Technocracy-Archive/cursor-setup-system"
 $binary = "cursor-setup-system"
 $arch   = switch ($env:PROCESSOR_ARCHITECTURE) {
   "AMD64" { "x86_64" }
